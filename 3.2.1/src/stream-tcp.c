@@ -587,7 +587,7 @@ void StreamTcpInitConfig(char quiet)
      * values. */
     FlowSetProtoFreeFunc(IPPROTO_TCP, StreamTcpSessionClear);
 
-#ifdef UNITTESTS
+#if 0
     if (RunmodeIsUnittests()) {
         SCMutexLock(&ssn_pool_mutex);
         if (ssn_pool == NULL) {
@@ -5814,7 +5814,7 @@ void TcpSessionSetReassemblyDepth(TcpSession *ssn, uint32_t size)
     return;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  *  \test   Test the allocation of TCP session for a given packet from the
@@ -10543,7 +10543,7 @@ end:
 
 void StreamTcpRegisterTests (void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("StreamTcpTest01 -- TCP session allocation",
                    StreamTcpTest01);
     UtRegisterTest("StreamTcpTest02 -- TCP session deallocation",

@@ -380,7 +380,7 @@ static _Bool PrefilterTtlIsPrefilterable(const Signature *s)
     return FALSE;
 }
 
-#ifdef UNITTESTS
+#if 0
 #include "detect-engine.h"
 #include "detect-engine-mpm.h"
 
@@ -690,7 +690,7 @@ end:
  */
 void DetectTtlRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectTtlParseTest01", DetectTtlParseTest01);
     UtRegisterTest("DetectTtlParseTest02", DetectTtlParseTest02);
     UtRegisterTest("DetectTtlParseTest03", DetectTtlParseTest03);

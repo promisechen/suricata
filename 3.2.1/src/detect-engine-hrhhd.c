@@ -172,7 +172,7 @@ int DetectEngineInspectHttpHRH(ThreadVars *tv,
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Test that the http_raw_host content matches against a http request
@@ -2627,7 +2627,7 @@ end:
 void DetectEngineHttpHRHRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineHttpHRHTest01", DetectEngineHttpHRHTest01);
     UtRegisterTest("DetectEngineHttpHRHTest02", DetectEngineHttpHRHTest02);
     UtRegisterTest("DetectEngineHttpHRHTest03", DetectEngineHttpHRHTest03);

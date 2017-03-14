@@ -717,7 +717,7 @@ void RegisterDNSTCPParsers(void)
                   "still on.", proto_name);
     }
 
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_DNS,
         DNSTCPParserRegisterTests);
 #endif
@@ -726,7 +726,7 @@ void RegisterDNSTCPParsers(void)
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 
 #include "util-unittest-helper.h"
 

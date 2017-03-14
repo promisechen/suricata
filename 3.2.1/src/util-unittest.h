@@ -33,7 +33,7 @@
 #ifndef __UTIL_UNITTEST_H__
 #define __UTIL_UNITTEST_H__
 
-#ifdef UNITTESTS
+#if 0
 
 typedef struct UtTest_ {
 

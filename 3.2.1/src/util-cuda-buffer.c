@@ -465,7 +465,7 @@ void CudaBufferInit(void)
 
 /****************************Unittests***************************/
 
-#ifdef UNITTESTS
+#if 0
 
 int CudaBufferTest01(void)
 {
@@ -1339,11 +1339,11 @@ int CudaBufferTest06(void)
     return result;
 }
 
-#endif /* #ifdef UNITTESTS */
+#endif /* #if 0 */
 
 void CudaBufferRegisterUnittests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("CudaBufferTest01", CudaBufferTest01);
     UtRegisterTest("CudaBufferTest02", CudaBufferTest02);
     UtRegisterTest("CudaBufferTest03", CudaBufferTest03);

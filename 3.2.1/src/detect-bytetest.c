@@ -668,7 +668,7 @@ void DetectBytetestFree(void *ptr)
 
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 #include "util-unittest-helper.h"
 /**
  * \test DetectBytetestTestParse01 is a test to make sure that we return "something"
@@ -1525,7 +1525,7 @@ end:
  */
 void DetectBytetestRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectBytetestTestParse01", DetectBytetestTestParse01);
     UtRegisterTest("DetectBytetestTestParse02", DetectBytetestTestParse02);
     UtRegisterTest("DetectBytetestTestParse03", DetectBytetestTestParse03);

@@ -219,7 +219,7 @@ int DecodeTCP(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p, uint8_t *pkt, ui
     return TM_ECODE_OK;
 }
 
-#ifdef UNITTESTS
+#if 0
 static int TCPCalculateValidChecksumtest01(void)
 {
     uint16_t csum = 0;
@@ -512,7 +512,7 @@ end:
 
 void DecodeTCPRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("TCPCalculateValidChecksumtest01",
                    TCPCalculateValidChecksumtest01);
     UtRegisterTest("TCPCalculateInvalidChecksumtest02",

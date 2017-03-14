@@ -255,7 +255,7 @@ void DetectTlsVersionFree(void *ptr)
     SCFree(id_d);
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
 /**
  * \test DetectTlsVersionTestParse01 is a test to make sure that we parse the "id"
@@ -580,7 +580,7 @@ static int DetectTlsVersionTestDetect03(void)
  */
 void DetectTlsVersionRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectTlsVersionTestParse01", DetectTlsVersionTestParse01);
     UtRegisterTest("DetectTlsVersionTestParse02", DetectTlsVersionTestParse02);
     UtRegisterTest("DetectTlsVersionTestDetect01",

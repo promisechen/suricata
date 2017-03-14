@@ -569,7 +569,7 @@ void DetectDNP3Register(void)
         DETECT_SM_LIST_DNP3_MATCH, DetectEngineInspectDNP3);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 #include "util-unittest.h"
 #include "util-unittest-helper.h"
@@ -996,7 +996,7 @@ static int DetectDNP3DataTest02(void)
 
 static void DetectDNP3FuncRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectDNP3FuncParseFunctionCodeTest",
                    DetectDNP3FuncParseFunctionCodeTest);
     UtRegisterTest("DetectDNP3FuncTest01", DetectDNP3FuncTest01);
@@ -1005,7 +1005,7 @@ static void DetectDNP3FuncRegisterTests(void)
 
 static void DetectDNP3IndRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectDNP3IndTestParseAsInteger",
                    DetectDNP3IndTestParseAsInteger);
     UtRegisterTest("DetectDNP3IndTestParseByName",
@@ -1015,7 +1015,7 @@ static void DetectDNP3IndRegisterTests(void)
 
 static void DetectDNP3ObjRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectDNP3ObjParseTest", DetectDNP3ObjParseTest);
     UtRegisterTest("DetectDNP3ObjSetupTest", DetectDNP3ObjSetupTest);
 #endif
@@ -1023,7 +1023,7 @@ static void DetectDNP3ObjRegisterTests(void)
 
 void DetectDNP3DataRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectDNP3DataTest01", DetectDNP3DataTest01);
     UtRegisterTest("DetectDNP3DataTest02", DetectDNP3DataTest02);
 #endif

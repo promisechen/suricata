@@ -381,7 +381,7 @@ void DetectIsdataatFree(void *ptr)
 }
 
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test DetectIsdataatTestParse01 is a test to make sure that we return a correct IsdataatData structure
@@ -1174,7 +1174,7 @@ end:
  */
 void DetectIsdataatRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectIsdataatTestParse01", DetectIsdataatTestParse01);
     UtRegisterTest("DetectIsdataatTestParse02", DetectIsdataatTestParse02);
     UtRegisterTest("DetectIsdataatTestParse03", DetectIsdataatTestParse03);

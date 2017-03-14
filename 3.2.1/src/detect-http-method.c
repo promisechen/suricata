@@ -161,7 +161,7 @@ int DetectHttpMethodValidateRule(const Signature *s)
     return 1;
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
 #include "stream-tcp-reassemble.h"
 
@@ -857,7 +857,7 @@ end:
  */
 void DetectHttpMethodRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     SCLogDebug("Registering tests for DetectHttpMethod...");
     UtRegisterTest("DetectHttpMethodTest01", DetectHttpMethodTest01);
     UtRegisterTest("DetectHttpMethodTest02", DetectHttpMethodTest02);

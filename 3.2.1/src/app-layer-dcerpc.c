@@ -317,7 +317,7 @@ static uint32_t DCERPCParseBINDCTXItem(DCERPC *dcerpc, uint8_t *input, uint32_t 
                             dcerpc->dcerpcbindbindack.uuid_entry,
                             next);
 
-#ifdef UNITTESTS
+#if 0
                     if (RunmodeIsUnittests()) {
                         printUUID("BIND", dcerpc->dcerpcbindbindack.uuid_entry);
                     }
@@ -636,7 +636,7 @@ static uint32_t DCERPCParseBINDCTXItem(DCERPC *dcerpc, uint8_t *input, uint32_t 
                 TAILQ_INSERT_HEAD(&dcerpc->dcerpcbindbindack.uuid_list,
                         dcerpc->dcerpcbindbindack.uuid_entry,
                         next);
-#ifdef UNITTESTS
+#if 0
                 if (RunmodeIsUnittests()) {
                     printUUID("BINDACK", dcerpc->dcerpcbindbindack.uuid_entry);
                 }
@@ -684,7 +684,7 @@ static uint32_t DCERPCParseBINDACKCTXItem(DCERPC *dcerpc, uint8_t *input, uint32
                     TAILQ_FOREACH(uuid_entry, &dcerpc->dcerpcbindbindack.uuid_list, next) {
                         if (uuid_entry->internal_id == dcerpc->dcerpcbindbindack.uuid_internal_id) {
                             uuid_entry->result = dcerpc->dcerpcbindbindack.result;
-#ifdef UNITTESTS
+#if 0
                             if (RunmodeIsUnittests()) {
                                 printUUID("BIND_ACK", uuid_entry);
                             }
@@ -840,7 +840,7 @@ static uint32_t DCERPCParseBINDACKCTXItem(DCERPC *dcerpc, uint8_t *input, uint32
                 TAILQ_FOREACH(uuid_entry, &dcerpc->dcerpcbindbindack.uuid_list, next) {
                     if (uuid_entry->internal_id == dcerpc->dcerpcbindbindack.uuid_internal_id) {
                         uuid_entry->result = dcerpc->dcerpcbindbindack.result;
-#ifdef UNITTESTS
+#if 0
                         if (RunmodeIsUnittests()) {
                             printUUID("BIND_ACK", uuid_entry);
                         }
@@ -2063,7 +2063,7 @@ void RegisterDCERPCParsers(void)
         SCLogInfo("Parsed disabled for %s protocol. Protocol detection"
                   "still on.", proto_name);
     }
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_DCERPC, DCERPCParserRegisterTests);
 #endif
 
@@ -2071,7 +2071,7 @@ void RegisterDCERPCParsers(void)
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 /** \test DCERPC Header Parsing and  BIND / BIND_ACK multiple UUID handling
 */
 
@@ -6425,7 +6425,7 @@ end:
 
 void DCERPCParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DCERPCParserTest01", DCERPCParserTest01);
     UtRegisterTest("DCERPCParserTest02", DCERPCParserTest02);
     UtRegisterTest("DCERPCParserTest03", DCERPCParserTest03);

@@ -138,7 +138,7 @@ int DetectHttpRawHeaderSetup(DetectEngineCtx *de_ctx, Signature *s, char *arg)
 
 /************************************Unittests*********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 #include "stream-tcp-reassemble.h"
 
@@ -1551,7 +1551,7 @@ int DetectHttpRawHeaderTest27(void)
 
 void DetectHttpRawHeaderRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectHttpRawHeaderTest01", DetectHttpRawHeaderTest01);
     UtRegisterTest("DetectHttpRawHeaderTest02", DetectHttpRawHeaderTest02);
     UtRegisterTest("DetectHttpRawHeaderTest03", DetectHttpRawHeaderTest03);

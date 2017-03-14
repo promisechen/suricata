@@ -1687,7 +1687,7 @@ void RegisterSMTPParsers(void)
 
     SMTPConfigure();
 
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_SMTP, SMTPParserRegisterTests);
 #endif
     return;
@@ -1703,7 +1703,7 @@ void SMTPParserCleanup(void)
 
 /***************************************Unittests******************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static void SMTPTestInitConfig(void)
 {
@@ -5137,7 +5137,7 @@ static int SMTPProcessDataChunkTest05(void){
 
 void SMTPParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SMTPParserTest01", SMTPParserTest01);
     UtRegisterTest("SMTPParserTest02", SMTPParserTest02);
     UtRegisterTest("SMTPParserTest03", SMTPParserTest03);

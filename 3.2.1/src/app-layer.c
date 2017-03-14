@@ -733,11 +733,12 @@ void AppLayerListSupportedProtocols(void)
 int AppLayerSetup(void)
 {
     SCEnter();
-
+	//clx:初始化单模多模算法等
     AppLayerProtoDetectSetup();
     AppLayerParserSetup();
-
+	//clx:各协议添加字符串到链表中
     AppLayerParserRegisterProtocolParsers();
+	//clx:添加特征到状态机并编译
     AppLayerProtoDetectPrepareState();
 
     AppLayerSetupCounters();
@@ -904,7 +905,7 @@ void AppLayerDeSetupCounters()
 
 /***** Unittests *****/
 
-#ifdef UNITTESTS
+#if 0
 #include "pkt-var.h"
 #include "stream-tcp.h"
 #include "stream-tcp-util.h"

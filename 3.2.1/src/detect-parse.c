@@ -2104,7 +2104,7 @@ int RuleParseDataFromFile(char *filename)
  * TESTS
  */
 
-#ifdef UNITTESTS
+#if 0
 int SigParseTest01 (void)
 {
     int result = 1;
@@ -3627,7 +3627,7 @@ static int SigParseTestUnblanacedQuotes01(void)
 
 void SigParseRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SigParseTest01", SigParseTest01);
     UtRegisterTest("SigParseTest02", SigParseTest02);
     UtRegisterTest("SigParseTest03", SigParseTest03);

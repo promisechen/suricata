@@ -223,7 +223,7 @@ static void DetectTemplateFree(void *ptr) {
     SCFree(templated);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test description of the test
@@ -256,7 +256,7 @@ static int DetectTemplateSignatureTest01 (void)
  * \brief this function registers unit tests for DetectTemplate
  */
 void DetectTemplateRegisterTests(void) {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectTemplateParseTest01", DetectTemplateParseTest01);
     UtRegisterTest("DetectTemplateSignatureTest01",
                    DetectTemplateSignatureTest01);

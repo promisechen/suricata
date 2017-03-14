@@ -145,7 +145,7 @@ int DetectEngineInspectHttpRawUri(ThreadVars *tv,
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int DetectEngineHttpRawUriTest01(void)
 {
@@ -3433,7 +3433,7 @@ end:
 
 void DetectEngineHttpRawUriRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineHttpRawUriTest01",
                    DetectEngineHttpRawUriTest01);
     UtRegisterTest("DetectEngineHttpRawUriTest02",

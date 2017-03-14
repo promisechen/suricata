@@ -349,7 +349,7 @@ static _Bool PrefilterICodeIsPrefilterable(const Signature *s)
     return FALSE;
 }
 
-#ifdef UNITTESTS
+#if 0
 #include "detect-engine.h"
 #include "detect-engine-mpm.h"
 
@@ -578,7 +578,7 @@ end:
  */
 void DetectICodeRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectICodeParseTest01", DetectICodeParseTest01);
     UtRegisterTest("DetectICodeParseTest02", DetectICodeParseTest02);
     UtRegisterTest("DetectICodeParseTest03", DetectICodeParseTest03);

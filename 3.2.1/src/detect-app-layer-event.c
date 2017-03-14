@@ -383,7 +383,7 @@ int DetectAppLayerEventPrepare(Signature *s)
 
 /**********************************Unittests***********************************/
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 #include "stream-tcp-private.h"
 #include "stream-tcp-reassemble.h"
 #include "stream-tcp.h"
@@ -831,7 +831,7 @@ int DetectAppLayerEventTest05(void)
  */
 void DetectAppLayerEventRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectAppLayerEventTest01", DetectAppLayerEventTest01);
     UtRegisterTest("DetectAppLayerEventTest02", DetectAppLayerEventTest02);
     UtRegisterTest("DetectAppLayerEventTest03", DetectAppLayerEventTest03);

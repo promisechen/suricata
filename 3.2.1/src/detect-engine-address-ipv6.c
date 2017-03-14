@@ -809,7 +809,7 @@ int DetectAddressJoinIPv6(DetectEngineCtx *de_ctx, DetectAddress *target,
 
 /***************************************Unittests******************************/
 
-#ifdef UNITTESTS
+#if 0
 
 int AddressTestIPv6Gt01(void)
 {
@@ -2080,7 +2080,7 @@ static int AddressTestIPv6Join01(void)
 void DetectAddressIPv6Tests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("AddressTestIPv6Gt01", AddressTestIPv6Gt01);
     UtRegisterTest("AddressTestIPv6Gt02", AddressTestIPv6Gt02);
     UtRegisterTest("AddressTestIPv6Gt03", AddressTestIPv6Gt03);

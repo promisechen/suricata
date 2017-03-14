@@ -1643,6 +1643,8 @@ static void DetectFlow(ThreadVars *tv,
                        DetectEngineCtx *de_ctx, DetectEngineThreadCtx *det_ctx,
                        Packet *p)
 {
+	printf("DetectFlow\n");
+
     /* No need to perform any detection on this packet, if the the given flag is set.*/
     if ((p->flags & PKT_NOPACKET_INSPECTION) ||
         (PACKET_TEST_ACTION(p, ACTION_DROP)))
@@ -1673,6 +1675,7 @@ static void DetectNoFlow(ThreadVars *tv,
                          DetectEngineCtx *de_ctx, DetectEngineThreadCtx *det_ctx,
                          Packet *p)
 {
+printf("DetectNoFlow\n");
     /* No need to perform any detection on this packet, if the the given flag is set.*/
     if ((p->flags & PKT_NOPACKET_INSPECTION) ||
         (PACKET_TEST_ACTION(p, ACTION_DROP)))
@@ -4338,7 +4341,7 @@ void SigTableRegisterTests(void)
  * TESTS
  */
 
-#ifdef UNITTESTS
+#if 0
 #include "flow-util.h"
 #include "stream-tcp-reassemble.h"
 
@@ -10014,7 +10017,7 @@ end:
 
 void SigRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     SigParseRegisterTests();
     IPOnlyRegisterTests();
 

@@ -49,7 +49,7 @@ enum AppProtoEnum {
     /* used by the probing parser when alproto detection fails
      * permanently for that particular stream */
     ALPROTO_FAILED,
-#ifdef UNITTESTS
+#if 0
     ALPROTO_TEST,
 #endif /* UNITESTS */
     /* keep last */

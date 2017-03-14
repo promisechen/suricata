@@ -182,7 +182,7 @@ int HostBitIsnotset(Host *h, uint16_t idx, uint32_t ts)
 }
 
 /* TESTS */
-#ifdef UNITTESTS
+#if 0
 static int HostBitTest01 (void)
 {
     int ret = 0;
@@ -488,7 +488,7 @@ end:
 
 void HostBitRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("HostBitTest01", HostBitTest01);
     UtRegisterTest("HostBitTest02", HostBitTest02);
     UtRegisterTest("HostBitTest03", HostBitTest03);

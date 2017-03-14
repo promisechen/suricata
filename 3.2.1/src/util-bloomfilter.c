@@ -122,7 +122,7 @@ uint32_t BloomFilterMemorySize(BloomFilter *bf)
  * ONLY TESTS BELOW THIS COMMENT
  */
 
-#ifdef UNITTESTS
+#if 0
 static uint32_t BloomFilterTestHash(const void *data, uint16_t datalen, uint8_t iter, uint32_t hash_size)
 {
      uint8_t *d = (uint8_t *)data;
@@ -274,7 +274,7 @@ end:
 
 void BloomFilterRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("BloomFilterTestInit01", BloomFilterTestInit01);
     UtRegisterTest("BloomFilterTestInit02", BloomFilterTestInit02);
     UtRegisterTest("BloomFilterTestInit03", BloomFilterTestInit03);

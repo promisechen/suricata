@@ -284,7 +284,7 @@ void StorageFreeById(Storage *storage, StorageEnum type, int id)
 #ifdef DEBUG
     BUG_ON(!storage_registraton_closed);
 #endif
-#ifdef UNITTESTS
+#if 0
     if (storage_map == NULL)
         return;
 #endif
@@ -308,7 +308,7 @@ void StorageFreeAll(Storage *storage, StorageEnum type)
 #ifdef DEBUG
     BUG_ON(!storage_registraton_closed);
 #endif
-#ifdef UNITTESTS
+#if 0
     if (storage_map == NULL)
         return;
 #endif
@@ -332,7 +332,7 @@ void StorageFree(Storage **storage, StorageEnum type)
 #ifdef DEBUG
     BUG_ON(!storage_registraton_closed);
 #endif
-#ifdef UNITTESTS
+#if 0
     if (storage_map == NULL)
         return;
 #endif
@@ -350,7 +350,7 @@ void StorageFree(Storage **storage, StorageEnum type)
     *storage = NULL;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static void *StorageTestAlloc(unsigned int size)
 {

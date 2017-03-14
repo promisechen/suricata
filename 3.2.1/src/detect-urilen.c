@@ -287,7 +287,7 @@ void DetectUrilenFree(void *ptr)
     SCFree(urilend);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 #include "stream.h"
 #include "stream-tcp-private.h"
@@ -659,7 +659,7 @@ end:
  */
 void DetectUrilenRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectUrilenParseTest01", DetectUrilenParseTest01);
     UtRegisterTest("DetectUrilenParseTest02", DetectUrilenParseTest02);
     UtRegisterTest("DetectUrilenParseTest03", DetectUrilenParseTest03);

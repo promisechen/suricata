@@ -296,7 +296,7 @@ void DetectFlowbitFree (void *ptr)
     SCFree(fd);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static int FlowBitsTestParse01(void)
 {
@@ -725,7 +725,7 @@ static int FlowBitsTestSig08(void)
  */
 void FlowBitsRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("FlowBitsTestParse01", FlowBitsTestParse01);
     UtRegisterTest("FlowBitsTestSig01", FlowBitsTestSig01);
     UtRegisterTest("FlowBitsTestSig02", FlowBitsTestSig02);

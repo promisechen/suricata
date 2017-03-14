@@ -284,7 +284,7 @@ int DetectEngineInspectENIP(ThreadVars *tv, DetectEngineCtx *de_ctx,
     SCReturnInt(0);
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 #include "app-layer-parser.h"
 #include "detect-parse.h"
 #include "detect-engine.h"
@@ -371,7 +371,7 @@ static int DetectEngineInspectENIPTest01(void)
 
 void DetectEngineInspectENIPRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineInspectENIPTest01", DetectEngineInspectENIPTest01);
 #endif /* UNITTESTS */
     return;

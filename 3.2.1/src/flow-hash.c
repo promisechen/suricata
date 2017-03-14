@@ -298,7 +298,7 @@ void FlowSetupPacket(Packet *p)
 }
 
 int TcpSessionPacketSsnReuse(const Packet *p, const Flow *f, void *tcp_ssn);
-
+//clx:0:不相等 1:相等
 static inline int FlowCompare(Flow *f, const Packet *p)
 {
     if (p->proto == IPPROTO_ICMP) {
@@ -361,6 +361,7 @@ static Flow *FlowGetNew(ThreadVars *tv, DecodeThreadVars *dtv, const Packet *p)
     /* get a flow from the spare queue */
     f = FlowDequeue(&flow_spare_q);
     if (f == NULL) {
+	//clx?:这里memcap做什么？
         /* If we reached the max memcap, we get a used flow */
         if (!(FLOW_CHECK_MEMCAP(sizeof(Flow) + FlowStorageSize()))) {
             /* declare state of emergency */
@@ -374,7 +375,7 @@ static Flow *FlowGetNew(ThreadVars *tv, DecodeThreadVars *dtv, const Packet *p)
                  * we check a 1000 times a second. */
                 FlowWakeupFlowManagerThread();
             }
-
+			//clx?:在这里输出流记录？？
             f = FlowGetUsedFlow(tv, dtv);
             if (f == NULL) {
                 /* max memcap reached, so increments the counter */
@@ -470,7 +471,7 @@ Flow *FlowGetFlowFromHash(ThreadVars *tv, DecodeThreadVars *dtv, const Packet *p
     FBLOCK_LOCK(fb);
 
     SCLogDebug("fb %p fb->head %p", fb, fb->head);
-
+	//clx:head为空，新建一个流节点 后面还会在遍历链表
     /* see if the bucket already has a flow */
     if (fb->head == NULL) {
         f = FlowGetNew(tv, dtv, p);
@@ -497,7 +498,7 @@ Flow *FlowGetFlowFromHash(ThreadVars *tv, DecodeThreadVars *dtv, const Packet *p
 
     /* ok, we have a flow in the bucket. Let's find out if it is our flow */
     f = fb->head;
-
+	//clx:遍历链表，无节点则新建。有节点则更新信息。
     /* see if this is the flow we are looking for */
     if (FlowCompare(f, p) == 0) {
         Flow *pf = NULL; /* previous flow */
@@ -505,7 +506,7 @@ Flow *FlowGetFlowFromHash(ThreadVars *tv, DecodeThreadVars *dtv, const Packet *p
         while (f) {
             pf = f;
             f = f->hnext;
-
+				//clx:未找到，新建一个节点
             if (f == NULL) {
                 f = pf->hnext = FlowGetNew(tv, dtv, p);
                 if (f == NULL) {
@@ -529,7 +530,7 @@ Flow *FlowGetFlowFromHash(ThreadVars *tv, DecodeThreadVars *dtv, const Packet *p
                 FBLOCK_UNLOCK(fb);
                 return f;
             }
-
+			//clx:找到了节点，将节点更新到链表头。
             if (FlowCompare(f, p) != 0) {
                 /* we found our flow, lets put it on top of the
                  * hash list -- this rewards active flows */
@@ -550,6 +551,7 @@ Flow *FlowGetFlowFromHash(ThreadVars *tv, DecodeThreadVars *dtv, const Packet *p
 
                 /* found our flow, lock & return */
                 FLOWLOCK_WRLOCK(f);
+				//clx?:好像是tcp 的syn报文有特殊的处理？？还从新reuse??,内部又重新创建了流节点？？
                 if (unlikely(TcpSessionPacketSsnReuse(p, f, f->protoctx) == 1)) {
                     f = TcpReuseReplace(tv, dtv, fb, f, hash, p);
                     if (f == NULL) {
@@ -565,9 +567,11 @@ Flow *FlowGetFlowFromHash(ThreadVars *tv, DecodeThreadVars *dtv, const Packet *p
             }
         }
     }
-
+//clx:list的head为空，则新建节点。不会走到这里。
+//clx:head指向的流节点，才会走到这里。
     /* lock & return */
     FLOWLOCK_WRLOCK(f);
+	//clx?:好像是tcp 的syn报文有特殊的处理？？还从新reuse??,内部又重新创建了流节点？？
     if (unlikely(TcpSessionPacketSsnReuse(p, f, f->protoctx) == 1)) {
         f = TcpReuseReplace(tv, dtv, fb, f, hash, p);
         if (f == NULL) {

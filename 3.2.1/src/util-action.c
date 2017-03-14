@@ -162,7 +162,7 @@ int ActionInitConfig()
     return -1;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Check that we invalidate duplicated actions
@@ -1595,7 +1595,7 @@ done:
 /* Register unittests */
 void UtilActionRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     /* Generic tests */
     UtRegisterTest("UtilActionTest01", UtilActionTest01);
     UtRegisterTest("UtilActionTest02", UtilActionTest02);

@@ -132,7 +132,7 @@ int HashTableAdd(HashTable *ht, void *data, uint16_t datalen)
         ht->array[hash] = hb;
     }
 
-#ifdef UNITTESTS
+#if 0
     ht->count++;
 #endif
 
@@ -238,7 +238,7 @@ char HashTableDefaultCompare(void *data1, uint16_t len1, void *data2, uint16_t l
  * ONLY TESTS BELOW THIS COMMENT
  */
 
-#ifdef UNITTESTS
+#if 0
 static int HashTableTestInit01 (void)
 {
     HashTable *ht = HashTableInit(1024, HashTableGenericHash, NULL, NULL);
@@ -414,7 +414,7 @@ end:
 
 void HashTableRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("HashTableTestInit01", HashTableTestInit01);
     UtRegisterTest("HashTableTestInit02", HashTableTestInit02);
     UtRegisterTest("HashTableTestInit03", HashTableTestInit03);

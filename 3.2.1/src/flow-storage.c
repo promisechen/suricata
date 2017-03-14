@@ -66,7 +66,7 @@ int FlowStorageRegister(const char *name, const unsigned int size, void *(*Alloc
     return StorageRegister(STORAGE_FLOW, name, size, Alloc, Free);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static void *StorageTestAlloc(unsigned int size)
 {
@@ -288,7 +288,7 @@ error:
 
 void RegisterFlowStorageTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("FlowStorageTest01", FlowStorageTest01);
     UtRegisterTest("FlowStorageTest02", FlowStorageTest02);
     UtRegisterTest("FlowStorageTest03", FlowStorageTest03);

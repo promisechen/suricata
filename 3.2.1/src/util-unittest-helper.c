@@ -42,7 +42,7 @@
 #include "util-unittest.h"
 #include "util-unittest-helper.h"
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  *  \brief return the uint32_t for a ipv4 address string
@@ -1069,7 +1069,7 @@ int UTHBuildPacketSrcDstPortsTest02(void)
 
 void UTHRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("UTHBuildPacketRealTest01", UTHBuildPacketRealTest01);
     UtRegisterTest("UTHBuildPacketRealTest02", UTHBuildPacketRealTest02);
     UtRegisterTest("UTHBuildPacketTest01", UTHBuildPacketTest01);

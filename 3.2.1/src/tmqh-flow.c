@@ -280,7 +280,7 @@ void TmqhOutputFlowIPPair(ThreadVars *tv, Packet *p)
     return;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static int TmqhOutputFlowSetupCtxTest01(void)
 {
@@ -422,7 +422,7 @@ end:
 
 void TmqhFlowRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("TmqhOutputFlowSetupCtxTest01",
                    TmqhOutputFlowSetupCtxTest01);
     UtRegisterTest("TmqhOutputFlowSetupCtxTest02",

@@ -76,7 +76,7 @@ static int DetectTemplateBufferSetup(DetectEngineCtx *de_ctx, Signature *s,
     return 0;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 #include "util-unittest.h"
 #include "util-unittest-helper.h"
@@ -168,7 +168,7 @@ static int DetectTemplateBufferTest(void)
 
 static void DetectTemplateBufferRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectTemplateBufferTest", DetectTemplateBufferTest);
 #endif /* UNITTESTS */
 }

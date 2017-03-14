@@ -215,7 +215,7 @@ int DetectEngineInspectHttpCookie(ThreadVars *tv,
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Test that the http_cookie content matches against a http request
@@ -1913,7 +1913,7 @@ end:
 void DetectEngineHttpCookieRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineHttpCookieTest01",
                    DetectEngineHttpCookieTest01);
     UtRegisterTest("DetectEngineHttpCookieTest02",

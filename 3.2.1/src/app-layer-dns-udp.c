@@ -454,13 +454,13 @@ void RegisterDNSUDPParsers(void)
         SCLogInfo("Parsed disabled for %s protocol. Protocol detection"
                   "still on.", proto_name);
     }
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_UDP, ALPROTO_DNS, DNSUDPParserRegisterTests);
 #endif
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 #include "util-unittest-helper.h"
 
 static int DNSUDPParserTest01 (void)

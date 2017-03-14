@@ -1329,7 +1329,7 @@ TmEcode DetectEngineThreadCtxInit(ThreadVars *tv, void *initdata, void **data)
     det_ctx->tv = tv;
     det_ctx->de_ctx = DetectEngineGetCurrent();
     if (det_ctx->de_ctx == NULL) {
-#ifdef UNITTESTS
+#if 0
         if (RunmodeIsUnittests()) {
             det_ctx->de_ctx = (DetectEngineCtx *)initdata;
         } else {
@@ -1503,7 +1503,7 @@ void DetectEngineThreadCtxFree(DetectEngineThreadCtx *det_ctx)
 
     if (det_ctx->de_ctx != NULL) {
         DetectEngineThreadCtxDeinitKeywords(det_ctx->de_ctx, det_ctx);
-#ifdef UNITTESTS
+#if 0
         if (!RunmodeIsUnittests() || det_ctx->de_ctx->ref_cnt > 0)
             DetectEngineDeReference(&det_ctx->de_ctx);
 #else
@@ -2567,7 +2567,7 @@ const char *DetectSigmatchListEnumToString(enum DetectSigmatchListEnum type)
 
 /*************************************Unittest*********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int DetectEngineInitYamlConf(char *conf)
 {
@@ -2809,7 +2809,7 @@ static int DetectEngineTest09(void)
 void DetectEngineRegisterTests()
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineTest01", DetectEngineTest01);
     UtRegisterTest("DetectEngineTest02", DetectEngineTest02);
     UtRegisterTest("DetectEngineTest03", DetectEngineTest03);

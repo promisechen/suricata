@@ -1244,7 +1244,7 @@ void DetectEngineStateResetTxs(Flow *f)
 
 /*********Unittests*********/
 
-#ifdef UNITTESTS
+#if 0
 
 static int DeStateTest01(void)
 {
@@ -2299,7 +2299,7 @@ end:
 
 void DeStateRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DeStateTest01", DeStateTest01);
     UtRegisterTest("DeStateTest02", DeStateTest02);
     UtRegisterTest("DeStateTest03", DeStateTest03);

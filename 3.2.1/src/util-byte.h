@@ -252,7 +252,7 @@ int ByteExtractStringInt16(int16_t *res, int base, uint16_t len, const char *str
  */
 int ByteExtractStringInt8(int8_t *res, int base, uint16_t len, const char *str);
 
-#ifdef UNITTESTS
+#if 0
 void ByteRegisterTests(void);
 #endif /* UNITTESTS */
 

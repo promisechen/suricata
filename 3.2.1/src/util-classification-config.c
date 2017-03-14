@@ -126,7 +126,7 @@ FILE *SCClassConfInitContextAndLocalResources(DetectEngineCtx *de_ctx, FILE *fd)
     if (fd == NULL) {
         filename = SCClassConfGetConfFilename(de_ctx);
         if ( (fd = fopen(filename, "r")) == NULL) {
-#ifdef UNITTESTS
+#if 0
             if (RunmodeIsUnittests())
                 goto error; // silently fail
 #endif
@@ -365,7 +365,7 @@ void SCClassConfParseFile(DetectEngineCtx *de_ctx, FILE *fd)
         i++;
     }
 
-#ifdef UNITTESTS
+#if 0
     SCLogInfo("Added \"%d\" classification types from the classification file",
               de_ctx->class_conf_ht->count);
 #endif
@@ -532,7 +532,7 @@ void SCClassConfLoadClassficationConfigFile(DetectEngineCtx *de_ctx, FILE *fd)
 {
     fd = SCClassConfInitContextAndLocalResources(de_ctx, fd);
     if (fd == NULL) {
-#ifdef UNITTESTS
+#if 0
         if (RunmodeIsUnittests() && fd == NULL) {
             return;
         }
@@ -577,7 +577,7 @@ SCClassConfClasstype *SCClassConfGetClasstype(const char *ct_name,
 /*----------------------------------Unittests---------------------------------*/
 
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \brief Creates a dummy classification file, with all valid Classtypes, for
@@ -825,7 +825,7 @@ int SCClassConfTest06(void)
 void SCClassConfRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
 
     UtRegisterTest("SCClassConfTest01", SCClassConfTest01);
     UtRegisterTest("SCClassConfTest02", SCClassConfTest02);

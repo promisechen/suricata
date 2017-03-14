@@ -423,7 +423,7 @@ void DetectModbusRegister(void)
             DetectEngineInspectModbus);
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 #include "util-unittest.h"
 
 /** \test Signature containing a function. */
@@ -858,7 +858,7 @@ static int DetectModbusTest09(void)
  */
 void DetectModbusRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectModbusTest01 - Testing function",
                    DetectModbusTest01);
     UtRegisterTest("DetectModbusTest02 - Testing function and subfunction",

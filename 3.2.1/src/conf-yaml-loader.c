@@ -515,7 +515,7 @@ ConfYamlLoadFileWithPrefix(const char *filename, const char *prefix)
     return ret;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static int
 ConfYamlSequenceTest(void)
@@ -938,7 +938,7 @@ ConfYamlOverrideFinalTest(void)
 void
 ConfYamlRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("ConfYamlSequenceTest", ConfYamlSequenceTest);
     UtRegisterTest("ConfYamlLoggingOutputTest", ConfYamlLoggingOutputTest);
     UtRegisterTest("ConfYamlNonYamlFileTest", ConfYamlNonYamlFileTest);

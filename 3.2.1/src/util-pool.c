@@ -404,7 +404,7 @@ void PoolTestFree(void *ptr)
     return;
 }
 
-#ifdef UNITTESTS
+#if 0
 static int PoolTestInit01 (void)
 {
     Pool *p = PoolInit(10,5,10,PoolTestAlloc,NULL,NULL,PoolTestFree, NULL);
@@ -718,7 +718,7 @@ end:
 
 void PoolRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("PoolTestInit01", PoolTestInit01);
     UtRegisterTest("PoolTestInit02", PoolTestInit02);
     UtRegisterTest("PoolTestInit03", PoolTestInit03);

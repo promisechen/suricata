@@ -116,7 +116,7 @@ static int DetectHttpStatMsgSetup(DetectEngineCtx *de_ctx, Signature *s, char *a
                                                   NULL);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Checks if a http_stat_msg is registered in a Signature, if content is not
@@ -563,7 +563,7 @@ end:
  */
 void DetectHttpStatMsgRegisterTests (void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
     UtRegisterTest("DetectHttpStatMsgTest01", DetectHttpStatMsgTest01);
     UtRegisterTest("DetectHttpStatMsgTest02", DetectHttpStatMsgTest02);

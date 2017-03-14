@@ -174,7 +174,7 @@ void AppLayerProtoDetectSupportedAppProtocols(AppProto *alprotos);
 
 /***** Unittests *****/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \brief Backs up the internal context used by the app layer proto detection

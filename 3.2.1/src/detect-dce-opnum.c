@@ -345,7 +345,7 @@ void DetectDceOpnumFree(void *ptr)
 
 /************************************Unittests*********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int DetectDceOpnumTestParse01(void)
 {
@@ -2907,7 +2907,7 @@ static int DetectDceOpnumTestParse13(void)
 void DetectDceOpnumRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectDceOpnumTestParse01", DetectDceOpnumTestParse01);
     UtRegisterTest("DetectDceOpnumTestParse02", DetectDceOpnumTestParse02);
     UtRegisterTest("DetectDceOpnumTestParse03", DetectDceOpnumTestParse03);

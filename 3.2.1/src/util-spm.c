@@ -271,7 +271,7 @@ uint8_t *BoyerMooreNocaseSearch(const uint8_t *text, uint32_t textlen,
 }
 
 
-#ifdef UNITTESTS
+#if 0
 
 /** Comment out this if you want stats
  *  #define ENABLE_SEARCH_STATS 1
@@ -2664,7 +2664,7 @@ int SpmSearchTest02() {
 /* Register unittests */
 void UtilSpmSearchRegistertests(void)
 {
-#ifdef UNITTESTS
+#if 0
     /* Generic tests */
     UtRegisterTest("UtilSpmBasicSearchTest01", UtilSpmBasicSearchTest01);
     UtRegisterTest("UtilSpmBasicSearchNocaseTest01",

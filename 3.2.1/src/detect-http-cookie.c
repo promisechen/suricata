@@ -134,7 +134,7 @@ static int DetectHttpCookieSetup(DetectEngineCtx *de_ctx, Signature *s, char *st
 
 /******************************** UNITESTS **********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 #include "stream-tcp-reassemble.h"
 
@@ -1278,7 +1278,7 @@ end:
  */
 void DetectHttpCookieRegisterTests (void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectHttpCookieTest01", DetectHttpCookieTest01);
     UtRegisterTest("DetectHttpCookieTest02", DetectHttpCookieTest02);
     UtRegisterTest("DetectHttpCookieTest03", DetectHttpCookieTest03);

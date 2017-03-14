@@ -1413,7 +1413,7 @@ int Unified2AlertOpenFileCtx(LogFileCtx *file_ctx, const char *prefix)
 }
 
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  *  \test Test the ethernet+ipv4+tcp unified2 test
@@ -1950,7 +1950,7 @@ error:
  */
 void Unified2RegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("Unified2Test01 -- Ipv4 test", Unified2Test01);
     UtRegisterTest("Unified2Test02 -- Ipv6 test", Unified2Test02);
     UtRegisterTest("Unified2Test03 -- GRE test", Unified2Test03);

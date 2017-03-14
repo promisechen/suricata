@@ -328,7 +328,7 @@ void DetectAsn1Free(void *ptr)
     SCFree(ad);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test DetectAsn1TestParse01 check that we parse oversize_length correctly
@@ -1324,7 +1324,7 @@ end:
  */
 void DetectAsn1RegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectAsn1TestParse01", DetectAsn1TestParse01);
     UtRegisterTest("DetectAsn1TestParse02", DetectAsn1TestParse02);
     UtRegisterTest("DetectAsn1TestParse03", DetectAsn1TestParse03);

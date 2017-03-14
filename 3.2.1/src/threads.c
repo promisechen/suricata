@@ -30,7 +30,7 @@
 #include "util-debug.h"
 #include "threads.h"
 
-#ifdef UNITTESTS /* UNIT TESTS */
+#if 0 /* UNIT TESTS */
 
 /**
  * \brief Test Mutex macros
@@ -141,7 +141,7 @@ int ThreadMacrosTest05RWLocks(void)
  */
 void ThreadMacrosRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNIT TESTS */
+#if 0 /* UNIT TESTS */
     UtRegisterTest("ThreadMacrosTest01Mutex", ThreadMacrosTest01Mutex);
     UtRegisterTest("ThreadMacrosTest02Spinlocks", ThreadMacrosTest02Spinlocks);
     UtRegisterTest("ThreadMacrosTest03RWLocks", ThreadMacrosTest03RWLocks);

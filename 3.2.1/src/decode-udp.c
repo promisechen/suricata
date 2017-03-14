@@ -94,7 +94,7 @@ int DecodeUDP(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p, uint8_t *pkt, ui
     return TM_ECODE_OK;
 }
 
-#ifdef UNITTESTS
+#if 0
 static int UDPV4CalculateValidChecksumtest01(void)
 {
     uint16_t csum = 0;
@@ -196,7 +196,7 @@ static int UDPV6CalculateInvalidChecksumtest04(void)
 
 void DecodeUDPV4RegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("UDPV4CalculateValidChecksumtest01",
                    UDPV4CalculateValidChecksumtest01);
     UtRegisterTest("UDPV4CalculateInvalidChecksumtest02",

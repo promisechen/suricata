@@ -1415,7 +1415,7 @@ void SCACBSPrintInfo(MpmCtx *mpm_ctx)
 
 /*************************************Unittests********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int SCACBSTest01(void)
 {
@@ -2479,7 +2479,7 @@ end:
 void SCACBSRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SCACBSTest01", SCACBSTest01);
     UtRegisterTest("SCACBSTest02", SCACBSTest02);
     UtRegisterTest("SCACBSTest03", SCACBSTest03);

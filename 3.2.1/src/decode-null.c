@@ -72,7 +72,7 @@ int DecodeNull(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p, uint8_t *pkt, u
     return TM_ECODE_OK;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 #endif /* UNITTESTS */
 
@@ -81,7 +81,7 @@ int DecodeNull(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p, uint8_t *pkt, u
  */
 void DecodeNullRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
 #endif /* UNITTESTS */
 }
 /**

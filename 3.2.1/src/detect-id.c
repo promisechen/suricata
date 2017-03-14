@@ -293,7 +293,7 @@ static _Bool PrefilterIdIsPrefilterable(const Signature *s)
     return FALSE;
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
 /**
  * \test DetectIdTestParse01 is a test to make sure that we parse the "id"
@@ -416,7 +416,7 @@ end:
  */
 void DetectIdRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectIdTestParse01", DetectIdTestParse01);
     UtRegisterTest("DetectIdTestParse02", DetectIdTestParse02);
     UtRegisterTest("DetectIdTestParse03", DetectIdTestParse03);

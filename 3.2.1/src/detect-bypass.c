@@ -98,7 +98,7 @@ int DetectBypassMatch(ThreadVars *tv, DetectEngineThreadCtx *det_ctx, Packet *p,
     return 1;
 }
 
-#ifdef UNITTESTS
+#if 0
 static int callback_var = 0;
 
 static int BypassCallback()
@@ -232,7 +232,7 @@ static int DetectBypassTestSig01(void)
 
 void DetectBypassRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectBypassTestSig01", DetectBypassTestSig01);
 #endif /* UNITTESTS */
 }

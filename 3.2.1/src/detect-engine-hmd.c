@@ -143,7 +143,7 @@ int DetectEngineInspectHttpMethod(ThreadVars *tv,
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Test that the http_method content matches against a http request
@@ -1824,7 +1824,7 @@ end:
 void DetectEngineHttpMethodRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineHttpMethodTest01",
                    DetectEngineHttpMethodTest01);
     UtRegisterTest("DetectEngineHttpMethodTest02",

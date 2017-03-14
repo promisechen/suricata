@@ -201,7 +201,7 @@ int DetectEngineInspectStreamPayload(DetectEngineCtx *de_ctx,
     SCReturnInt(0);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /** \test Not the first but the second occurence of "abc" should be used
   *       for the 2nd match */
@@ -1147,7 +1147,7 @@ end:
 
 void PayloadRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("PayloadTestSig01", PayloadTestSig01);
     UtRegisterTest("PayloadTestSig02", PayloadTestSig02);
     UtRegisterTest("PayloadTestSig03", PayloadTestSig03);

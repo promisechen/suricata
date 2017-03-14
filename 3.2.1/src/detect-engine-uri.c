@@ -146,7 +146,7 @@ int DetectEngineInspectHttpUri(ThreadVars *tv,
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 /** \test Test a simple uricontent option */
 static int UriTestSig01(void)
 {
@@ -4233,7 +4233,7 @@ end:
 void UriRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("UriTestSig01", UriTestSig01);
     UtRegisterTest("UriTestSig02", UriTestSig02);
     UtRegisterTest("UriTestSig03", UriTestSig03);

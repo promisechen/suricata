@@ -805,7 +805,7 @@ void DetectPcreFree(void *ptr)
     return;
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
 /**
  * \test DetectPcreParseTest01 make sure we don't allow invalid opts 7.
@@ -3345,7 +3345,7 @@ static int DetectPcreParseHttpHost(void)
  */
 void DetectPcreRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectPcreParseTest01", DetectPcreParseTest01);
     UtRegisterTest("DetectPcreParseTest02", DetectPcreParseTest02);
     UtRegisterTest("DetectPcreParseTest03", DetectPcreParseTest03);

@@ -254,7 +254,7 @@ static int DetectStreamEventSetup (DetectEngineCtx *de_ctx, Signature *s, char *
 /*
  * ONLY TESTS BELOW THIS COMMENT
  */
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test EngineEventTestParse01 is a test for a  valid decode-event value
@@ -384,7 +384,7 @@ error:
  */
 void EngineEventRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("EngineEventTestParse01", EngineEventTestParse01);
     UtRegisterTest("EngineEventTestParse02", EngineEventTestParse02);
     UtRegisterTest("EngineEventTestParse03", EngineEventTestParse03);

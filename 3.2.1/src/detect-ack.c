@@ -203,7 +203,7 @@ static _Bool PrefilterTcpAckIsPrefilterable(const Signature *s)
     return FALSE;
 }
 
-#ifdef UNITTESTS
+#if 0
 /**
  * \internal
  * \brief This test tests sameip success and failure.
@@ -330,7 +330,7 @@ end:
  */
 static void DetectAckRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectAckSigTest01", DetectAckSigTest01);
 #endif /* UNITTESTS */
 }

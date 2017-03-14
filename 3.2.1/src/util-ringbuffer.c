@@ -824,7 +824,7 @@ retry:
     return 0;
 }
 
-#ifdef UNITTESTS
+#if 0
 static int RingBuffer8SrSwInit01 (void)
 {
     int result = 0;
@@ -1077,7 +1077,7 @@ end:
 
 void DetectRingBufferRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("RingBuffer8SrSwInit01", RingBuffer8SrSwInit01);
     UtRegisterTest("RingBuffer8SrSwPut01", RingBuffer8SrSwPut01);
     UtRegisterTest("RingBuffer8SrSwPut02", RingBuffer8SrSwPut02);

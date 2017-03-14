@@ -307,7 +307,7 @@ int DecodeICMPV4(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p, uint8_t *pkt,
     return TM_ECODE_OK;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /** DecodeICMPV4test01
  *  \brief
@@ -768,7 +768,7 @@ static int DecodeICMPV4test08(void)
  */
 void DecodeICMPV4RegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DecodeICMPV4test01", DecodeICMPV4test01);
     UtRegisterTest("DecodeICMPV4test02", DecodeICMPV4test02);
     UtRegisterTest("DecodeICMPV4test03", DecodeICMPV4test03);

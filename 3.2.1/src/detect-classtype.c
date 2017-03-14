@@ -147,7 +147,7 @@ static int DetectClasstypeSetup(DetectEngineCtx *de_ctx, Signature *s, char *raw
 
 /*------------------------------Unittests-------------------------------------*/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Check that supplying an invalid classtype in the rule, results in the
@@ -311,7 +311,7 @@ end:
 void DetectClasstypeRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
 
     UtRegisterTest("DetectClasstypeTest01", DetectClasstypeTest01);
     UtRegisterTest("DetectClasstypeTest02", DetectClasstypeTest02);

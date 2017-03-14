@@ -66,7 +66,7 @@ int DecodeRaw(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p, uint8_t *pkt, ui
     return TM_ECODE_OK;
 }
 
-#ifdef UNITTESTS
+#if 0
 #include "flow.h"
 #include "flow-util.h"
 
@@ -220,7 +220,7 @@ static int DecodeRawTest03 (void)
  */
 void DecodeRawRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DecodeRawTest01", DecodeRawTest01);
     UtRegisterTest("DecodeRawTest02", DecodeRawTest02);
     UtRegisterTest("DecodeRawTest03", DecodeRawTest03);

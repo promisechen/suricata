@@ -1508,7 +1508,7 @@ void MpmACTileRegister(void)
 
 /*************************************Unittests********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int SCACTileTest01(void)
 {
@@ -2537,7 +2537,7 @@ end:
 void SCACTileRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SCACTileTest01", SCACTileTest01);
     UtRegisterTest("SCACTileTest02", SCACTileTest02);
     UtRegisterTest("SCACTileTest03", SCACTileTest03);

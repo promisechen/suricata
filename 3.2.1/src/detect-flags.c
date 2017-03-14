@@ -617,7 +617,7 @@ static _Bool PrefilterTcpFlagsIsPrefilterable(const Signature *s)
  * ONLY TESTS BELOW THIS COMMENT
  */
 
-#ifdef UNITTESTS
+#if 0
 /**
  * \test FlagsTestParse01 is a test for a  valid flags value
  *
@@ -1415,7 +1415,7 @@ error:
  */
 void FlagsRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("FlagsTestParse01", FlagsTestParse01);
     UtRegisterTest("FlagsTestParse02", FlagsTestParse02);
     UtRegisterTest("FlagsTestParse03", FlagsTestParse03);

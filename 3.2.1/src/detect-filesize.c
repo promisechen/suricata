@@ -310,7 +310,7 @@ static void DetectFilesizeFree(void *ptr)
     SCFree(fsd);
 }
 
-#ifdef UNITTESTS
+#if 0
 #include "stream.h"
 #include "stream-tcp-private.h"
 #include "stream-tcp-reassemble.h"
@@ -488,7 +488,7 @@ end:
  */
 void DetectFilesizeRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectFilesizeParseTest01", DetectFilesizeParseTest01);
     UtRegisterTest("DetectFilesizeParseTest02", DetectFilesizeParseTest02);
     UtRegisterTest("DetectFilesizeParseTest03", DetectFilesizeParseTest03);

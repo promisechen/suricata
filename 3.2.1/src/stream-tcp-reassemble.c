@@ -3694,7 +3694,7 @@ void StreamTcpReassembleTriggerRawReassembly(TcpSession *ssn)
     }
 }
 
-#ifdef UNITTESTS
+#if 0
 /** unit tests and it's support functions below */
 
 static int UtTestSmsg(StreamMsg *smsg, const uint8_t *buf, uint32_t buf_len)
@@ -8677,7 +8677,7 @@ end:
 
 void StreamTcpReassembleRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("StreamTcpReassembleTest01 -- BSD OS Before Reassembly Test",
                    StreamTcpReassembleTest01);
     UtRegisterTest("StreamTcpReassembleTest02 -- BSD OS At Same Reassembly Test",

@@ -690,7 +690,7 @@ void SRepDestroy(DetectEngineCtx *de_ctx) {
     }
 }
 
-#ifdef UNITTESTS
+#if 0
 #include "conf-yaml-loader.h"
 #include "detect-engine.h"
 #include "stream-tcp-private.h"
@@ -1570,7 +1570,7 @@ Reputation *SCReputationUpdateIPV6Data(uint8_t *ipv6addr, ReputationTransaction 
 
 
 /* ----------------- UNITTESTS-------------------- */
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Adding (from numeric ipv4) and removing host reputation in the Reputation context
@@ -2321,7 +2321,7 @@ error:
 /** Register the following unittests for the Reputation module */
 void SCReputationRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SCReputationTestIPV4AddRemoveHost01",
                    SCReputationTestIPV4AddRemoveHost01);
     UtRegisterTest("SCReputationTestIPV6AddRemoveHost01",

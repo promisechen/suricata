@@ -209,7 +209,7 @@ void DetectWindowFree(void *ptr)
     SCFree(wd);
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
 /**
  * \test DetectWindowTestParse01 is a test to make sure that we set the size correctly
@@ -332,7 +332,7 @@ end:
  */
 void DetectWindowRegisterTests(void)
 {
-    #ifdef UNITTESTS /* UNITTESTS */
+    #if 0 /* UNITTESTS */
     UtRegisterTest("DetectWindowTestParse01", DetectWindowTestParse01);
     UtRegisterTest("DetectWindowTestParse02", DetectWindowTestParse02);
     UtRegisterTest("DetectWindowTestParse03", DetectWindowTestParse03);

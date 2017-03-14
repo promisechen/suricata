@@ -109,7 +109,7 @@ void HostFreeStorage(Host *h)
 }
 
 
-#ifdef UNITTESTS
+#if 0
 
 static void *StorageTestAlloc(unsigned int size)
 {
@@ -329,7 +329,7 @@ error:
 
 void RegisterHostStorageTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("HostStorageTest01", HostStorageTest01);
     UtRegisterTest("HostStorageTest02", HostStorageTest02);
     UtRegisterTest("HostStorageTest03", HostStorageTest03);

@@ -199,7 +199,7 @@ static _Bool PrefilterTcpSeqIsPrefilterable(const Signature *s)
 }
 
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test DetectSeqSigTest01 tests parses
@@ -294,7 +294,7 @@ end:
  */
 static void DetectSeqRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectSeqSigTest01", DetectSeqSigTest01);
     UtRegisterTest("DetectSeqSigTest02", DetectSeqSigTest02);
 #endif /* UNITTESTS */

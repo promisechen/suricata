@@ -143,7 +143,7 @@ int DetectEngineInspectHttpStatMsg(ThreadVars *tv,
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int DetectEngineHttpStatMsgTest01(void)
  {
@@ -2106,7 +2106,7 @@ end:
 void DetectEngineHttpStatMsgRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineHttpStatMsgTest01",
                    DetectEngineHttpStatMsgTest01);
     UtRegisterTest("DetectEngineHttpStatMsgTest02",

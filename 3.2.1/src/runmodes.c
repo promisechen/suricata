@@ -223,7 +223,7 @@ void RunModeRegisterRunModes(void)
     RunModeIdsNflogRegister();
     RunModeTileMpipeRegister();
     RunModeUnixSocketRegister();
-#ifdef UNITTESTS
+#if 0
     UtRunModeRegister();
 #endif
     return;

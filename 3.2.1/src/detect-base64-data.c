@@ -83,7 +83,7 @@ int DetectBase64DataDoMatch(DetectEngineCtx *de_ctx,
     return 0;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 #include "detect-engine.h"
 
@@ -261,7 +261,7 @@ end:
 
 static void DetectBase64DataRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectBase64DataSetupTest01", DetectBase64DataSetupTest01);
     UtRegisterTest("DetectBase64DataSetupTest02", DetectBase64DataSetupTest02);
     UtRegisterTest("DetectBase64DataSetupTest03", DetectBase64DataSetupTest03);

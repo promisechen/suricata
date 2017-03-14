@@ -1833,7 +1833,7 @@ void MpmACCudaRegister(void)
 
 /*************************************Unittests********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int SCACTest01(void)
 {
@@ -2862,7 +2862,7 @@ end:
 void SCACRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SCACTest01", SCACTest01);
     UtRegisterTest("SCACTest02", SCACTest02);
     UtRegisterTest("SCACTest03", SCACTest03);

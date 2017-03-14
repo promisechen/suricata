@@ -93,7 +93,7 @@ static int DetectFileSha1Setup (DetectEngineCtx *de_ctx, Signature *s, char *str
     return DetectFileHashSetup(de_ctx, s, str, DETECT_FILESHA1);
 }
 
-#ifdef UNITTESTS
+#if 0
 static int SHA1MatchLookupString(ROHashTable *hash, char *string)
 {
     uint8_t sha1[20];
@@ -153,7 +153,7 @@ static int SHA1MatchTest01(void)
 
 void DetectFileSha1RegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SHA1MatchTest01", SHA1MatchTest01);
 #endif
 }

@@ -244,7 +244,7 @@ error:
     SCReturnInt(-1);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test DetectFtpbounceTestSetup01 is a test for the Setup ftpbounce
@@ -557,7 +557,7 @@ end:
  */
 void DetectFtpbounceRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectFtpbounceTestSetup01", DetectFtpbounceTestSetup01);
     UtRegisterTest("DetectFtpbounceTestALMatch02",
                    DetectFtpbounceTestALMatch02);

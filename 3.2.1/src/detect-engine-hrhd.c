@@ -219,7 +219,7 @@ int DetectEngineInspectHttpRawHeader(ThreadVars *tv,
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  *\test Test that the http_header content matches against a http request
@@ -3411,7 +3411,7 @@ end:
 void DetectEngineHttpRawHeaderRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineHttpRawHeaderTest01",
                    DetectEngineHttpRawHeaderTest01);
     UtRegisterTest("DetectEngineHttpRawHeaderTest02",

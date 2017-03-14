@@ -248,7 +248,7 @@ void DetectCipServiceFree(void *ptr)
     SCFree(cipserviced);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Test CIP Command parameter parsing
@@ -283,7 +283,7 @@ static int DetectCipServiceSignatureTest01 (void)
  */
 void DetectCipServiceRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectCipServiceParseTest01",
             DetectCipServiceParseTest01);
     UtRegisterTest("DetectCipServiceSignatureTest01",
@@ -422,7 +422,7 @@ void DetectEnipCommandFree(void *ptr)
     SCFree(enipcmdd);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test ENIP parameter test
@@ -462,7 +462,7 @@ static int DetectEnipCommandSignatureTest01 (void)
  */
 void DetectEnipCommandRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEnipCommandParseTest01",
             DetectEnipCommandParseTest01);
     UtRegisterTest("DetectEnipCommandSignatureTest01",

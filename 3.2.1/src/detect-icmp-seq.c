@@ -320,7 +320,7 @@ static _Bool PrefilterIcmpSeqIsPrefilterable(const Signature *s)
     return FALSE;
 }
 
-#ifdef UNITTESTS
+#if 0
 #include "detect-engine.h"
 #include "detect-engine-mpm.h"
 
@@ -432,7 +432,7 @@ end:
 
 void DetectIcmpSeqRegisterTests (void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectIcmpSeqParseTest01", DetectIcmpSeqParseTest01);
     UtRegisterTest("DetectIcmpSeqParseTest02", DetectIcmpSeqParseTest02);
     UtRegisterTest("DetectIcmpSeqParseTest03", DetectIcmpSeqParseTest03);

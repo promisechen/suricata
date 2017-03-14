@@ -87,7 +87,7 @@ const char *AppProtoToString(AppProto alproto)
         case ALPROTO_FAILED:
             proto_name = "failed";
             break;
-#ifdef UNITTESTS
+#if 0
         case ALPROTO_TEST:
 #endif
         case ALPROTO_MAX:

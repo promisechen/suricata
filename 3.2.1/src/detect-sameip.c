@@ -111,7 +111,7 @@ error:
 
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /* NOTE: No parameters, so no parse tests */
 
@@ -189,7 +189,7 @@ end:
  */
 static void DetectSameipRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectSameipSigTest01", DetectSameipSigTest01);
 #endif /* UNITTESTS */
 }

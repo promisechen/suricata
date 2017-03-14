@@ -330,7 +330,7 @@ static void DetectBase64DecodeFree(void *ptr)
 }
 
 
-#ifdef UNITTESTS
+#if 0
 #include "detect-engine.h"
 #include "util-unittest.h"
 #include "util-unittest-helper.h"
@@ -743,7 +743,7 @@ end:
 
 static void DetectBase64DecodeRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectBase64TestDecodeParse", DetectBase64TestDecodeParse);
     UtRegisterTest("DetectBase64DecodeTestSetup", DetectBase64DecodeTestSetup);
     UtRegisterTest("DetectBase64DecodeHttpHeaderTestSetup",

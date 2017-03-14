@@ -184,7 +184,7 @@ void PoolThreadReturn(PoolThread *pt, void *data)
     SCMutexUnlock(&e->lock);
 }
 
-#ifdef UNITTESTS
+#if 0
 struct PoolThreadTestData {
     PoolThreadReserved res;
     int abc;
@@ -438,7 +438,7 @@ end:
 
 void PoolThreadRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("PoolThreadTestInit01", PoolThreadTestInit01);
     UtRegisterTest("PoolThreadTestInit02", PoolThreadTestInit02);
 

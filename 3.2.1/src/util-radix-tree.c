@@ -1659,7 +1659,7 @@ void SCRadixPrintTree(SCRadixTree *tree)
 
 /*------------------------------------Unit_Tests------------------------------*/
 
-#ifdef UNITTESTS
+#if 0
 
 int SCRadixTestInsertion01(void)
 {
@@ -4178,7 +4178,7 @@ this_end:
 void SCRadixRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     //UtRegisterTest("SCRadixTestInsertion01", SCRadixTestInsertion01, 1);
     //UtRegisterTest("SCRadixTestInsertion02", SCRadixTestInsertion02, 1);
     UtRegisterTest("SCRadixTestIPV4Insertion03", SCRadixTestIPV4Insertion03);

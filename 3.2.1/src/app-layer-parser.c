@@ -124,7 +124,7 @@ typedef struct AppLayerParserProtoCtx_
      * STREAM_TOSERVER, STREAM_TOCLIENT */
     uint8_t first_data_dir;
 
-#ifdef UNITTESTS
+#if 0
     void (*RegisterUnittests)(void);
 #endif
 } AppLayerParserProtoCtx;
@@ -198,7 +198,7 @@ int AppLayerParserSetup(void)
     if (AppLayerGetActiveTxIdFuncPtr == NULL) {
         RegisterAppLayerGetActiveTxIdFunc(AppLayerTransactionGetActiveDetectLog);
     }
-
+	//clx?:stream_depth是什么？？
     /* lets set a default value for stream_depth */
     for (flow_proto = 0; flow_proto < FLOW_PROTO_DEFAULT; flow_proto++) {
         for (alproto = 0; alproto < ALPROTO_MAX; alproto++) {
@@ -1478,7 +1478,7 @@ end:
 
 /***** Unittests *****/
 
-#ifdef UNITTESTS
+#if 0
 
 static AppLayerParserCtx alp_ctx_backup_unittest;
 

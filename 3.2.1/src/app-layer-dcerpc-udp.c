@@ -271,7 +271,7 @@ static int DCERPCUDPParseHeader(Flow *f, void *dcerpcudp_state,
                             sizeof(sstate->dcerpc.dcerpchdrudp.activityuuid));
                         TAILQ_INSERT_HEAD(&sstate->uuid_list, sstate->uuid_entry,
                             next);
-#ifdef UNITTESTS
+#if 0
                         if (RunmodeIsUnittests()) {
                             printUUID("DCERPC UDP", sstate->uuid_entry);
 
@@ -705,7 +705,7 @@ static int DCERPCUDPParseHeader(Flow *f, void *dcerpcudp_state,
                         sizeof(sstate->dcerpc.dcerpchdrudp.activityuuid));
                     TAILQ_INSERT_HEAD(&sstate->uuid_list, sstate->uuid_entry,
                         next);
-#ifdef UNITTESTS
+#if 0
                     if (RunmodeIsUnittests()) {
                         printUUID("DCERPC UDP", sstate->uuid_entry);
                     }
@@ -859,7 +859,7 @@ void RegisterDCERPCUDPParsers(void)
         SCLogInfo("Parsed disabled for %s protocol. Protocol detection"
             "still on.", "dcerpc");
     }
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_UDP, ALPROTO_DCERPC, DCERPCUDPParserRegisterTests);
 #endif
 
@@ -867,7 +867,7 @@ void RegisterDCERPCUDPParsers(void)
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 /** \test DCERPC UDP Header Parsing and UUID handling
  */
 

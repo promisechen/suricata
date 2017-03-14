@@ -355,7 +355,7 @@ void SCHInfoLoadFromConfig(void)
 
 /*------------------------------------Unit_Tests------------------------------*/
 
-#ifdef UNITTESTS
+#if 0
 static SCRadixTree *sc_hinfo_tree_backup = NULL;
 
 static void SCHInfoCreateContextBackup(void)
@@ -1625,7 +1625,7 @@ host-os-policy:\n\
 void SCHInfoRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
 
     UtRegisterTest("SCHInfoTesInvalidOSFlavour01",
                    SCHInfoTestInvalidOSFlavour01);

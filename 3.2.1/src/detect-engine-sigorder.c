@@ -810,7 +810,7 @@ Signature *SigInit(DetectEngineCtx *, char *);
 void SigFree(Signature *);
 void DetectEngineCtxFree(DetectEngineCtx *);
 
-#ifdef UNITTESTS
+#if 0
 
 static int SCSigOrderingTest01(void)
 {
@@ -2184,7 +2184,7 @@ end:
 void SCSigRegisterSignatureOrderingTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SCSigOrderingTest01", SCSigOrderingTest01);
     UtRegisterTest("SCSigOrderingTest02", SCSigOrderingTest02);
     UtRegisterTest("SCSigOrderingTest03", SCSigOrderingTest03);

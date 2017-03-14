@@ -246,7 +246,7 @@ static AppProto AppLayerProtoDetectPMGetProto(AppLayerProtoDetectThreadCtx *tctx
         searchlen = pm_ctx->max_len;
 
     uint32_t search_cnt = 0;
-
+	//clx:pm_ctx->mpm_ctx已经在初始化的时候，已经将字符串加入到状态机里了。
     /* do the mpm search */
     search_cnt = mpm_table[pm_ctx->mpm_ctx.mpm_type].Search(&pm_ctx->mpm_ctx,
                                                             mpm_tctx,
@@ -262,6 +262,8 @@ static AppProto AppLayerProtoDetectPMGetProto(AppLayerProtoDetectThreadCtx *tctx
     /* loop through unique pattern id's. Can't use search_cnt here,
      * as that contains all matches, tctx->pmq.pattern_id_array_cnt
      * contains only *unique* matches. */
+     //clx:推测这块是满足两个字符串之间的协议识别。如content:"abc";offset:2;content"ccc"
+     
     for (cnt = 0; cnt < tctx->pmq.rule_id_array_cnt; cnt++) {
         const AppLayerProtoDetectPMSignature *s = pm_ctx->map[tctx->pmq.rule_id_array[cnt]];
         while (s != NULL) {
@@ -1307,7 +1309,7 @@ AppProto AppLayerProtoDetectGetProto(AppLayerProtoDetectThreadCtx *tctx,
     AppProto alproto = ALPROTO_UNKNOWN;
     AppProto pm_results[ALPROTO_MAX];
     uint16_t pm_matches;
-
+	//clx:通过特征字符串进行协议判断
     if (!FLOW_IS_PM_DONE(f, direction)) {
         pm_matches = AppLayerProtoDetectPMGetProto(tctx, f,
                                                    buf, buflen,
@@ -1543,7 +1545,7 @@ int AppLayerProtoDetectSetup(void)
     int i, j;
 
     memset(&alpd_ctx, 0, sizeof(alpd_ctx));
-
+	//clx:读取配置文件spm-algo\mpm-algo字段，决定使用哪个库
     uint16_t spm_matcher = SinglePatternMatchDefaultMatcher();
     uint16_t mpm_matcher = PatternMatchDefaultMatcher();
 
@@ -1810,7 +1812,7 @@ void AppLayerProtoDetectSupportedAppProtocols(AppProto *alprotos)
 
 /***** Unittests *****/
 
-#ifdef UNITTESTS
+#if 0
 
 static AppLayerProtoDetectCtx alpd_ctx_ut;
 

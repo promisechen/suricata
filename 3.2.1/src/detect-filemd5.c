@@ -92,7 +92,7 @@ static int DetectFileMd5Setup (DetectEngineCtx *de_ctx, Signature *s, char *str)
     return DetectFileHashSetup(de_ctx, s, str, DETECT_FILEMD5);
 }
 
-#ifdef UNITTESTS
+#if 0
 static int MD5MatchLookupString(ROHashTable *hash, char *string)
 {
     uint8_t md5[16];
@@ -152,7 +152,7 @@ static int MD5MatchTest01(void)
 
 void DetectFileMd5RegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("MD5MatchTest01", MD5MatchTest01);
 #endif
 }

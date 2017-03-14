@@ -202,7 +202,7 @@ error:
 
 /***************************************Unittests******************************/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test one valid reference.
@@ -346,7 +346,7 @@ cleanup:
 
 void ReferenceRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectReferenceParseTest01", DetectReferenceParseTest01);
     UtRegisterTest("DetectReferenceParseTest02", DetectReferenceParseTest02);
     UtRegisterTest("DetectReferenceParseTest03", DetectReferenceParseTest03);

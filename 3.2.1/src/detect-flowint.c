@@ -447,7 +447,7 @@ void DetectFlowintPrintData(DetectFlowintData *sfd)
     }
 }
 
-#ifdef UNITTESTS
+#if 0
 /**
  * \test DetectFlowintTestParseVal01 is a test to make sure that we set the
  *  DetectFlowint correctly for setting a valid target value
@@ -1307,7 +1307,7 @@ int DetectFlowintTestPacket03Real()
  */
 void DetectFlowintRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectFlowintTestParseVal01", DetectFlowintTestParseVal01);
     UtRegisterTest("DetectFlowintTestParseVar01", DetectFlowintTestParseVar01);
     UtRegisterTest("DetectFlowintTestParseVal02", DetectFlowintTestParseVal02);

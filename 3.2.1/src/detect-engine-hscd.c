@@ -143,7 +143,7 @@ int DetectEngineInspectHttpStatCode(ThreadVars *tv,
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int DetectEngineHttpStatCodeTest01(void)
  {
@@ -2106,7 +2106,7 @@ end:
 void DetectEngineHttpStatCodeRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineHttpStatCodeTest01",
                    DetectEngineHttpStatCodeTest01);
     UtRegisterTest("DetectEngineHttpStatCodeTest02",

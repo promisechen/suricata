@@ -36,7 +36,7 @@
 #include "util-unittest.h"
 #include "util-unittest-helper.h"
 
-#ifdef UNITTESTS
+#if 0
 
 /* unittest helper functions */
 
@@ -256,7 +256,7 @@ end:
 
 void StreamTcpUtilRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("StreamTcpUtilTest01", StreamTcpUtilTest01);
     UtRegisterTest("StreamTcpUtilStreamTest01", StreamTcpUtilStreamTest01);
     UtRegisterTest("StreamTcpUtilStreamTest02", StreamTcpUtilStreamTest02);

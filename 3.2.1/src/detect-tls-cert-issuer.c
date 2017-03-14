@@ -99,7 +99,7 @@ static int DetectTlsIssuerSetup(DetectEngineCtx *de_ctx, Signature *s, char *str
     return 0;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Test that a signature containing a tls_cert_issuer is correctly parsed
@@ -459,7 +459,7 @@ static int DetectTlsIssuerTest02(void)
 
 static void DetectTlsIssuerRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectTlsIssuerTest01", DetectTlsIssuerTest01);
     UtRegisterTest("DetectTlsIssuerTest02", DetectTlsIssuerTest02);
 #endif

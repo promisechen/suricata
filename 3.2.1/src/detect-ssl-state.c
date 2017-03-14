@@ -324,7 +324,7 @@ void DetectSslStateFree(void *ptr)
 
 /************************************Unittests*********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 int DetectSslStateTest01(void)
 {
@@ -846,7 +846,7 @@ int DetectSslStateTestParseNegate(void)
 
 void DetectSslStateRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectSslStateTest01", DetectSslStateTest01);
     UtRegisterTest("DetectSslStateTest02", DetectSslStateTest02);
     UtRegisterTest("DetectSslStateTest03", DetectSslStateTest03);

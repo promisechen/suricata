@@ -537,7 +537,7 @@ uint8_t SCAsn1Decode(Asn1Ctx *ac, uint16_t node_id)
 }
 
 /* ----------------------- Unit tests ------------------------ */
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Check we handle extended identifiers correctly
@@ -887,7 +887,7 @@ end:
 
 void DecodeAsn1RegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
      UtRegisterTest("DecodeAsn1Test01", DecodeAsn1Test01);
      UtRegisterTest("DecodeAsn1Test02", DecodeAsn1Test02);
      UtRegisterTest("DecodeAsn1Test03", DecodeAsn1Test03);

@@ -209,7 +209,7 @@ static int DetectEngineInspectHttpRequestLine(ThreadVars *tv,
 
 /************************************Unittests*********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 #include "stream-tcp-reassemble.h"
 
@@ -313,7 +313,7 @@ static int DetectHttpRequestLineTest02(void)
 
 void DetectHttpRequestLineRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectHttpRequestLineTest01", DetectHttpRequestLineTest01);
     UtRegisterTest("DetectHttpRequestLineTest02", DetectHttpRequestLineTest02);
 #endif /* UNITTESTS */

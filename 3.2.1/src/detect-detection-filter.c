@@ -263,7 +263,7 @@ void DetectDetectionFilterFree(void *df_ptr)
 /*
  * ONLY TESTS BELOW THIS COMMENT
  */
-#ifdef UNITTESTS
+#if 0
 #include "detect-engine.h"
 #include "detect-engine-mpm.h"
 #include "detect-engine-threshold.h"
@@ -628,7 +628,7 @@ end:
 
 void DetectDetectionFilterRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectDetectionFilterTestParse01",
                    DetectDetectionFilterTestParse01);
     UtRegisterTest("DetectDetectionFilterTestParse02",

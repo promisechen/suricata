@@ -110,7 +110,7 @@ static int DetectGidSetup (DetectEngineCtx *de_ctx, Signature *s, char *rawstr)
  * ONLY TESTS BELOW THIS COMMENT
  */
 
-#ifdef UNITTESTS
+#if 0
 /**
  * \test GidTestParse01 is a test for a  valid gid value
  *
@@ -192,7 +192,7 @@ end:
  */
 void GidRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("GidTestParse01", GidTestParse01);
     UtRegisterTest("GidTestParse02", GidTestParse02);
     UtRegisterTest("GidTestParse03", GidTestParse03);

@@ -255,7 +255,7 @@ void HttpXFFGetCfg(ConfNode *conf, HttpXFFCfg *result)
 }
 
 
-#ifdef UNITTESTS
+#if 0
 static int XFFTest01(void) {
     char input[] = "1.2.3.4:5678";
     char output[16];
@@ -350,7 +350,7 @@ static int XFFTest09(void) {
 
 void HTPXFFParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("XFFTest01", XFFTest01);
     UtRegisterTest("XFFTest02", XFFTest02);
     UtRegisterTest("XFFTest03", XFFTest03);

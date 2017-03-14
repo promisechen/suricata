@@ -345,7 +345,7 @@ static void LogDropLogExitPrintStats(ThreadVars *tv, void *data)
 
 /***************************** Unittests ****************************/
 
-#ifdef UNITTESTS
+#if 0
 
 /** \brief test if the action is drop then packet should be logged */
 int LogDropLogTest01()
@@ -493,7 +493,7 @@ void LogDropLogRegister (void)
     OutputRegisterPacketModule(LOGGER_DROP, MODULE_NAME, "drop",
         LogDropLogInitCtx, LogDropLogger, LogDropCondition,
         LogDropLogThreadInit, LogDropLogThreadDeinit, LogDropLogExitPrintStats);
-#ifdef UNITTESTS
+#if 0
     LogDropLogRegisterTests();
 #endif
 }

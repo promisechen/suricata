@@ -1650,7 +1650,7 @@ void RegisterDNP3Parsers(void)
             "Protocol detection still on.", proto_name);
     }
 
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_DNP3,
         DNP3ParserRegisterTests);
 #endif
@@ -1658,7 +1658,7 @@ void RegisterDNP3Parsers(void)
     SCReturn;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 #include "flow-util.h"
 #include "stream-tcp.h"
@@ -2632,7 +2632,7 @@ static int DNP3ParserUnknownEventAlertTest(void)
 
 void DNP3ParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DNP3ParserTestCheckCRC", DNP3ParserTestCheckCRC);
     UtRegisterTest("DNP3ParserCheckLinkHeaderCRC",
                    DNP3ParserCheckLinkHeaderCRC);

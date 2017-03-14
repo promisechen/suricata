@@ -62,7 +62,7 @@ int IPPairStorageRegister(const char *name, const unsigned int size, void *(*All
     return StorageRegister(STORAGE_IPPAIR, name, size, Alloc, Free);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static void *StorageTestAlloc(unsigned int size)
 {
@@ -291,7 +291,7 @@ error:
 
 void RegisterIPPairStorageTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("IPPairStorageTest01", IPPairStorageTest01);
     UtRegisterTest("IPPairStorageTest02", IPPairStorageTest02);
     UtRegisterTest("IPPairStorageTest03", IPPairStorageTest03);

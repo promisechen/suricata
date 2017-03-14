@@ -368,7 +368,7 @@ static void DetectGeoipDataFree(void *ptr)
     }
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static int GeoipParseTest(char *rule, int ncountries, char **countries, uint32_t flags)
 {
@@ -596,7 +596,7 @@ static int GeoipMatchTest07(void)
  */
 static void DetectGeoipRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("GeoipParseTest01", GeoipParseTest01);
     UtRegisterTest("GeoipParseTest02", GeoipParseTest02);
     UtRegisterTest("GeoipParseTest03", GeoipParseTest03);

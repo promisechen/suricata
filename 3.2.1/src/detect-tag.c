@@ -352,7 +352,7 @@ void DetectTagDataFree(void *ptr)
     SCFree(td);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test DetectTagTestParse01 is a test to make sure that we return "something"
@@ -455,7 +455,7 @@ static int DetectTagTestParse05(void)
  */
 void DetectTagRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectTagTestParse01", DetectTagTestParse01);
     UtRegisterTest("DetectTagTestParse02", DetectTagTestParse02);
     UtRegisterTest("DetectTagTestParse03", DetectTagTestParse03);

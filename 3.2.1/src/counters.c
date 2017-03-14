@@ -136,7 +136,7 @@ static void StatsPublicThreadContextCleanup(StatsPublicThreadContext *t)
 void StatsAddUI64(ThreadVars *tv, uint16_t id, uint64_t x)
 {
     StatsPrivateThreadContext *pca = &tv->perf_private_ctx;
-#ifdef UNITTESTS
+#if 0
     if (pca->initialized == 0)
         return;
 #endif
@@ -157,7 +157,7 @@ void StatsAddUI64(ThreadVars *tv, uint16_t id, uint64_t x)
 void StatsIncr(ThreadVars *tv, uint16_t id)
 {
     StatsPrivateThreadContext *pca = &tv->perf_private_ctx;
-#ifdef UNITTESTS
+#if 0
     if (pca->initialized == 0)
         return;
 #endif
@@ -179,7 +179,7 @@ void StatsIncr(ThreadVars *tv, uint16_t id)
 void StatsSetUI64(ThreadVars *tv, uint16_t id, uint64_t x)
 {
     StatsPrivateThreadContext *pca = &tv->perf_private_ctx;
-#ifdef UNITTESTS
+#if 0
     if (pca->initialized == 0)
         return;
 #endif
@@ -946,7 +946,7 @@ uint16_t StatsRegisterMaxCounter(char *name, struct ThreadVars_ *tv)
  */
 uint16_t StatsRegisterGlobalCounter(char *name, uint64_t (*Func)(void))
 {
-#ifdef UNITTESTS
+#if 0
     if (stats_ctx == NULL)
         return 0;
 #else
@@ -1260,7 +1260,7 @@ void StatsThreadCleanup(ThreadVars *tv)
 
 /*----------------------------------Unit_Tests--------------------------------*/
 
-#ifdef UNITTESTS
+#if 0
 /** \internal
  * \brief Registers a normal, unqualified counter
  *
@@ -1520,7 +1520,7 @@ static int StatsTestCounterValues11()
 
 void StatsRegisterTests()
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("StatsTestCounterReg02", StatsTestCounterReg02);
     UtRegisterTest("StatsTestCounterReg03", StatsTestCounterReg03);
     UtRegisterTest("StatsTestCounterReg04", StatsTestCounterReg04);

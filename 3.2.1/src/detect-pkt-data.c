@@ -79,7 +79,7 @@ static int DetectPktDataSetup (DetectEngineCtx *de_ctx, Signature *s, char *str)
     return 0;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /************************************Unittests*********************************/
 
@@ -144,7 +144,7 @@ end:
 
 static void DetectPktDataTestRegister(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectPktDataTest01", DetectPktDataTest01);
 #endif
 }

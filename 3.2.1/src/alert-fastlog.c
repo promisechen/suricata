@@ -267,7 +267,7 @@ static void AlertFastLogDeInitCtx(OutputCtx *output_ctx)
 
 /*------------------------------Unittests-------------------------------------*/
 
-#ifdef UNITTESTS
+#if 0
 
 static int AlertFastLogTest01()
 {
@@ -370,7 +370,7 @@ static int AlertFastLogTest02()
 void AlertFastLogRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
 
     UtRegisterTest("AlertFastLogTest01", AlertFastLogTest01);
     UtRegisterTest("AlertFastLogTest02", AlertFastLogTest02);

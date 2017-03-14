@@ -537,13 +537,13 @@ void RegisterSSHParsers(void)
 //                  "still on.", proto_name);
     }
 
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_SSH, SSHParserRegisterTests);
 #endif
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 #include "flow-util.h"
 
 /** \test Send a version string in one chunk (client version str). */
@@ -2689,7 +2689,7 @@ end:
 
 void SSHParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SSHParserTest01 - ToServer", SSHParserTest01);
     UtRegisterTest("SSHParserTest02 - ToServer", SSHParserTest02);
     UtRegisterTest("SSHParserTest03 - ToServer", SSHParserTest03);

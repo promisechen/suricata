@@ -24,7 +24,7 @@
 #include "config.h"
 #include "util-unittest.h"
 
-#ifdef UNITTESTS
+#if 0
 
 #include "detect-parse.h"
 #include "detect-engine.h"
@@ -128,7 +128,7 @@
 void RegisterAllModules();
 void TmqhSetup (void);
 
-#ifdef UNITTESTS
+#if 0
 static void RegisterUnittests(void)
 {
     UTHRegisterTests();
@@ -236,7 +236,7 @@ static void RegisterUnittests(void)
 
 void RunUnittests(int list_unittests, char *regex_arg)
 {
-#ifdef UNITTESTS
+#if 0
     /* Initializations for global vars, queues, etc (memsets, mutex init..) */
     GlobalsInitPreConfig();
 
