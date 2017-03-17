@@ -827,6 +827,7 @@ static int StreamTcpPacketIsRetransmission(TcpStream *stream, Packet *p)
 static int StreamTcpPacketStateNone(ThreadVars *tv, Packet *p,
                         StreamTcpThread *stt, TcpSession *ssn, PacketQueue *pq)
 {
+	//clx:首包为rst或者fin的话，直接返回错误。
     if (p->tcph->th_flags & TH_RST) {
         StreamTcpSetEvent(p, STREAM_RST_BUT_NO_SESSION);
         SCLogDebug("RST packet received, no session setup");
@@ -838,12 +839,14 @@ static int StreamTcpPacketStateNone(ThreadVars *tv, Packet *p,
         return -1;
 
     /* SYN/ACK */
+		//clx:对于报文为synack
     } else if ((p->tcph->th_flags & (TH_SYN|TH_ACK)) == (TH_SYN|TH_ACK)) {
         if (stream_config.midstream == FALSE &&
                 stream_config.async_oneside == FALSE)
             return 0;
 
         if (ssn == NULL) {
+			//clx:新建tcp session
             ssn = StreamTcpNewSession(p, stt->ssn_pool_id);
             if (ssn == NULL) {
                 StatsIncr(tv, stt->counter_tcp_ssn_memcap);
@@ -878,6 +881,7 @@ static int StreamTcpPacketStateNone(ThreadVars *tv, Packet *p,
         /** If the client has a wscale option the server had it too,
          *  so set the wscale for the server to max. Otherwise none
          *  will have the wscale opt just like it should. */
+         //clx?:这是啥？？
         if (TCP_HAS_WSCALE(p)) {
             ssn->client.wscale = TCP_GET_WSCALE(p);
             ssn->server.wscale = TCP_WSCALE_MAX;
@@ -4443,7 +4447,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
     DEBUG_ASSERT_FLOW_LOCKED(p->flow);
 
     SCLogDebug("p->pcap_cnt %"PRIu64, p->pcap_cnt);
-
+	//clx?:一条流可能进入多个核心，这里有什么意义呢？？
     /* assign the thread id to the flow */
     if (unlikely(p->flow->thread_id == 0)) {
         p->flow->thread_id = (FlowThreadId)tv->id;
@@ -4454,7 +4458,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
     }
 
     TcpSession *ssn = (TcpSession *)p->flow->protoctx;
-
+	//clx;更新tcp flag标记；syn ack ....客户端和服务器也分别维护。
     /* track TCP flags */
     if (ssn != NULL) {
         ssn->tcp_packet_flags |= p->tcph->th_flags;
@@ -4463,7 +4467,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
         else if (PKT_IS_TOCLIENT(p))
             ssn->server.tcp_flags |= p->tcph->th_flags;
     }
-
+	//clx:更新计数
     /* update counters */
     if ((p->tcph->th_flags & (TH_SYN|TH_ACK)) == (TH_SYN|TH_ACK)) {
         StatsIncr(tv, stt->counter_tcp_synack);
@@ -4473,7 +4477,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
     if (p->tcph->th_flags & (TH_RST)) {
         StatsIncr(tv, stt->counter_tcp_rst);
     }
-
+	//clx?:???无法理解
     /* broken TCP http://ask.wireshark.org/questions/3183/acknowledgment-number-broken-tcp-the-acknowledge-field-is-nonzero-while-the-ack-flag-is-not-set */
     if (!(p->tcph->th_flags & TH_ACK) && TCP_GET_ACK(p) != 0) {
         StreamTcpSetEvent(p, STREAM_PKT_BROKEN_ACK);
@@ -4483,6 +4487,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
      * the IP only module, or from a reassembled msg and/or from an
      * applayer detection, then drop the rest of the packets of the
      * same stream and avoid inspecting it any further */
+     //clx:在ips模式下，打一些标记，后续不在识别
     if (StreamTcpCheckFlowDrops(p) == 1) {
         SCLogDebug("This flow/stream triggered a drop rule");
         FlowSetNoPacketInspectionFlag(p->flow);
@@ -4493,7 +4498,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
         StreamTcpSessionPktFree(p);
         SCReturnInt(0);
     }
-
+//clx:一般首包会进到这里，这里将根据syn ;synack;ack做判断，初始化stream一些信息
     if (ssn == NULL || ssn->state == TCP_NONE) {
         if (StreamTcpPacketStateNone(tv, p, stt, ssn, &stt->pseudo_queue) == -1) {
             goto error;
@@ -4698,13 +4703,14 @@ error:
  *  \param  p       Packet of which checksum has to be validated
  *  \retval  1 if the checksum is valid, otherwise 0
  */
+ //clx:检查tcp校验和
 static inline int StreamTcpValidateChecksum(Packet *p)
 {
     int ret = 1;
 
     if (p->flags & PKT_IGNORE_CHECKSUM)
         return ret;
-
+	//clx:计算checksum
     if (p->level4_comp_csum == -1) {
         if (PKT_IS_IPV4(p)) {
             p->level4_comp_csum = TCPCalculateChecksum(p->ip4h->s_ip_addrs,
@@ -4718,7 +4724,7 @@ static inline int StreamTcpValidateChecksum(Packet *p)
                                                           TCP_GET_HLEN(p)));
         }
     }
-
+	//判断校验和是否正确
     if (p->level4_comp_csum != p->tcph->th_sum) {
         ret = 0;
         SCLogDebug("Checksum of received packet %p is invalid",p);
@@ -4900,7 +4906,7 @@ TmEcode StreamTcp (ThreadVars *tv, Packet *p, void *data, PacketQueue *pq, Packe
     }
 
     /* only TCP packets with a flow from here */
-
+	//clx:判断校验和
     if (!(p->flags & PKT_PSEUDO_STREAM_END)) {
         if (stream_config.flags & STREAMTCP_INIT_FLAG_CHECKSUM_VALIDATION) {
             if (StreamTcpValidateChecksum(p) == 0) {

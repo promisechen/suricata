@@ -68,7 +68,7 @@ typedef struct TcpStream_ {
     uint8_t os_policy;              /**< target based OS policy used for reassembly and handling packets*/
     uint8_t tcp_flags;              /**< TCP flags seen */
 
-    uint32_t isn;                   /**< initial sequence number */
+    uint32_t isn;                   /**< initial sequence number.*/
     uint32_t next_seq;              /**< next expected sequence number */
     uint32_t last_ack;              /**< last ack'd sequence number in this stream */
     uint32_t next_win;              /**< next max seq within window */
@@ -219,9 +219,12 @@ typedef struct TcpSession_ {
     uint8_t queue_len;                      /**< length of queue list below */
     int8_t data_first_seen_dir;
     /** track all the tcp flags we've seen */
+	//clx:即为该条流，每个报文的p->tcph->th_flags进行"|"运算得到的值
     uint8_t tcp_packet_flags;
     /* coccinelle: TcpSession:flags:STREAMTCP_FLAG */
+	//clx:初始化读取stream.reassembly.raw ，之后会根据syn ack之类，在于STREAMTCP_FLAG_xxx进行异或
     uint16_t flags;
+	//clx:对应stream.reassembly.depth
     uint32_t reassembly_depth;      /**< reassembly depth for the stream */
     TcpStream server;
     TcpStream client;
