@@ -551,7 +551,9 @@ Flow *FlowGetFlowFromHash(ThreadVars *tv, DecodeThreadVars *dtv, const Packet *p
 
                 /* found our flow, lock & return */
                 FLOWLOCK_WRLOCK(f);
-				//clx?:好像是tcp 的syn报文有特殊的处理？？还从新reuse??,内部又重新创建了流节点？？
+				//clx:根据syn或syn+ack判断是否为新的tcp连接。比如当前流表上有一个的tcpstream，且状态为close或者close_wait
+			       //此时又来了一个syn报文，则可断定这是一个新的tcp连接，但是但是五元组确是一样的。此时会在创建一个flow,将其
+			       //挂在f的后面。通过FLOW_TCP_REUSED进行标记，一条流不会同时有两个tcp连接吧。
                 if (unlikely(TcpSessionPacketSsnReuse(p, f, f->protoctx) == 1)) {
                     f = TcpReuseReplace(tv, dtv, fb, f, hash, p);
                     if (f == NULL) {

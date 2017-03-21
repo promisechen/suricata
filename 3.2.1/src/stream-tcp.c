@@ -4158,12 +4158,13 @@ static int StreamTcpPacketStateTimeWait(ThreadVars *tv, Packet *p,
  *  \retval 1 packet is a keep alive pkt
  *  \retval 0 packet is not a keep alive pkt
  */
+ //clx:判断是否为keep-alive报文
 static int StreamTcpPacketIsKeepAlive(TcpSession *ssn, Packet *p)
 {
     TcpStream *stream = NULL, *ostream = NULL;
     uint32_t seq;
     uint32_t ack;
-
+//clx:伪造报文，直接返回
     if (p->flags & PKT_PSEUDO_STREAM_END)
         return 0;
 
@@ -4174,9 +4175,11 @@ static int StreamTcpPacketIsKeepAlive(TcpSession *ssn, Packet *p)
        segment containing one garbage octet, for compatibility with
        erroneous TCP implementations.
      */
+//clx:payload大于1的，直接返回。rfc1122定义，keep-alive可以带1个字节的数据，
+//似乎ack也不用计算。
     if (p->payload_len > 1)
         return 0;
-
+//clx:在判断是否为syn fin rst，是则直接返回0
     if ((p->tcph->th_flags & (TH_SYN|TH_FIN|TH_RST)) != 0) {
         return 0;
     }
@@ -4191,7 +4194,7 @@ static int StreamTcpPacketIsKeepAlive(TcpSession *ssn, Packet *p)
 
     seq = TCP_GET_SEQ(p);
     ack = TCP_GET_ACK(p);
-
+//clx：判断该报文是否是顺序过来的报文
     if (ack == ostream->last_ack && seq == (stream->next_seq - 1)) {
         SCLogDebug("packet is TCP keep-alive: %"PRIu64, p->pcap_cnt);
         stream->flags |= STREAMTCP_STREAM_FLAG_KEEPALIVE;
@@ -4205,6 +4208,7 @@ static int StreamTcpPacketIsKeepAlive(TcpSession *ssn, Packet *p)
  *  \retval 1 packet is a keep alive ACK pkt
  *  \retval 0 packet is not a keep alive ACK pkt
  */
+//clx:判断是否为keep-alive的ack报文
 static int StreamTcpPacketIsKeepAliveACK(TcpSession *ssn, Packet *p)
 {
     TcpStream *stream = NULL, *ostream = NULL;
@@ -4234,11 +4238,11 @@ static int StreamTcpPacketIsKeepAliveACK(TcpSession *ssn, Packet *p)
 
     seq = TCP_GET_SEQ(p);
     ack = TCP_GET_ACK(p);
-
+//clx?:？？
     pkt_win = TCP_GET_WINDOW(p) << ostream->wscale;
     if (pkt_win != ostream->window)
         return 0;
-
+//clx?:依然要求是顺序的??
     if ((ostream->flags & STREAMTCP_STREAM_FLAG_KEEPALIVE) && ack == ostream->last_ack && seq == stream->next_seq) {
         SCLogDebug("packet is TCP keep-aliveACK: %"PRIu64, p->pcap_cnt);
         ostream->flags &= ~STREAMTCP_STREAM_FLAG_KEEPALIVE;
@@ -4248,7 +4252,7 @@ static int StreamTcpPacketIsKeepAliveACK(TcpSession *ssn, Packet *p)
             ostream->flags & STREAMTCP_STREAM_FLAG_KEEPALIVE ? "set" : "not set");
     return 0;
 }
-
+//clx:清楚在tcpsession上的keepalive标记
 static void StreamTcpClearKeepAliveFlag(TcpSession *ssn, Packet *p)
 {
     TcpStream *stream = NULL;
@@ -4329,13 +4333,17 @@ static int StreamTcpPacketIsFinShutdownAck(TcpSession *ssn, Packet *p)
 
     if (p->flags & PKT_PSEUDO_STREAM_END)
         return 0;
+	//clx:非这三种状态的，直接返回0
     if (!(ssn->state == TCP_TIME_WAIT || ssn->state == TCP_CLOSE_WAIT || ssn->state == TCP_LAST_ACK))
         return 0;
+	//clx:只有ack的报文才向下走
     if (p->tcph->th_flags != TH_ACK)
         return 0;
+	//clx:只有负载为0的才像下走
     if (p->payload_len != 0)
         return 0;
-
+//只有ack且负载为0，并且当前状态为 TCP_TIME_WAIT或 TCP_CLOSE_WAIT 活TCP_LAST_ACK
+//才走到这里
     if (PKT_IS_TOSERVER(p)) {
         stream = &ssn->client;
         ostream = &ssn->server;
@@ -4349,7 +4357,7 @@ static int StreamTcpPacketIsFinShutdownAck(TcpSession *ssn, Packet *p)
 
     SCLogDebug("%"PRIu64", seq %u ack %u stream->next_seq %u ostream->next_seq %u",
             p->pcap_cnt, seq, ack, stream->next_seq, ostream->next_seq);
-
+//clx?:还不太确定，seq 的判断方法。
     if (SEQ_EQ(stream->next_seq + 1, seq) && SEQ_EQ(ack, ostream->next_seq + 1)) {
         return 1;
     }
@@ -4510,6 +4518,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
         /* special case for PKT_PSEUDO_STREAM_END packets:
          * bypass the state handling and various packet checks,
          * we care about reassembly here. */
+        //clx:PKT_PSEUDO_xxx 伪造的报文
         if (p->flags & PKT_PSEUDO_STREAM_END) {
             if (PKT_IS_TOCLIENT(p)) {
                 ssn->client.last_ack = TCP_GET_ACK(p);
@@ -4528,18 +4537,22 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
            SYN packet and picked up midstream session. */
         if (ssn->flags & STREAMTCP_FLAG_MIDSTREAM_SYNACK)
             StreamTcpPacketSwitchDir(ssn, p);
-
+	//clx:如果是顺序的keep-alive的报文，则不进行重组
         if (StreamTcpPacketIsKeepAlive(ssn, p) == 1) {
             goto skip;
         }
+		//clx:判断是否为keep-alive报文对应的ack报文，如果是则不进行重组。且
+		//清除在对端的tcpsession上的标记。
         if (StreamTcpPacketIsKeepAliveACK(ssn, p) == 1) {
             StreamTcpClearKeepAliveFlag(ssn, p);
             goto skip;
         }
+		//clx?:如果不是keep-alive的ack报文也会清除在本端的tcpsession上的STREAMTCP_STREAM_FLAG_KEEPALIVE标记
         StreamTcpClearKeepAliveFlag(ssn, p);
 
         /* if packet is not a valid window update, check if it is perhaps
          * a bad window update that we should ignore (and alert on) */
+         //clx:判断是否为窗口更新是否为有效的
         if (StreamTcpPacketIsFinShutdownAck(ssn, p) == 0)
             if (StreamTcpPacketIsWindowUpdate(ssn, p) == 0)
                 if (StreamTcpPacketIsBadWindowUpdate(ssn,p))
@@ -4877,7 +4890,7 @@ int TcpSessionReuseDoneEnough(const Packet *p, const Flow *f, const TcpSession *
 
     return 0;
 }
-
+//clx:判断tcpsession是否可重用.返回值：是同一个tcpseisson,返回0；不是同一个tcpsession,需要重新建立，返回1；
 int TcpSessionPacketSsnReuse(const Packet *p, const Flow *f, const void *tcp_ssn)
 {
     if (p->proto == IPPROTO_TCP && p->tcph != NULL) {
