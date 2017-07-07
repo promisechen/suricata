@@ -57,6 +57,19 @@ AppLayerProtoDetectPPRegister->AppLayerProtoDetectInsertNewProbingParser->AppLay
 文件还原
 ----------
 
+DoReassemble 是重组完成后，调用
+
+乱序的时候: StreamTcpReassembleAppLayer ->DoReassemble->AppLayerHandleTCPData 
+
+无乱序的时候: StreamTcpReassembleAppLayer ->AppLayerHandleTCPData 
+
+
+无论是否分段，StreamTcpReassembleAppLayer是重组的最后一个主要函数，如果有乱序重组后将调用DoReassemble。
+
+最终到应用层都会调用AppLayerHandleTCPData，AppLayerHandleTCPData函数是重组有序之后第一个被调用的函数，这里将都是有序报文。
+
+
+
 对于http的文件还原，使用了libhtp这个库。目前看是先经过tcpstream进行流重组，然后送给libhtp进行解析，最后在回调到http模块生成文件。
 最终涉及的两个函数HTPFileOpen(创建文件)和HTPFileStoreChunk(追加到文件中)。 
     
