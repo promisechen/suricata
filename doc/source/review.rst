@@ -16,6 +16,29 @@
     #6  0x00007ffff5d91df3 in start_thread () from /lib64/libpthread.so.0
     #7  0x00007ffff58bb3dd in clone () from /lib64/libc.so.6
 
+tcp识别总体流程:      
+
+FlowWorker->       
+   StreamTcp      
+          ->AppLayerHandleTCPData     
+               ->  TCPProtoDetect    
+               ->  AppLayerParserParse     
+
+   Detect    
+       -> SigMatchSignatures    
+           -> PrefilterTx    
+
+* 先经过StreamTcp进行流重组、协议识别、报文结构解析     
+   	* 首先进行重组   
+   	* 重组完成后,调用AppLayerHandleTCPData进行应用层处理    
+	    *  调用TCPProtoDetect进行协议识别    
+	    *  调用AppLayerParserParse进行协议解析(比如http解析锚点、html头部等)，协议解析见下文描述。    
+		
+* Detect进行业务识别(SigMatchSignatures)       
+   	* 经过上一步骤已经完成了应用层的解码。
+   	* 后续可以根据uri\host\user-agent等进行协议识别  	   	
+
+
 flow模块
 ----------
 流表采用加锁的方式，有专门的释放流表的线程.                                                            
@@ -48,11 +71,20 @@ AppLayerSetup -> AppLayerProtoDetectSetup:初始化单模多模算法等
 AppLayerProtoDetectPPParseConfPorts->AppLayerProtoDetectPPRegister                                                  
 AppLayerProtoDetectPPRegister->AppLayerProtoDetectInsertNewProbingParser->AppLayerProtoDetectProbingParserElementDuplicate
 
-应用识别
-----------
+应用识别   
+----------   
    
-感觉基本很像snort。发现这个与我看suricata的目的，没有任何关系了,果断停止。
-
+感觉基本很像snort。发现这个与我看suricata的目的，没有任何关系了,果断停止。  
+  以uri的检测方式，简单说明下吧。    
+  DetectHttpUriRegister注册uri的识别方法。最终进行识别的是PrefilterTxUri和DetectEngineInspectHttpUri进行的。  
+      
+* Detect进行业务识别(SigMatchSignatures)            
+   	* 先调用SigMatchSignatures     
+   	* 在依次调用Prefilter和PrefilterTx      
+         在PrefilterTx 中调用AppLayerParserGetTx（StateGetTx） 获取到识别需要用到的相关字段值，在调用PrefilterTx进行相应方法的识别。  
+         这里是个重点, 对协议解析部分分析的时候会对StateGetTx详细阐述。       
+   	* 在调用PrefilterTxUri和DetectEngineInspectHttpUri        
+          通过streamTcp之后，就会把http的头部信息解析完了，会将uri传到这个PrefilterTxUri函数中。      
 
 文件还原
 ----------
