@@ -10,7 +10,7 @@
 
     b.下载官方的3.2.1版本，然后从本目录下找到xxx.patch文件   
     
-        将patch打入版本中     
+        将patch打入版本中  (一般为patch Np1 < xxx.patch,拷贝到解压目录下，执行该语句)   
         
         根据官方指导手册或参考https://github.com/promisechen/suricata/blob/master/doc/source/quick_start.rst
         

@@ -1,0 +1,240 @@
+diff -Naur suricata-3.2.1/configure suricata-3.2.1-dpdk/configure
+--- suricata-3.2.1/configure	2017-09-10 23:33:05.988274050 +0800
++++ suricata-3.2.1-dpdk/configure	2017-09-10 23:32:22.535496609 +0800
+@@ -958,6 +958,9 @@
+ enable_pfring
+ with_libpfring_includes
+ with_libpfring_libraries
++enable_dpdk
++with_libdpdk_includes
++with_libdpdk_libraries
+ enable_af_packet
+ enable_netmap
+ with_netmap_includes
+@@ -1695,6 +1698,7 @@
+   --enable-nfqueue        Enable NFQUEUE support for inline IDP
+   --enable-prelude        Enable Prelude support for alerts
+   --enable-pfring         Enable Native PF_RING support
++  --enable-dpdk           Enable Native DPDK support
+   --enable-af-packet      Enable AF_PACKET support [default=yes]
+   --enable-netmap         Enable Netmap support
+   --enable-non-bundled-htp
+@@ -1747,6 +1751,8 @@
+   --with-libpcap-libraries=DIR    libpcap library directory
+   --with-libpfring-includes=DIR  libpfring include directory
+   --with-libpfring-libraries=DIR    libpfring library directory
++  --with-libdpdk-includes=DIR  libdpdk include directory
++  --with-libdpdk-libraries=DIR    libdpdk library directory
+   --with-netmap-includes=DIR netmap include directory
+   --with-libhtp-includes=DIR  libhtp include directory
+   --with-libhtp-libraries=DIR    libhtp library directory
+@@ -18166,6 +18172,37 @@
+ 
+ fi
+ 
++#libdpdk
++# Check whether --with_libdpdk_includes was given.
++if test "${with_libdpdk_includes+set}" = set; then :
++    withval=$with_libdpdk_includes; with_libdpdk_includes="$withval"
++else
++    with_libdpdk_includes=no
++fi
++
++
++# Check whether --with-libdpdk_libraries was given.
++if test "${with_libdpdk_libraries+set}" = set; then :
++    withval=$with_libdpdk_libraries; with_libdpdk_libraries="$withval"
++else
++    with_libdpdk_libraries="no"
++fi
++
++if test "$with_libdpdk_includes" != "no"; then
++    CPPFLAGS="${CPPFLAGS} -I${with_libdpdk_includes}"
++
++ac_fn_c_check_header_mongrel "$LINENO" "rte_config.h" "ac_cv_header_rte_eal_h" "$ac_includes_default"
++if test "x$ac_cv_header_rte_eal_h" = xyes; then :
++else
++    as_fn_error $? "rte_eal.h not found ..." "$LINENO" 5
++fi
++fi
++
++if test "$with_libdpdk_libraries" != "no"; then
++    LDFLAGS="${LDFLAGS}  -L${with_libdpdk_libraries}"
++LIBS="-lintel_dpdk -lm $LIBS"
++fi
++
+   # AF_PACKET support
+     # Check whether --enable-af-packet was given.
+ if test "${enable_af_packet+set}" = set; then :
+diff -Naur suricata-3.2.1/src/source-dpdk.c suricata-3.2.1-dpdk/src/source-dpdk.c
+--- suricata-3.2.1/src/source-dpdk.c	1970-01-01 08:00:00.000000000 +0800
++++ suricata-3.2.1-dpdk/src/source-dpdk.c	2017-09-10 23:32:49.457585092 +0800
+@@ -0,0 +1,162 @@
++/**
++ *
++ * Copyright (C), 2014-2014, promise Technology Co., Ltd.
++ *
++ * @file source-dpdk.c
++ *
++ * @author chenlx10@163.com
++ * @date 2017/9/10
++ *
++ * @note
++ *    Function List :
++ *    History :
++ *	    1.Date : 2017/9/10
++ *	      Author : chenlx10@163.com
++ *	      Modification : Created file
++ *
++ */
++
++#include "stdio.h"
++#include <unistd.h>
++#include <sys/types.h>
++#include <stdint.h>
++#include <rte_config.h>
++#include <rte_eal.h>
++#include <rte_ethdev.h>
++#include <rte_memory.h>
++#include <rte_memzone.h>
++#include <rte_launch.h>
++#include <rte_eal.h>
++#include <rte_per_lcore.h>
++#include <rte_lcore.h>
++#include <rte_debug.h>
++#include <rte_malloc.h>
++#include <rte_cycles.h>
++#include <rte_errno.h>
++
++#define NB_MBUF   8192
++
++struct rte_ring *packetRing;
++#define MAX_PKT_BURST 32
++#define BURST_TX_DRAIN_US 100 /* TX drain every ~100us */
++#define MEMPOOL_CACHE_SIZE 256
++
++/*
++ * Configurable number of RX/TX ring descriptors
++ */
++#define RTE_TEST_RX_DESC_DEFAULT 128
++#define RTE_TEST_TX_DESC_DEFAULT 512
++static uint16_t nb_rxd = RTE_TEST_RX_DESC_DEFAULT;
++static uint16_t nb_txd = RTE_TEST_TX_DESC_DEFAULT;
++struct rte_mempool * l2fwd_pktmbuf_pool = NULL;
++static const struct rte_eth_conf port_conf = {
++    .rxmode = {
++        .split_hdr_size = 0,
++        .header_split   = 0, /**< Header Split disabled */
++        .hw_ip_checksum = 0, /**< IP checksum offload disabled */
++        .hw_vlan_filter = 0, /**< VLAN filtering disabled */
++        .jumbo_frame    = 0, /**< Jumbo Frame Support disabled */
++        .hw_strip_crc   = 0, /**< CRC stripped by hardware */
++    },
++    .txmode = {
++        .mq_mode = ETH_MQ_TX_NONE,
++    },
++};
++    /**
++     * @brief 从0号口收报文
++     *
++     * @param (unused
++     */
++    static int
++l2fwd_launch_one_lcore(__attribute__((unused)) void *dummy)
++{
++    struct rte_mbuf *pkts_burst[32];
++    int ret = 0;
++    int enq = 0;
++    while(1)
++    {
++        ret = rte_eth_rx_burst(0, 0, (struct rte_mbuf **)&pkts_burst, 1);      
++        if(ret!=0) 
++        {
++            struct rte_mbuf *m = pkts_burst[0];
++            enq = rte_ring_enqueue_burst(packetRing, (void *)&m, 1);
++            if(enq!=1)
++            {
++                rte_pktmbuf_free(m);
++            }
++        }
++    }
++    return 0;
++}
++int init_dpdk()
++{
++    int ret = 0;
++    uint8_t nb_ports;
++    char arg[16][1024];
++    char * dargv[16] = {arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], \
++        arg[6], arg[7], arg[8], arg[9], arg[10], arg[11], arg[12],arg[13],arg[14],arg[15]};
++    sprintf(dargv[0], "ddtest");
++    sprintf(dargv[1], "-c");
++    sprintf(dargv[2], "0x3");
++    sprintf(dargv[3], "-n");
++    sprintf(dargv[4], "4");
++    printf("abcde\n");
++    ret = rte_eal_init(5, dargv);
++
++    nb_ports = rte_eth_dev_count();
++    if (nb_ports == 0)
++        rte_exit(EXIT_FAILURE, "No Ethernet ports - bye\n");
++
++    //内存池 
++    /* create the mbuf pool */
++    l2fwd_pktmbuf_pool = rte_pktmbuf_pool_create("mbuf_pool", NB_MBUF,
++            MEMPOOL_CACHE_SIZE, 0, RTE_MBUF_DEFAULT_BUF_SIZE,
++            rte_socket_id());
++    if (l2fwd_pktmbuf_pool == NULL)
++        rte_exit(EXIT_FAILURE, "Cannot init mbuf pool\n");
++    //网卡配置
++    ret = rte_eth_dev_configure(0, 1, 1, &port_conf);
++    if (ret < 0)
++        rte_exit(EXIT_FAILURE, "Cannot configure device: err=%d, port=%u\n",
++                ret, (unsigned) 0);
++    // 初始化队列
++    ret = rte_eth_rx_queue_setup(0, 0, nb_rxd,
++            rte_eth_dev_socket_id(0),
++            NULL,
++            l2fwd_pktmbuf_pool);
++    if (ret < 0)
++        rte_exit(EXIT_FAILURE, "rte_eth_rx_queue_setup:err=%d, port=%u\n",
++                ret, (unsigned) 0);
++
++    /* init one TX queue on each port */
++    fflush(stdout);
++    ret = rte_eth_tx_queue_setup(0, 0, nb_txd,
++            rte_eth_dev_socket_id(0),
++            NULL);
++    if (ret < 0)
++        rte_exit(EXIT_FAILURE, "rte_eth_tx_queue_setup:err=%d, port=%u\n",
++                ret, (unsigned) 0);
++    // 启动端口抓包 
++    ret = rte_eth_dev_start(0);
++    if (ret < 0)
++        rte_exit(EXIT_FAILURE, "rte_eth_dev_start:err=%d, port=%u\n",
++                ret, (unsigned) 0);
++    rte_eth_promiscuous_enable(0);
++    //队列 
++    packetRing = rte_ring_create("packetRing", 8192, 
++            0, 0);
++    //RING_F_SC_DEQ
++    /* launch per-lcore init on every lcore */
++    rte_eal_mp_remote_launch( l2fwd_launch_one_lcore, NULL, SKIP_MASTER);
++#if 0
++    skip master
++    RTE_LCORE_FOREACH_SLAVE(lcore_id) {
++        if (rte_eal_wait_lcore(lcore_id) < 0) {
++            ret = -1;
++            break;
++        }
++    }
++#endif
++    return 0;
++}
++
+diff -Naur suricata-3.2.1/src/source-dpdk.h suricata-3.2.1-dpdk/src/source-dpdk.h
+--- suricata-3.2.1/src/source-dpdk.h	1970-01-01 08:00:00.000000000 +0800
++++ suricata-3.2.1-dpdk/src/source-dpdk.h	2017-09-10 23:32:49.457585092 +0800
+@@ -0,0 +1,2 @@
++
++int init_dpdk();
