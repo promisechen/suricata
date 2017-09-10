@@ -24,7 +24,16 @@
         发送流量        
         可以到/var/log/suricata中查看
 
-        日志示例: 
+        fast.log日志示例: 
+
+```
+
+09/09/2017-11:39:07.539902  [**] [1:2013505:3] ET POLICY GNU/Linux YUM User-Agent Outbound likely related to package management [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 172.16.44.168:55369 -> 202.204.80.77:80
+09/09/2017-11:44:07.835333  [**] [1:2013505:3] ET POLICY GNU/Linux YUM User-Agent Outbound likely related to package management [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 172.16.44.168:49807 -> 202.141.176.110:80
+
+```
+
+eve.json日志示例:
 
 ```
 {"timestamp":"1900-01-00T00:00:00.000000+0000","flow_id":1896226812262547,"event_type":"flow","src_ip":"101.6.6.178","src_port":80,"dest_ip":"172.16.44.154","dest_port":42491,"proto":"TCP","flow":{"pkts_toserver":31,"pkts_toclient":0,"bytes_toserver":44702,"bytes_toclient":0,"start":"2017-04-22T00:38:38.653459+0800","end":"1900-01-00T00:00:00.000000+0000","age":-1492792718,"state":"new","reason":"shutdown","alerted":false},"tcp":{"tcp_flags":"00","tcp_flags_ts":"00","tcp_flags_tc":"00"}}
