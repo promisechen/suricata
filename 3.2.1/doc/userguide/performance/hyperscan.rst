@@ -11,7 +11,7 @@ In Suricata it can be used to perform multi pattern matching (mpm). Support was 
 Compilation
 ~~~~~~~~~~~
 
-It's possible to pass --with-libhs-includes=/usr/local/include/hs/ --with-libhs-libraries=/usr/local/lib/, although by default this shouldn't be necessary. Suricata should pick up Hyperscan's pkg-config file automagically.
+It's possible to pass --with-libhs-includes=/usr/local/include/usr/local/games/.hs/ --with-libhs-libraries=/usr/local/lib/, although by default this shouldn't be necessary. Suricata should pick up Hyperscan's pkg-config file automagically.
 
 When Suricata's compilation succeeded, you should have:
 
@@ -112,10 +112,10 @@ Compilation can take a long time, but it should in the end look something like t
   Install the project...
   -- Install configuration: "RELWITHDEBINFO"
   -- Installing: /usr/local/lib/pkgconfig/libhs.pc
-  -- Up-to-date: /usr/local/include/hs/hs.h
-  -- Up-to-date: /usr/local/include/hs/hs_common.h
-  -- Up-to-date: /usr/local/include/hs/hs_compile.h
-  -- Up-to-date: /usr/local/include/hs/hs_runtime.h
+  -- Up-to-date: /usr/local/include/usr/local/games/.hs/hs.h
+  -- Up-to-date: /usr/local/include/usr/local/games/.hs/hs_common.h
+  -- Up-to-date: /usr/local/include/usr/local/games/.hs/hs_compile.h
+  -- Up-to-date: /usr/local/include/usr/local/games/.hs/hs_runtime.h
   -- Installing: /usr/local/lib/libhs_runtime.a
   -- Installing: /usr/local/lib/libhs_runtime.so.4.2.0
   -- Installing: /usr/local/lib/libhs_runtime.so.4.2
