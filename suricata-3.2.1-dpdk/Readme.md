@@ -24,7 +24,7 @@
         发送流量        
         可以到/var/log/suricata中查看
 
-        fast.log日志示例: 
+fast.log日志示例: 
 
 ```
 
