@@ -359,7 +359,7 @@ void StreamTcpSackFreeList(TcpStream *stream)
 }
 
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  *  \test   Test the insertion of SACK ranges.
@@ -946,7 +946,7 @@ end:
 
 void StreamTcpSackRegisterTests (void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("StreamTcpSackTest01 -- Insertion", StreamTcpSackTest01);
     UtRegisterTest("StreamTcpSackTest02 -- Insertion", StreamTcpSackTest02);
     UtRegisterTest("StreamTcpSackTest03 -- Insertion", StreamTcpSackTest03);

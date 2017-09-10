@@ -433,7 +433,7 @@ void DetectContentFree(void *ptr)
     SCReturn;
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
 /**
  * \test DetectCotentParseTest01 this is a test to make sure we can deal with escaped colons
@@ -2856,7 +2856,7 @@ static int DetectLongContentTest3(void)
  */
 void DetectContentRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectContentParseTest01", DetectContentParseTest01);
     UtRegisterTest("DetectContentParseTest02", DetectContentParseTest02);
     UtRegisterTest("DetectContentParseTest03", DetectContentParseTest03);

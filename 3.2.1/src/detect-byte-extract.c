@@ -779,7 +779,7 @@ SigMatch *DetectByteExtractRetrieveSMVar(const char *arg, Signature *s)
 
 /*************************************Unittests********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 int DetectByteExtractTest01(void)
 {
@@ -4837,7 +4837,7 @@ int DetectByteExtractTestParseNoBase(void)
 
 void DetectByteExtractRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectByteExtractTest01", DetectByteExtractTest01);
     UtRegisterTest("DetectByteExtractTest02", DetectByteExtractTest02);
     UtRegisterTest("DetectByteExtractTest03", DetectByteExtractTest03);

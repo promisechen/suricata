@@ -237,7 +237,7 @@ static void DetectFileextFree(void *ptr)
     }
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
 /**
  * \test DetectFileextTestParse01
@@ -297,7 +297,7 @@ int DetectFileextTestParse03 (void)
  */
 void DetectFileextRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectFileextTestParse01", DetectFileextTestParse01);
     UtRegisterTest("DetectFileextTestParse02", DetectFileextTestParse02);
     UtRegisterTest("DetectFileextTestParse03", DetectFileextTestParse03);

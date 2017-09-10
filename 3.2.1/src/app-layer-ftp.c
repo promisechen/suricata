@@ -355,7 +355,7 @@ void RegisterFTPParsers(void)
         SCLogInfo("Parsed disabled for %s protocol. Protocol detection"
                   "still on.", proto_name);
     }
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_FTP, FTPParserRegisterTests);
 #endif
 }
@@ -371,7 +371,7 @@ void FTPAtExitPrintStats(void)
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 
 /** \test Send a get request in one chunk. */
 int FTPParserTest01(void)
@@ -684,7 +684,7 @@ end:
 
 void FTPParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("FTPParserTest01", FTPParserTest01);
     UtRegisterTest("FTPParserTest03", FTPParserTest03);
     UtRegisterTest("FTPParserTest06", FTPParserTest06);

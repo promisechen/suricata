@@ -1834,7 +1834,7 @@ void RegisterSSLParsers(void)
                   "still on.", proto_name);
     }
 
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_TLS, SSLParserRegisterTests);
 #endif
     return;
@@ -1842,7 +1842,7 @@ void RegisterSSLParsers(void)
 
 /***************************************Unittests******************************/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  *\test Send a get request in one chunk.
@@ -4104,7 +4104,7 @@ static int SSLParserTest25(void)
 
 void SSLParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SSLParserTest01", SSLParserTest01);
     UtRegisterTest("SSLParserTest02", SSLParserTest02);
     UtRegisterTest("SSLParserTest03", SSLParserTest03);

@@ -320,7 +320,7 @@ static _Bool PrefilterFragOffsetIsPrefilterable(const Signature *s)
     return FALSE;
 }
 
-#ifdef UNITTESTS
+#if 0
 #include "detect-engine.h"
 #include "detect-engine-mpm.h"
 
@@ -449,7 +449,7 @@ end:
 
 void DetectFragOffsetRegisterTests (void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectFragOffsetParseTest01", DetectFragOffsetParseTest01);
     UtRegisterTest("DetectFragOffsetParseTest02", DetectFragOffsetParseTest02);
     UtRegisterTest("DetectFragOffsetParseTest03", DetectFragOffsetParseTest03);

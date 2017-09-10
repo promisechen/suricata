@@ -113,7 +113,7 @@ static int DetectDnsQuerySetup(DetectEngineCtx *de_ctx, Signature *s, char *str)
     return 0;
 }
 
-#ifdef UNITTESTS
+#if 0
 /** \test simple google.com query matching */
 static int DetectDnsQueryTest01(void)
 {
@@ -1163,7 +1163,7 @@ end:
 
 static void DetectDnsQueryRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectDnsQueryTest01", DetectDnsQueryTest01);
     UtRegisterTest("DetectDnsQueryTest02", DetectDnsQueryTest02);
     UtRegisterTest("DetectDnsQueryTest03 -- tcp", DetectDnsQueryTest03);

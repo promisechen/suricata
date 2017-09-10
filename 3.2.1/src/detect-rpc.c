@@ -298,7 +298,7 @@ void DetectRpcFree(void *ptr)
     SCReturn;
 }
 
-#ifdef UNITTESTS
+#if 0
 /**
  * \test DetectRpcTestParse01 is a test to make sure that we return "something"
  *  when given valid rpc opt
@@ -575,7 +575,7 @@ end:
  */
 void DetectRpcRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectRpcTestParse01", DetectRpcTestParse01);
     UtRegisterTest("DetectRpcTestParse02", DetectRpcTestParse02);
     UtRegisterTest("DetectRpcTestParse03", DetectRpcTestParse03);

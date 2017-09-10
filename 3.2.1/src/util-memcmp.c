@@ -31,7 +31,7 @@
 /* code is implemented in util-memcmp.h as it's all inlined */
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 
 static int MemcmpTest01 (void)
 {
@@ -383,7 +383,7 @@ static int MemcmpTest18 (void)
 
 void MemcmpRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("MemcmpTest01", MemcmpTest01);
     UtRegisterTest("MemcmpTest02", MemcmpTest02);
     UtRegisterTest("MemcmpTest03", MemcmpTest03);

@@ -39,7 +39,7 @@
 #include "util-time.h"
 #include "conf.h"
 
-#ifdef UNITTESTS
+#if 0
 
 static pcre *parse_regex;
 static pcre_extra *parse_regex_study;
@@ -308,7 +308,7 @@ int UtSelftestFalse(void)
 
 int UtRunSelftest (char *regex_arg)
 {
-#ifdef UNITTESTS
+#if 0
     printf("* Running Unittesting subsystem selftests...\n");
 
     UtInitialize();

@@ -1552,14 +1552,14 @@ void RegisterSMBParsers(void)
                   "still on.", proto_name);
     }
 
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_SMB, SMBParserRegisterTests);
 #endif
     return;
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 #include "flow-util.h"
 
 /**
@@ -2723,7 +2723,7 @@ end:
 
 void SMBParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SMBParserTest01", SMBParserTest01);
     UtRegisterTest("SMBParserTest02", SMBParserTest02);
     UtRegisterTest("SMBParserTest03", SMBParserTest03);

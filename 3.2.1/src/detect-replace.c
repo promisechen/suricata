@@ -209,7 +209,7 @@ void DetectReplaceFreeInternal(DetectReplaceList *replist)
     }
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
 /**
  * \test Test packet Matches
@@ -816,7 +816,7 @@ static int DetectReplaceParseTest07(void)
  */
 void DetectReplaceRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 /* matching */
     UtRegisterTest("DetectReplaceMatchTest01", DetectReplaceMatchTest01);
     UtRegisterTest("DetectReplaceMatchTest02", DetectReplaceMatchTest02);

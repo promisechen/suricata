@@ -145,10 +145,11 @@ static inline TmEcode TmThreadsSlotProcessPkt(ThreadVars *tv, TmSlot *s, Packet 
         tv->tmqh_out(tv, p);
         return r;
     }
-
+	
     if (TmThreadsSlotVarRun(tv, p, s) == TM_ECODE_FAILED) {
         TmqhOutputPacketpool(tv, p);
         TmSlot *slot = s;
+		printf("PacketDequeue TM_ECODE\n");
         while (slot != NULL) {
             SCMutexLock(&slot->slot_post_pq.mutex_q);
             TmqhReleasePacketsToPacketPool(&slot->slot_post_pq);
@@ -160,6 +161,7 @@ static inline TmEcode TmThreadsSlotProcessPkt(ThreadVars *tv, TmSlot *s, Packet 
         r = TM_ECODE_FAILED;
 
     } else {
+    printf("PacketDequeue TM_ECODE_FAILED\n");
         tv->tmqh_out(tv, p);
 
         /* post process pq */

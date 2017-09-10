@@ -180,6 +180,7 @@ int RunModeFilePcapAutoFp(void)
         thread_max = ncpus * threading_detect_ratio;
     if (thread_max < 1)
         thread_max = 1;
+	thread_max = 1;//clx 
 
     queues = RunmodeAutoFpCreatePickupQueuesString(thread_max);
     if (queues == NULL) {

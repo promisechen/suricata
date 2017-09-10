@@ -552,17 +552,17 @@ void RegisterTemplateParsers(void)
         SCLogNotice("Template protocol parsing disabled.");
     }
 
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_TEMPLATE,
         TemplateParserRegisterTests);
 #endif
 }
 
-#ifdef UNITTESTS
+#if 0
 #endif
 
 void TemplateParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
 #endif
 }

@@ -561,7 +561,7 @@ static int DetectLuaAppTxMatch (ThreadVars *t, DetectEngineThreadCtx *det_ctx,
     return DetectLuaAppMatchCommon(t, det_ctx, f, flags, state, s, ctx);
 }
 
-#ifdef UNITTESTS
+#if 0
 /* if this ptr is set the lua setup functions will use this buffer as the
  * lua script instead of calling luaL_loadfile on the filename supplied. */
 static const char *ut_script = NULL;
@@ -601,7 +601,7 @@ static void *DetectLuaThreadInit(void *data)
     lua_setglobal(t->luastate, "SCRuleGid");
 
     /* hackish, needed to allow unittests to pass buffers as scripts instead of files */
-#ifdef UNITTESTS
+#if 0
     if (ut_script != NULL) {
         status = luaL_loadbuffer(t->luastate, ut_script, strlen(ut_script), "unittest");
         if (status) {
@@ -615,7 +615,7 @@ static void *DetectLuaThreadInit(void *data)
             SCLogError(SC_ERR_LUA_ERROR, "couldn't load file: %s", lua_tostring(t->luastate, -1));
             goto error;
         }
-#ifdef UNITTESTS
+#if 0
     }
 #endif
 
@@ -692,7 +692,7 @@ static int DetectLuaSetupPrime(DetectEngineCtx *de_ctx, DetectLuaData *ld)
     luaL_openlibs(luastate);
 
     /* hackish, needed to allow unittests to pass buffers as scripts instead of files */
-#ifdef UNITTESTS
+#if 0
     if (ut_script != NULL) {
         status = luaL_loadbuffer(luastate, ut_script, strlen(ut_script), "unittest");
         if (status) {
@@ -706,7 +706,7 @@ static int DetectLuaSetupPrime(DetectEngineCtx *de_ctx, DetectLuaData *ld)
             SCLogError(SC_ERR_LUA_ERROR, "couldn't load file: %s", lua_tostring(luastate, -1));
             goto error;
         }
-#ifdef UNITTESTS
+#if 0
     }
 #endif
 
@@ -1082,7 +1082,7 @@ static void DetectLuaFree(void *ptr)
     }
 }
 
-#ifdef UNITTESTS
+#if 0
 /** \test http buffer */
 static int LuaMatchTest01(void)
 {
@@ -1987,7 +1987,7 @@ end:
 
 void DetectLuaRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("LuaMatchTest01", LuaMatchTest01);
     UtRegisterTest("LuaMatchTest02", LuaMatchTest02);
     UtRegisterTest("LuaMatchTest03", LuaMatchTest03);

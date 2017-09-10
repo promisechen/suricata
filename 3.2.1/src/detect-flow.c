@@ -444,7 +444,7 @@ static _Bool PrefilterFlowIsPrefilterable(const Signature *s)
     return FALSE;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test DetectFlowTestParse01 is a test to make sure that we return "something"
@@ -1035,7 +1035,7 @@ static int DetectFlowTestOnlyFragMatch(void)
  */
 void DetectFlowRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectFlowTestParse01", DetectFlowTestParse01);
     UtRegisterTest("DetectFlowTestParse02", DetectFlowTestParse02);
     UtRegisterTest("DetectFlowTestParse03", DetectFlowTestParse03);

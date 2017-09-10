@@ -134,7 +134,7 @@ void DetectHttpServerBodyFree(void *ptr)
 
 /************************************Unittests*********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 #include "stream-tcp-reassemble.h"
 
@@ -3947,7 +3947,7 @@ end:
 
 void DetectHttpServerBodyRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectHttpServerBodyTest01", DetectHttpServerBodyTest01);
     UtRegisterTest("DetectHttpServerBodyTest02", DetectHttpServerBodyTest02);
     UtRegisterTest("DetectHttpServerBodyTest03", DetectHttpServerBodyTest03);

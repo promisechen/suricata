@@ -620,7 +620,7 @@ int DecodeIPV4(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p, uint8_t *pkt, u
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 
 /** \test IPV4 with no options. */
 int DecodeIPV4OptionsNONETest01(void)
@@ -1632,7 +1632,7 @@ end:
 
 void DecodeIPV4RegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DecodeIPV4OptionsNONETest01", DecodeIPV4OptionsNONETest01);
     UtRegisterTest("DecodeIPV4OptionsEOLTest01", DecodeIPV4OptionsEOLTest01);
     UtRegisterTest("DecodeIPV4OptionsNOPTest01", DecodeIPV4OptionsNOPTest01);

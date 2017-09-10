@@ -1606,7 +1606,7 @@ void DetectPortHashFree(DetectEngineCtx *de_ctx)
 
 /*---------------------- Unittests -------------------------*/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Check if a DetectPort is properly allocated
@@ -2722,7 +2722,7 @@ static int PortTestMatchDoubleNegation(void)
 
 void DetectPortTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("PortTestParse01", PortTestParse01);
     UtRegisterTest("PortTestParse02", PortTestParse02);
     UtRegisterTest("PortTestParse03", PortTestParse03);

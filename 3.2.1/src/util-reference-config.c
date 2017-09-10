@@ -124,7 +124,7 @@ static FILE *SCRConfInitContextAndLocalResources(DetectEngineCtx *de_ctx, FILE *
     if (fd == NULL) {
         filename = SCRConfGetConfFilename(de_ctx);
         if ((fd = fopen(filename, "r")) == NULL) {
-#ifdef UNITTESTS
+#if 0
             if (RunmodeIsUnittests())
                 goto error; // silently fail
 #endif
@@ -347,7 +347,7 @@ static void SCRConfParseFile(DetectEngineCtx *de_ctx, FILE *fd)
         i++;
     }
 
-#ifdef UNITTESTS
+#if 0
     SCLogInfo("Added \"%d\" reference types from the reference.config file",
               de_ctx->reference_conf_ht->count);
 #endif /* UNITTESTS */
@@ -506,7 +506,7 @@ int SCRConfLoadReferenceConfigFile(DetectEngineCtx *de_ctx, FILE *fd)
 {
     fd = SCRConfInitContextAndLocalResources(de_ctx, fd);
     if (fd == NULL) {
-#ifdef UNITTESTS
+#if 0
         if (RunmodeIsUnittests() && fd == NULL) {
             return -1;
         }
@@ -549,7 +549,7 @@ SCRConfReference *SCRConfGetReference(const char *rconf_name,
 /*----------------------------------Unittests---------------------------------*/
 
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \brief Creates a dummy reference config, with all valid references, for
@@ -795,7 +795,7 @@ int SCRConfTest06(void)
 void SCRConfRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SCRConfTest01", SCRConfTest01);
     UtRegisterTest("SCRConfTest02", SCRConfTest02);
     UtRegisterTest("SCRConfTest03", SCRConfTest03);

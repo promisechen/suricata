@@ -220,7 +220,7 @@ int DecodePPPOESession(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p, uint8_t
     return TM_ECODE_OK;
 }
 
-#ifdef UNITTESTS
+#if 0
 /** DecodePPPOEtest01
  *  \brief Decode malformed PPPOE packet (too short)
  *  \retval 1 Expected test value
@@ -445,7 +445,7 @@ static int DecodePPPOEtest06 (void)
  */
 void DecodePPPOERegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DecodePPPOEtest01", DecodePPPOEtest01);
     UtRegisterTest("DecodePPPOEtest02", DecodePPPOEtest02);
     UtRegisterTest("DecodePPPOEtest03", DecodePPPOEtest03);

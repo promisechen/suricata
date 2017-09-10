@@ -449,7 +449,7 @@ void RegisterENIPUDPParsers(void)
                 proto_name);
     }
 
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_UDP, ALPROTO_ENIP, ENIPParserRegisterTests);
 #endif
 
@@ -527,7 +527,7 @@ void RegisterENIPTCPParsers(void)
                 proto_name);
     }
 
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_ENIP, ENIPParserRegisterTests);
 #endif
 
@@ -535,7 +535,7 @@ void RegisterENIPTCPParsers(void)
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 #include "app-layer-parser.h"
 #include "detect-parse.h"
 #include "detect-engine.h"
@@ -592,7 +592,7 @@ int ALDecodeENIPTest(void)
 
 void ENIPParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
       UtRegisterTest("ALDecodeENIPTest", ALDecodeENIPTest);
 #endif /* UNITTESTS */
 }

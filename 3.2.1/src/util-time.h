@@ -40,7 +40,7 @@ void TimeDeinit(void);
 void TimeSetByThread(const int thread_id, const struct timeval *tv);
 void TimeGet(struct timeval *);
 
-#ifdef UNITTESTS
+#if 0
 void TimeSet(struct timeval *);
 void TimeSetToCurrentTime(void);
 void TimeSetIncrementTime(uint32_t);

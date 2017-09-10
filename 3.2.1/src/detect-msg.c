@@ -140,7 +140,7 @@ error:
 
 /* -------------------------------------Unittests-----------------------------*/
 
-#ifdef UNITTESTS
+#if 0
 static int DetectMsgParseTest01(void)
 {
     int result = 0;
@@ -235,7 +235,7 @@ end:
  */
 void DetectMsgRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectMsgParseTest01", DetectMsgParseTest01);
     UtRegisterTest("DetectMsgParseTest02", DetectMsgParseTest02);
     UtRegisterTest("DetectMsgParseTest03", DetectMsgParseTest03);

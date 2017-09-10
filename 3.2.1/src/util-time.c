@@ -56,7 +56,7 @@
 #include "tm-threads.h"
 #include "util-debug.h"
 
-#ifdef UNITTESTS
+#if 0
 static struct timeval current_time = { 0, 0 };
 #endif
 //static SCMutex current_time_mutex = SCMUTEX_INITIALIZER;
@@ -104,7 +104,7 @@ void TimeSetByThread(const int thread_id, const struct timeval *tv)
     TmThreadsSetThreadTimestamp(thread_id, tv);
 }
 
-#ifdef UNITTESTS
+#if 0
 void TimeSet(struct timeval *tv)
 {
     if (live == TRUE)
@@ -143,7 +143,7 @@ void TimeGet(struct timeval *tv)
     if (live == TRUE) {
         gettimeofday(tv, NULL);
     } else {
-#ifdef UNITTESTS
+#if 0
         if (unlikely(RunmodeIsUnittests())) {
             SCSpinLock(&current_time_spinlock);
             tv->tv_sec = current_time.tv_sec;
@@ -152,7 +152,7 @@ void TimeGet(struct timeval *tv)
         } else {
 #endif
             TmreadsGetMinimalTimestamp(tv);
-#ifdef UNITTESTS
+#if 0
         }
 #endif
     }
@@ -161,7 +161,7 @@ void TimeGet(struct timeval *tv)
                (uintmax_t)tv->tv_sec, (uintmax_t)tv->tv_usec);
 }
 
-#ifdef UNITTESTS
+#if 0
 /** \brief increment the time in the engine
  *  \param tv_sec seconds to increment the time with */
 void TimeSetIncrementTime(uint32_t tv_sec)

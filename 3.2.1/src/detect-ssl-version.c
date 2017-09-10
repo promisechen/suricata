@@ -322,7 +322,7 @@ void DetectSslVersionFree(void *ptr)
 
 /**********************************Unittests***********************************/
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
 /**
  * \test DetectSslVersionTestParse01 is a test to make sure that we parse the
@@ -654,7 +654,7 @@ static int DetectSslVersionTestDetect03(void)
  */
 void DetectSslVersionRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectSslVersionTestParse01", DetectSslVersionTestParse01);
     UtRegisterTest("DetectSslVersionTestParse02", DetectSslVersionTestParse02);
     UtRegisterTest("DetectSslVersionTestParse03", DetectSslVersionTestParse03);

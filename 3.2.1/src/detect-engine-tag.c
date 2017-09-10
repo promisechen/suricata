@@ -586,7 +586,7 @@ int TagTimeoutCheck(Host *host, struct timeval *tv)
     return retval;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test host tagging: packets
@@ -1502,7 +1502,7 @@ end:
  */
 void DetectEngineTagRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectTagTestPacket01", DetectTagTestPacket01);
     UtRegisterTest("DetectTagTestPacket02", DetectTagTestPacket02);
     UtRegisterTest("DetectTagTestPacket03", DetectTagTestPacket03);

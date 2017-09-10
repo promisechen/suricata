@@ -377,7 +377,7 @@ static _Bool PrefilterDsizeIsPrefilterable(const Signature *s)
  * ONLY TESTS BELOW THIS COMMENT
  */
 
-#ifdef UNITTESTS
+#if 0
 #include "detect-engine.h"
 
 /**
@@ -866,7 +866,7 @@ end:
  */
 void DsizeRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DsizeTestParse01", DsizeTestParse01);
     UtRegisterTest("DsizeTestParse02", DsizeTestParse02);
     UtRegisterTest("DsizeTestParse03", DsizeTestParse03);

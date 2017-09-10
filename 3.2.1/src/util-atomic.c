@@ -26,7 +26,7 @@
 #include "util-atomic.h"
 #include "util-unittest.h"
 
-#ifdef UNITTESTS
+#if 0
 
 static int SCAtomicTest01(void)
 {
@@ -65,7 +65,7 @@ static int SCAtomicTest01(void)
 
 void SCAtomicRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SCAtomicTest01", SCAtomicTest01);
 #endif
 

@@ -558,7 +558,7 @@ static void DetectIPProtoFree(void *ptr)
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test DetectIPProtoTestParse01 is a test for an invalid proto number
@@ -9423,7 +9423,7 @@ end:
  */
 static void DetectIPProtoRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectIPProtoTestParse01", DetectIPProtoTestParse01);
     UtRegisterTest("DetectIPProtoTestParse02", DetectIPProtoTestParse02);
     UtRegisterTest("DetectIPProtoTestSetup01", DetectIPProtoTestSetup01);

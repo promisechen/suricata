@@ -284,7 +284,7 @@ int PrefilterTxSmtpFiledataRegister(SigGroupHead *sgh, MpmCtx *mpm_ctx)
         mpm_ctx, NULL, "file_data (smtp)");
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static int DetectEngineSMTPFiledataTest01(void)
 {
@@ -550,7 +550,7 @@ end:
 
 void DetectEngineSMTPFiledataRegisterTests(void)
 {
-    #ifdef UNITTESTS
+    #if 0
     UtRegisterTest("DetectEngineSMTPFiledataTest01",
                    DetectEngineSMTPFiledataTest01);
     UtRegisterTest("DetectEngineSMTPFiledataTest02",

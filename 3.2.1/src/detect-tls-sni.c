@@ -99,7 +99,7 @@ static int DetectTlsSniSetup(DetectEngineCtx *de_ctx, Signature *s, char *str)
     return 0;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Test matching on a simple google.com SNI
@@ -297,7 +297,7 @@ static int DetectTlsSniTest02(void)
 
 static void DetectTlsSniRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectTlsSniTest01", DetectTlsSniTest01);
     UtRegisterTest("DetectTlsSniTest02", DetectTlsSniTest02);
 #endif

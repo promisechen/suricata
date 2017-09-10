@@ -587,7 +587,7 @@ void StreamTcpInitConfig(char quiet)
      * values. */
     FlowSetProtoFreeFunc(IPPROTO_TCP, StreamTcpSessionClear);
 
-#ifdef UNITTESTS
+#if 0
     if (RunmodeIsUnittests()) {
         SCMutexLock(&ssn_pool_mutex);
         if (ssn_pool == NULL) {
@@ -827,6 +827,7 @@ static int StreamTcpPacketIsRetransmission(TcpStream *stream, Packet *p)
 static int StreamTcpPacketStateNone(ThreadVars *tv, Packet *p,
                         StreamTcpThread *stt, TcpSession *ssn, PacketQueue *pq)
 {
+	//clx:首包为rst或者fin的话，直接返回错误。
     if (p->tcph->th_flags & TH_RST) {
         StreamTcpSetEvent(p, STREAM_RST_BUT_NO_SESSION);
         SCLogDebug("RST packet received, no session setup");
@@ -838,12 +839,14 @@ static int StreamTcpPacketStateNone(ThreadVars *tv, Packet *p,
         return -1;
 
     /* SYN/ACK */
+		//clx:对于报文为synack
     } else if ((p->tcph->th_flags & (TH_SYN|TH_ACK)) == (TH_SYN|TH_ACK)) {
         if (stream_config.midstream == FALSE &&
                 stream_config.async_oneside == FALSE)
             return 0;
 
         if (ssn == NULL) {
+			//clx:新建tcp session
             ssn = StreamTcpNewSession(p, stt->ssn_pool_id);
             if (ssn == NULL) {
                 StatsIncr(tv, stt->counter_tcp_ssn_memcap);
@@ -878,6 +881,7 @@ static int StreamTcpPacketStateNone(ThreadVars *tv, Packet *p,
         /** If the client has a wscale option the server had it too,
          *  so set the wscale for the server to max. Otherwise none
          *  will have the wscale opt just like it should. */
+         //clx?:这是啥？？
         if (TCP_HAS_WSCALE(p)) {
             ssn->client.wscale = TCP_GET_WSCALE(p);
             ssn->server.wscale = TCP_WSCALE_MAX;
@@ -4154,12 +4158,13 @@ static int StreamTcpPacketStateTimeWait(ThreadVars *tv, Packet *p,
  *  \retval 1 packet is a keep alive pkt
  *  \retval 0 packet is not a keep alive pkt
  */
+ //clx:判断是否为keep-alive报文
 static int StreamTcpPacketIsKeepAlive(TcpSession *ssn, Packet *p)
 {
     TcpStream *stream = NULL, *ostream = NULL;
     uint32_t seq;
     uint32_t ack;
-
+//clx:伪造报文，直接返回
     if (p->flags & PKT_PSEUDO_STREAM_END)
         return 0;
 
@@ -4170,9 +4175,11 @@ static int StreamTcpPacketIsKeepAlive(TcpSession *ssn, Packet *p)
        segment containing one garbage octet, for compatibility with
        erroneous TCP implementations.
      */
+//clx:payload大于1的，直接返回。rfc1122定义，keep-alive可以带1个字节的数据，
+//似乎ack也不用计算。
     if (p->payload_len > 1)
         return 0;
-
+//clx:在判断是否为syn fin rst，是则直接返回0
     if ((p->tcph->th_flags & (TH_SYN|TH_FIN|TH_RST)) != 0) {
         return 0;
     }
@@ -4187,7 +4194,7 @@ static int StreamTcpPacketIsKeepAlive(TcpSession *ssn, Packet *p)
 
     seq = TCP_GET_SEQ(p);
     ack = TCP_GET_ACK(p);
-
+//clx：判断该报文是否是顺序过来的报文
     if (ack == ostream->last_ack && seq == (stream->next_seq - 1)) {
         SCLogDebug("packet is TCP keep-alive: %"PRIu64, p->pcap_cnt);
         stream->flags |= STREAMTCP_STREAM_FLAG_KEEPALIVE;
@@ -4201,6 +4208,7 @@ static int StreamTcpPacketIsKeepAlive(TcpSession *ssn, Packet *p)
  *  \retval 1 packet is a keep alive ACK pkt
  *  \retval 0 packet is not a keep alive ACK pkt
  */
+//clx:判断是否为keep-alive的ack报文
 static int StreamTcpPacketIsKeepAliveACK(TcpSession *ssn, Packet *p)
 {
     TcpStream *stream = NULL, *ostream = NULL;
@@ -4230,11 +4238,11 @@ static int StreamTcpPacketIsKeepAliveACK(TcpSession *ssn, Packet *p)
 
     seq = TCP_GET_SEQ(p);
     ack = TCP_GET_ACK(p);
-
+//clx?:？？
     pkt_win = TCP_GET_WINDOW(p) << ostream->wscale;
     if (pkt_win != ostream->window)
         return 0;
-
+//clx?:依然要求是顺序的??
     if ((ostream->flags & STREAMTCP_STREAM_FLAG_KEEPALIVE) && ack == ostream->last_ack && seq == stream->next_seq) {
         SCLogDebug("packet is TCP keep-aliveACK: %"PRIu64, p->pcap_cnt);
         ostream->flags &= ~STREAMTCP_STREAM_FLAG_KEEPALIVE;
@@ -4244,7 +4252,7 @@ static int StreamTcpPacketIsKeepAliveACK(TcpSession *ssn, Packet *p)
             ostream->flags & STREAMTCP_STREAM_FLAG_KEEPALIVE ? "set" : "not set");
     return 0;
 }
-
+//clx:清楚在tcpsession上的keepalive标记
 static void StreamTcpClearKeepAliveFlag(TcpSession *ssn, Packet *p)
 {
     TcpStream *stream = NULL;
@@ -4325,13 +4333,17 @@ static int StreamTcpPacketIsFinShutdownAck(TcpSession *ssn, Packet *p)
 
     if (p->flags & PKT_PSEUDO_STREAM_END)
         return 0;
+	//clx:非这三种状态的，直接返回0
     if (!(ssn->state == TCP_TIME_WAIT || ssn->state == TCP_CLOSE_WAIT || ssn->state == TCP_LAST_ACK))
         return 0;
+	//clx:只有ack的报文才向下走
     if (p->tcph->th_flags != TH_ACK)
         return 0;
+	//clx:只有负载为0的才像下走
     if (p->payload_len != 0)
         return 0;
-
+//只有ack且负载为0，并且当前状态为 TCP_TIME_WAIT或 TCP_CLOSE_WAIT 活TCP_LAST_ACK
+//才走到这里
     if (PKT_IS_TOSERVER(p)) {
         stream = &ssn->client;
         ostream = &ssn->server;
@@ -4345,7 +4357,7 @@ static int StreamTcpPacketIsFinShutdownAck(TcpSession *ssn, Packet *p)
 
     SCLogDebug("%"PRIu64", seq %u ack %u stream->next_seq %u ostream->next_seq %u",
             p->pcap_cnt, seq, ack, stream->next_seq, ostream->next_seq);
-
+//clx?:还不太确定，seq 的判断方法。
     if (SEQ_EQ(stream->next_seq + 1, seq) && SEQ_EQ(ack, ostream->next_seq + 1)) {
         return 1;
     }
@@ -4443,7 +4455,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
     DEBUG_ASSERT_FLOW_LOCKED(p->flow);
 
     SCLogDebug("p->pcap_cnt %"PRIu64, p->pcap_cnt);
-
+	//clx?:一条流可能进入多个核心，这里有什么意义呢？？
     /* assign the thread id to the flow */
     if (unlikely(p->flow->thread_id == 0)) {
         p->flow->thread_id = (FlowThreadId)tv->id;
@@ -4454,7 +4466,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
     }
 
     TcpSession *ssn = (TcpSession *)p->flow->protoctx;
-
+	//clx;更新tcp flag标记；syn ack ....客户端和服务器也分别维护。
     /* track TCP flags */
     if (ssn != NULL) {
         ssn->tcp_packet_flags |= p->tcph->th_flags;
@@ -4463,7 +4475,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
         else if (PKT_IS_TOCLIENT(p))
             ssn->server.tcp_flags |= p->tcph->th_flags;
     }
-
+	//clx:更新计数
     /* update counters */
     if ((p->tcph->th_flags & (TH_SYN|TH_ACK)) == (TH_SYN|TH_ACK)) {
         StatsIncr(tv, stt->counter_tcp_synack);
@@ -4473,7 +4485,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
     if (p->tcph->th_flags & (TH_RST)) {
         StatsIncr(tv, stt->counter_tcp_rst);
     }
-
+	//clx?:???无法理解
     /* broken TCP http://ask.wireshark.org/questions/3183/acknowledgment-number-broken-tcp-the-acknowledge-field-is-nonzero-while-the-ack-flag-is-not-set */
     if (!(p->tcph->th_flags & TH_ACK) && TCP_GET_ACK(p) != 0) {
         StreamTcpSetEvent(p, STREAM_PKT_BROKEN_ACK);
@@ -4483,6 +4495,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
      * the IP only module, or from a reassembled msg and/or from an
      * applayer detection, then drop the rest of the packets of the
      * same stream and avoid inspecting it any further */
+     //clx:在ips模式下，打一些标记，后续不在识别
     if (StreamTcpCheckFlowDrops(p) == 1) {
         SCLogDebug("This flow/stream triggered a drop rule");
         FlowSetNoPacketInspectionFlag(p->flow);
@@ -4493,7 +4506,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
         StreamTcpSessionPktFree(p);
         SCReturnInt(0);
     }
-
+//clx:一般首包会进到这里，这里将根据syn ;synack;ack做判断，初始化stream一些信息
     if (ssn == NULL || ssn->state == TCP_NONE) {
         if (StreamTcpPacketStateNone(tv, p, stt, ssn, &stt->pseudo_queue) == -1) {
             goto error;
@@ -4505,6 +4518,7 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
         /* special case for PKT_PSEUDO_STREAM_END packets:
          * bypass the state handling and various packet checks,
          * we care about reassembly here. */
+        //clx:PKT_PSEUDO_xxx 伪造的报文
         if (p->flags & PKT_PSEUDO_STREAM_END) {
             if (PKT_IS_TOCLIENT(p)) {
                 ssn->client.last_ack = TCP_GET_ACK(p);
@@ -4523,18 +4537,22 @@ int StreamTcpPacket (ThreadVars *tv, Packet *p, StreamTcpThread *stt,
            SYN packet and picked up midstream session. */
         if (ssn->flags & STREAMTCP_FLAG_MIDSTREAM_SYNACK)
             StreamTcpPacketSwitchDir(ssn, p);
-
+	//clx:如果是顺序的keep-alive的报文，则不进行重组
         if (StreamTcpPacketIsKeepAlive(ssn, p) == 1) {
             goto skip;
         }
+		//clx:判断是否为keep-alive报文对应的ack报文，如果是则不进行重组。且
+		//清除在对端的tcpsession上的标记。
         if (StreamTcpPacketIsKeepAliveACK(ssn, p) == 1) {
             StreamTcpClearKeepAliveFlag(ssn, p);
             goto skip;
         }
+		//clx?:如果不是keep-alive的ack报文也会清除在本端的tcpsession上的STREAMTCP_STREAM_FLAG_KEEPALIVE标记
         StreamTcpClearKeepAliveFlag(ssn, p);
 
         /* if packet is not a valid window update, check if it is perhaps
          * a bad window update that we should ignore (and alert on) */
+         //clx:判断是否为窗口更新是否为有效的
         if (StreamTcpPacketIsFinShutdownAck(ssn, p) == 0)
             if (StreamTcpPacketIsWindowUpdate(ssn, p) == 0)
                 if (StreamTcpPacketIsBadWindowUpdate(ssn,p))
@@ -4698,13 +4716,14 @@ error:
  *  \param  p       Packet of which checksum has to be validated
  *  \retval  1 if the checksum is valid, otherwise 0
  */
+ //clx:检查tcp校验和
 static inline int StreamTcpValidateChecksum(Packet *p)
 {
     int ret = 1;
 
     if (p->flags & PKT_IGNORE_CHECKSUM)
         return ret;
-
+	//clx:计算checksum
     if (p->level4_comp_csum == -1) {
         if (PKT_IS_IPV4(p)) {
             p->level4_comp_csum = TCPCalculateChecksum(p->ip4h->s_ip_addrs,
@@ -4718,7 +4737,7 @@ static inline int StreamTcpValidateChecksum(Packet *p)
                                                           TCP_GET_HLEN(p)));
         }
     }
-
+	//判断校验和是否正确
     if (p->level4_comp_csum != p->tcph->th_sum) {
         ret = 0;
         SCLogDebug("Checksum of received packet %p is invalid",p);
@@ -4871,7 +4890,7 @@ int TcpSessionReuseDoneEnough(const Packet *p, const Flow *f, const TcpSession *
 
     return 0;
 }
-
+//clx:判断tcpsession是否可重用.返回值：是同一个tcpseisson,返回0；不是同一个tcpsession,需要重新建立，返回1；
 int TcpSessionPacketSsnReuse(const Packet *p, const Flow *f, const void *tcp_ssn)
 {
     if (p->proto == IPPROTO_TCP && p->tcph != NULL) {
@@ -4900,7 +4919,7 @@ TmEcode StreamTcp (ThreadVars *tv, Packet *p, void *data, PacketQueue *pq, Packe
     }
 
     /* only TCP packets with a flow from here */
-
+	//clx:判断校验和
     if (!(p->flags & PKT_PSEUDO_STREAM_END)) {
         if (stream_config.flags & STREAMTCP_INIT_FLAG_CHECKSUM_VALIDATION) {
             if (StreamTcpValidateChecksum(p) == 0) {
@@ -5814,7 +5833,7 @@ void TcpSessionSetReassemblyDepth(TcpSession *ssn, uint32_t size)
     return;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  *  \test   Test the allocation of TCP session for a given packet from the
@@ -10543,7 +10562,7 @@ end:
 
 void StreamTcpRegisterTests (void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("StreamTcpTest01 -- TCP session allocation",
                    StreamTcpTest01);
     UtRegisterTest("StreamTcpTest02 -- TCP session deallocation",

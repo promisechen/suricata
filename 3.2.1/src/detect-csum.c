@@ -885,7 +885,7 @@ void DetectICMPV6CsumFree(void *ptr)
 
 /* ---------------------------------- Unit Tests --------------------------- */
 
-#ifdef UNITTESTS
+#if 0
 
 int DetectCsumIPV4ValidArgsTestParse01(void)
 {
@@ -1590,7 +1590,7 @@ int DetectCsumICMPV6Test01(void)
 void DetectCsumRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
 
     UtRegisterTest("DetectCsumIPV4ValidArgsTestParse01",
                    DetectCsumIPV4ValidArgsTestParse01);

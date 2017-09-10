@@ -1110,7 +1110,7 @@ void TmModuleFlowRecyclerRegister (void)
     SC_ATOMIC_INIT(flowrec_cnt);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  *  \test   Test the timing out of a flow with a fresh TcpSession
@@ -1386,7 +1386,7 @@ static int FlowMgrTest05 (void)
  */
 void FlowMgrRegisterTests (void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("FlowMgrTest01 -- Timeout a flow having fresh TcpSession",
                    FlowMgrTest01);
     UtRegisterTest("FlowMgrTest02 -- Timeout a flow having TcpSession with segments",

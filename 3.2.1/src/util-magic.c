@@ -166,7 +166,7 @@ void MagicDeinit(void)
     SCMutexDestroy(&g_magic_lock);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 #if defined OS_FREEBSD || defined OS_DARWIN
 #define MICROSOFT_OFFICE_DOC "OLE 2 Compound Document"
@@ -660,7 +660,7 @@ end:
 void MagicRegisterTests(void)
 {
 #ifdef HAVE_MAGIC
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("MagicInitTest01", MagicInitTest01);
     UtRegisterTest("MagicInitTest02", MagicInitTest02);
     UtRegisterTest("MagicDetectTest01", MagicDetectTest01);

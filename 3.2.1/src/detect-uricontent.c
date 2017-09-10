@@ -192,7 +192,7 @@ error:
  * UNITTTESTS
  */
 
-#ifdef UNITTESTS
+#if 0
 
 #include "stream-tcp-reassemble.h"
 
@@ -1880,7 +1880,7 @@ int DetectUriContentParseTest24(void)
 
 void HttpUriRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("HTTPUriTest01", HTTPUriTest01);
     UtRegisterTest("HTTPUriTest02", HTTPUriTest02);
     UtRegisterTest("HTTPUriTest03", HTTPUriTest03);

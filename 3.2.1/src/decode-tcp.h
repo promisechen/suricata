@@ -177,6 +177,7 @@ static inline uint16_t TCPV6CalculateChecksum(uint16_t *, uint16_t *, uint16_t);
  *
  * \retval csum Checksum for the TCP packet
  */
+ //clx:计算校验和
 static inline uint16_t TCPCalculateChecksum(uint16_t *shdr, uint16_t *pkt,
                                             uint16_t tlen)
 {

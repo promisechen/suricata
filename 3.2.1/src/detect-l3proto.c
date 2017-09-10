@@ -120,7 +120,7 @@ error:
     return -1;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test DetectL3protoTestSig01 is a test for checking the working of ttl keyword
@@ -381,7 +381,7 @@ end:
  */
 void DetectL3protoRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectL3protoTestSig1", DetectL3protoTestSig1);
     UtRegisterTest("DetectL3protoTestSig2", DetectL3protoTestSig2);
     UtRegisterTest("DetectL3protoTestSig3", DetectL3protoTestSig3);

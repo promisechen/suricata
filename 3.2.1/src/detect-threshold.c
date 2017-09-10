@@ -55,7 +55,7 @@
 #include "util-byte.h"
 #include "util-debug.h"
 
-#ifdef UNITTESTS
+#if 0
 #include "util-cpu.h"
 #endif
 
@@ -273,7 +273,7 @@ static void DetectThresholdFree(void *de_ptr)
 /*
  * ONLY TESTS BELOW THIS COMMENT
  */
-#ifdef UNITTESTS
+#if 0
 #include "detect-engine.h"
 #include "detect-engine-mpm.h"
 #include "util-time.h"
@@ -1475,7 +1475,7 @@ end:
 
 void ThresholdRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("ThresholdTestParse01", ThresholdTestParse01);
     UtRegisterTest("ThresholdTestParse02", ThresholdTestParse02);
     UtRegisterTest("ThresholdTestParse03", ThresholdTestParse03);

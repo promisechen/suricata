@@ -102,7 +102,7 @@ static int DetectDceStubDataSetup(DetectEngineCtx *de_ctx, Signature *s, char *a
 
 /************************************Unittests*********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int DetectDceStubDataTestParse01(void)
 {
@@ -1853,7 +1853,7 @@ static int DetectDceStubDataTestParse05(void)
 
 void DetectDceStubDataRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectDceStubDataTestParse01",
                    DetectDceStubDataTestParse01);
     UtRegisterTest("DetectDceStubDataTestParse02",

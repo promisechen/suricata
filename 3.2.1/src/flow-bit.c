@@ -135,7 +135,7 @@ void FlowBitFree(FlowBit *fb)
 
 
 /* TESTS */
-#ifdef UNITTESTS
+#if 0
 static int FlowBitTest01 (void)
 {
     int ret = 0;
@@ -401,7 +401,7 @@ end:
 
 void FlowBitRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("FlowBitTest01", FlowBitTest01);
     UtRegisterTest("FlowBitTest02", FlowBitTest02);
     UtRegisterTest("FlowBitTest03", FlowBitTest03);

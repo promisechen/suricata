@@ -279,7 +279,7 @@ end:
     SCReturnInt(retval);
 }
 
-#ifdef UNITTESTS
+#if 0
 static int HTPFileParserTest01(void)
 {
     int result = 0;
@@ -1620,7 +1620,7 @@ end:
 
 void HTPFileParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("HTPFileParserTest01", HTPFileParserTest01);
     UtRegisterTest("HTPFileParserTest02", HTPFileParserTest02);
     UtRegisterTest("HTPFileParserTest03", HTPFileParserTest03);

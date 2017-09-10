@@ -356,7 +356,7 @@ static int DetectFastPatternSetup(DetectEngineCtx *de_ctx, Signature *s, char *a
 
 /*----------------------------------Unittests---------------------------------*/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Checks if a fast_pattern is registered in a Signature
@@ -18917,7 +18917,7 @@ end:
 void DetectFastPatternRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectFastPatternTest01", DetectFastPatternTest01);
     UtRegisterTest("DetectFastPatternTest02", DetectFastPatternTest02);
     UtRegisterTest("DetectFastPatternTest03", DetectFastPatternTest03);

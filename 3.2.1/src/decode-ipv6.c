@@ -664,7 +664,7 @@ int DecodeIPV6(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p, uint8_t *pkt, u
     return TM_ECODE_OK;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test fragment decoding
@@ -920,7 +920,7 @@ static int DecodeIPV6HopTest01 (void)
 
 void DecodeIPV6RegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DecodeIPV6FragTest01", DecodeIPV6FragTest01);
     UtRegisterTest("DecodeIPV6RouteTest01", DecodeIPV6RouteTest01);
     UtRegisterTest("DecodeIPV6HopTest01", DecodeIPV6HopTest01);

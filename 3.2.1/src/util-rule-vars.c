@@ -112,7 +112,7 @@ char *SCRuleVarsGetConfVar(const DetectEngineCtx *de_ctx,
 
 
 /**********************************Unittests***********************************/
-#ifdef UNITTESTS
+#if 0
 
 static const char *dummy_conf_string =
     "%YAML 1.1\n"
@@ -519,7 +519,7 @@ end:
 
 void SCRuleVarsRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SCRuleVarsPositiveTest01", SCRuleVarsPositiveTest01);
     UtRegisterTest("SCRuleVarsNegativeTest02", SCRuleVarsNegativeTest02);
     UtRegisterTest("SCRuleVarsPositiveTest03", SCRuleVarsPositiveTest03);

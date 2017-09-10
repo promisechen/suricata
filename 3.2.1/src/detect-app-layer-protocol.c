@@ -295,7 +295,7 @@ void DetectAppLayerProtocolRegister(void)
 
 /**********************************Unittests***********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int DetectAppLayerProtocolTest01(void)
 {
@@ -565,7 +565,7 @@ static int DetectAppLayerProtocolTest14(void)
 
 static void DetectAppLayerProtocolRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectAppLayerProtocolTest01",
                    DetectAppLayerProtocolTest01);
     UtRegisterTest("DetectAppLayerProtocolTest02",

@@ -375,7 +375,7 @@ void DetectIPRepFree (void *ptr)
     SCFree(fd);
 }
 
-#ifdef UNITTESTS
+#if 0
 FILE *DetectIPRepGenerateCategoriesDummy()
 {
     FILE *fd = NULL;
@@ -995,7 +995,7 @@ end:
  */
 void IPRepRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectIPRepTest01", DetectIPRepTest01);
     UtRegisterTest("DetectIPRepTest02", DetectIPRepTest02);
     UtRegisterTest("DetectIPRepTest03", DetectIPRepTest03);

@@ -766,7 +766,7 @@ int SigGroupHeadContainsSigId(DetectEngineCtx *de_ctx, SigGroupHead *sgh,
 
 /*----------------------------------Unittests---------------------------------*/
 
-#ifdef UNITTESTS
+#if 0
 
 int SigAddressPrepareStage1(DetectEngineCtx *);
 
@@ -1199,7 +1199,7 @@ end:
 
 void SigGroupHeadRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SigGroupHeadTest03", SigGroupHeadTest03);
     UtRegisterTest("SigGroupHeadTest06", SigGroupHeadTest06);
     UtRegisterTest("SigGroupHeadTest07", SigGroupHeadTest07);

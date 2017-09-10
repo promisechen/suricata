@@ -609,7 +609,7 @@ void usage(const char *progname)
     printf("\t-k [all|none]                        : force checksum check (all) or disabled it (none)\n");
     printf("\t-V                                   : display Suricata version\n");
     printf("\t-v[v]                                : increase default Suricata verbosity\n");
-#ifdef UNITTESTS
+#if 0
     printf("\t-u                                   : run the unittests and exit\n");
     printf("\t-U, --unittest-filter=REGEX          : filter unittests with a regex\n");
     printf("\t--list-unittests                     : list unit tests\n");
@@ -696,7 +696,7 @@ void SCPrintBuildInfo(void)
 #ifdef DEBUG_VALIDATION
     strlcat(features, "DEBUG_VALIDATION ", sizeof(features));
 #endif
-#ifdef UNITTESTS
+#if 0
     strlcat(features, "UNITTESTS ", sizeof(features));
 #endif
 #ifdef NFQ
@@ -1442,7 +1442,7 @@ static TmEcode ParseCommandLine(int argc, char** argv, SCInstance *suri)
     int set_log_directory = 0;
     int ret = TM_ECODE_OK;
 
-#ifdef UNITTESTS
+#if 0
     coverage_unittests = 0;
     g_ut_modules = 0;
     g_ut_covered = 0;
@@ -1669,7 +1669,7 @@ static TmEcode ParseCommandLine(int argc, char** argv, SCInstance *suri)
                 /* listing all supported app layer protocols */
             }
             else if(strcmp((long_opts[option_index]).name, "list-unittests") == 0) {
-#ifdef UNITTESTS
+#if 0
                 suri->run_mode = RUNMODE_LIST_UNITTEST;
 #else
                 fprintf(stderr, "ERROR: Unit tests not enabled. Make sure to pass --enable-unittests to configure when building.\n");
@@ -1717,7 +1717,7 @@ static TmEcode ParseCommandLine(int argc, char** argv, SCInstance *suri)
                 SCLogInfo("detection engine disabled");
             }
             else if(strcmp((long_opts[option_index]).name, "fatal-unittests") == 0) {
-#ifdef UNITTESTS
+#if 0
                 unittests_fatal = 1;
 #else
                 fprintf(stderr, "ERROR: Unit tests not enabled. Make sure to pass --enable-unittests to configure when building.\n");
@@ -1982,7 +1982,7 @@ static TmEcode ParseCommandLine(int argc, char** argv, SCInstance *suri)
             suri->sig_file_exclusive = TRUE;
             break;
         case 'u':
-#ifdef UNITTESTS
+#if 0
             if (suri->run_mode == RUNMODE_UNKNOWN) {
                 suri->run_mode = RUNMODE_UNITTEST;
             } else {
@@ -1997,7 +1997,7 @@ static TmEcode ParseCommandLine(int argc, char** argv, SCInstance *suri)
 #endif /* UNITTESTS */
             break;
         case 'U':
-#ifdef UNITTESTS
+#if 0
             suri->regex_arg = optarg;
 
             if(strlen(suri->regex_arg) == 0)

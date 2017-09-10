@@ -117,7 +117,7 @@ static int DetectFiledataSetup (DetectEngineCtx *de_ctx, Signature *s, char *str
     return 0;
 }
 
-#ifdef UNITTESTS
+#if 0
 static int DetectFiledataParseTest01(void)
 {
     DetectEngineCtx *de_ctx = NULL;
@@ -288,7 +288,7 @@ end:
 
 void DetectFiledataRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectFiledataParseTest01", DetectFiledataParseTest01);
     UtRegisterTest("DetectFiledataParseTest02", DetectFiledataParseTest02);
     UtRegisterTest("DetectFiledataParseTest03", DetectFiledataParseTest03);

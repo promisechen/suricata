@@ -1930,7 +1930,7 @@ DetectAddress *DetectAddressLookupInHead(const DetectAddressHead *gh, Address *a
 
 /********************************Unittests*************************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int UTHValidateDetectAddress(DetectAddress *ad, const char *one, const char *two)
 {
@@ -4931,7 +4931,7 @@ int AddressConfVarsTest05(void)
 
 void DetectAddressTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     DetectAddressIPv4Tests();
     DetectAddressIPv6Tests();
 

@@ -1525,7 +1525,7 @@ void RegisterModbusParsers(void)
     } else {
         SCLogConfig("Parsed disabled for %s protocol. Protocol detection" "still on.", proto_name);
     }
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_MODBUS, ModbusParserRegisterTests);
 #endif
 
@@ -1533,7 +1533,7 @@ void RegisterModbusParsers(void)
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 #include "detect.h"
 #include "detect-engine.h"
 #include "detect-parse.h"
@@ -3230,7 +3230,7 @@ static int ModbusParserTest18(void) {
 #endif /* UNITTESTS */
 
 void ModbusParserRegisterTests(void) {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("ModbusParserTest01 - Modbus Read Coils request",
                    ModbusParserTest01);
     UtRegisterTest("ModbusParserTest02 - Modbus Write Multiple registers request",

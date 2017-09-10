@@ -296,7 +296,7 @@ HashListTableBucket *HashListTableGetListHead(HashListTable *ht)
  * ONLY TESTS BELOW THIS COMMENT
  */
 
-#ifdef UNITTESTS
+#if 0
 static int HashListTableTestInit01 (void)
 {
     HashListTable *ht = HashListTableInit(1024, HashListTableGenericHash, NULL, NULL);
@@ -500,7 +500,7 @@ end:
 
 void HashListTableRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("HashListTableTestInit01", HashListTableTestInit01);
     UtRegisterTest("HashListTableTestInit02", HashListTableTestInit02);
     UtRegisterTest("HashListTableTestInit03", HashListTableTestInit03);

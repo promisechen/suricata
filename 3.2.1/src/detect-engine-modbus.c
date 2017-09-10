@@ -255,7 +255,7 @@ int DetectEngineInspectModbus(ThreadVars            *tv,
     SCReturnInt(ret);
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 #include "app-layer-parser.h"
 
 #include "detect-parse.h"
@@ -1345,7 +1345,7 @@ end:
 
 void DetectEngineInspectModbusRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineInspectModbusTest01 - Code function",
                    DetectEngineInspectModbusTest01);
     UtRegisterTest("DetectEngineInspectModbusTest02 - code function and code subfunction",

@@ -390,7 +390,7 @@ static _Bool PrefilterFragBitsIsPrefilterable(const Signature *s)
  * ONLY TESTS BELOW THIS COMMENT
  */
 
-#ifdef UNITTESTS
+#if 0
 /**
  * \test FragBitsTestParse01 is a test for a  valid fragbits value
  *
@@ -632,7 +632,7 @@ error:
  */
 void FragBitsRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("FragBitsTestParse01", FragBitsTestParse01);
     UtRegisterTest("FragBitsTestParse02", FragBitsTestParse02);
     UtRegisterTest("FragBitsTestParse03", FragBitsTestParse03);

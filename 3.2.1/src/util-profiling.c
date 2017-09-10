@@ -1365,7 +1365,7 @@ const char * PacketProfileLoggertIdToString(LoggerId id)
     }
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static int
 ProfilingGenericTicksTest01(void)
@@ -1472,7 +1472,7 @@ ProfilingGenericTicksTest01(void)
 void
 SCProfilingRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("ProfilingGenericTicksTest01", ProfilingGenericTicksTest01);
 #endif /* UNITTESTS */
 }

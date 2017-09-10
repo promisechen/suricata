@@ -135,7 +135,7 @@ void DetectHttpUAFree(void *ptr)
 
 /************************************Unittests*********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 #include "stream-tcp-reassemble.h"
 
@@ -2096,7 +2096,7 @@ int DetectHttpUATest36(void)
 
 void DetectHttpUARegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectHttpUATest01", DetectHttpUATest01);
     UtRegisterTest("DetectHttpUATest02", DetectHttpUATest02);
     UtRegisterTest("DetectHttpUATest03", DetectHttpUATest03);

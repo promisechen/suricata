@@ -883,7 +883,7 @@ int ConfNodeIsSequence(const ConfNode *node)
     return node->is_seq == 0 ? 0 : 1;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * Lookup a non-existant value.

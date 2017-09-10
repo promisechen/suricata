@@ -184,7 +184,7 @@ int IPPairBitIsnotset(IPPair *h, uint16_t idx, uint32_t ts)
 
 
 /* TESTS */
-#ifdef UNITTESTS
+#if 0
 static int IPPairBitTest01 (void)
 {
     int ret = 0;
@@ -490,7 +490,7 @@ end:
 
 void IPPairBitRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("IPPairBitTest01", IPPairBitTest01);
     UtRegisterTest("IPPairBitTest02", IPPairBitTest02);
     UtRegisterTest("IPPairBitTest03", IPPairBitTest03);

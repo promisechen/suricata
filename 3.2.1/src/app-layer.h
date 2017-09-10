@@ -139,7 +139,7 @@ void AppLayerRegisterGlobalCounters(void);
 
 /***** Unittests *****/
 
-#ifdef UNITTESTS
+#if 0
 void AppLayerUnittestsRegister(void);
 #endif
 

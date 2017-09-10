@@ -94,7 +94,7 @@ static int DetectPrioritySetup (DetectEngineCtx *de_ctx, Signature *s, char *raw
 
 /*------------------------------Unittests-------------------------------------*/
 
-#ifdef UNITTESTS
+#if 0
 
 int DetectPriorityTest01()
 {
@@ -193,7 +193,7 @@ end:
 void SCPriorityRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
 
     UtRegisterTest("DetectPriorityTest01", DetectPriorityTest01);
     UtRegisterTest("DetectPriorityTest02", DetectPriorityTest02);

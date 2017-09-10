@@ -39,7 +39,7 @@ void *memrchr (const void *s, int c, size_t n)
 }
 #endif  /* HAVE_MEMRCHR */
 
-#ifdef UNITTESTS
+#if 0
 static int MemrchrTest01 (void)
 {
     char *haystack = "abcabc";
@@ -61,7 +61,7 @@ static int MemrchrTest01 (void)
 
 void MemrchrRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("MemrchrTest01", MemrchrTest01);
 #endif
 }

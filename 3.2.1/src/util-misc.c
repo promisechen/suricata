@@ -206,7 +206,7 @@ int ParseSizeStringU64(const char *size, uint64_t *res)
 
 /*********************************Unittests********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 int UtilMiscParseSizeStringTest01(void)
 {
@@ -1133,7 +1133,7 @@ int UtilMiscParseSizeStringTest01(void)
 
 void UtilMiscRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("UtilMiscParseSizeStringTest01",
                    UtilMiscParseSizeStringTest01);
 #endif /* UNITTESTS */

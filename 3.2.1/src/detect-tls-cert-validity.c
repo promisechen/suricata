@@ -632,7 +632,7 @@ void DetectTlsValidityFree(void *de_ptr)
         SCFree(dd);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test This is a test for a valid value 1430000000.
@@ -1946,7 +1946,7 @@ int ValidTestDetect01(void)
  */
 void TlsNotBeforeRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("ValidityTestParse01", ValidityTestParse01);
     UtRegisterTest("ValidityTestParse03", ValidityTestParse03);
     UtRegisterTest("ValidityTestParse05", ValidityTestParse05);
@@ -1968,7 +1968,7 @@ void TlsNotBeforeRegisterTests(void)
  */
 void TlsNotAfterRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("ValidityTestParse02", ValidityTestParse02);
     UtRegisterTest("ValidityTestParse04", ValidityTestParse04);
     UtRegisterTest("ValidityTestParse06", ValidityTestParse06);
@@ -1988,7 +1988,7 @@ void TlsNotAfterRegisterTests(void)
  */
 void TlsExpiredRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("ExpiredTestDetect01", ExpiredTestDetect01);
 #endif /* UNITTESTS */
 }
@@ -1998,7 +1998,7 @@ void TlsExpiredRegisterTests(void)
  */
 void TlsValidRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("ValidTestDetect01", ValidTestDetect01);
 #endif /* UNITTESTS */
 }

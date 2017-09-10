@@ -193,7 +193,7 @@ static int DetectWithinSetup(DetectEngineCtx *de_ctx, Signature *s, char *within
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 #include "util-unittest-helper.h"
  /**
  * \test DetectWithinTestPacket01 is a test to check matches of
@@ -285,7 +285,7 @@ end:
 
 void DetectWithinRegisterTests(void)
 {
-    #ifdef UNITTESTS
+    #if 0
     UtRegisterTest("DetectWithinTestPacket01", DetectWithinTestPacket01);
     UtRegisterTest("DetectWithinTestPacket02", DetectWithinTestPacket02);
     UtRegisterTest("DetectWithinTestVarSetup", DetectWithinTestVarSetup);

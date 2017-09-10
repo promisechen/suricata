@@ -608,14 +608,14 @@ void RegisterSMB2Parsers(void)
                   "still on.", proto_name);
     }
 
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_SMB2, SMB2ParserRegisterTests);
 #endif
     return;
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 
 int SMB2ParserTest01(void)
 {

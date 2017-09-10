@@ -109,7 +109,7 @@ int DetectHttpUriSetup(DetectEngineCtx *de_ctx, Signature *s, char *str)
 
 /******************************** UNITESTS **********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 #include "stream-tcp-reassemble.h"
 
@@ -543,7 +543,7 @@ int DetectHttpUriTest18(void)
  */
 void DetectHttpUriRegisterTests (void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectHttpUriTest01", DetectHttpUriTest01);
     UtRegisterTest("DetectHttpUriTest02", DetectHttpUriTest02);
     UtRegisterTest("DetectHttpUriTest03", DetectHttpUriTest03);

@@ -255,7 +255,7 @@ void DetectSshVersionFree(void *ptr)
     SCFree(id_d);
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
 /**
  * \test DetectSshVersionTestParse01 is a test to make sure that we parse
@@ -678,7 +678,7 @@ end:
  */
 void DetectSshVersionRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectSshVersionTestParse01", DetectSshVersionTestParse01);
     UtRegisterTest("DetectSshVersionTestParse02", DetectSshVersionTestParse02);
     UtRegisterTest("DetectSshVersionTestParse03", DetectSshVersionTestParse03);

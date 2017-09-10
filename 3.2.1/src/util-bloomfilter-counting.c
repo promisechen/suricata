@@ -217,7 +217,7 @@ int BloomFilterCountingTest(BloomFilterCounting *bf, void *data, uint16_t datale
  * ONLY TESTS BELOW THIS COMMENT
  */
 
-#ifdef UNITTESTS
+#if 0
 static uint32_t BloomHash(void *data, uint16_t datalen, uint8_t iter, uint32_t hash_size)
 {
      uint8_t *d = (uint8_t *)data;
@@ -392,7 +392,7 @@ end:
 
 void BloomFilterCountingRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("BloomFilterCountingTestInit01",
                    BloomFilterCountingTestInit01);
     UtRegisterTest("BloomFilterCountingTestInit02",

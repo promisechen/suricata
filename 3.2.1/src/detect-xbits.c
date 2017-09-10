@@ -375,7 +375,7 @@ void DetectXbitFree (void *ptr)
     SCFree(fd);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static void XBitsTestSetup(void)
 {
@@ -539,7 +539,7 @@ static int XBitsTestSig02(void)
  */
 void XBitsRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("XBitsTestParse01", XBitsTestParse01);
     UtRegisterTest("XBitsTestSig01", XBitsTestSig01);
     UtRegisterTest("XBitsTestSig02", XBitsTestSig02);

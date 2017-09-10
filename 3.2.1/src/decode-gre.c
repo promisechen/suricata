@@ -282,7 +282,7 @@ int DecodeGRE(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p, uint8_t *pkt, ui
 }
 
 
-#ifdef UNITTESTS
+#if 0
 /**
  * \test DecodeGRETest01 is a test for small gre packet
  */
@@ -402,7 +402,7 @@ static int DecodeGREtest03 (void)
 
 void DecodeGRERegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DecodeGREtest01", DecodeGREtest01);
     UtRegisterTest("DecodeGREtest02", DecodeGREtest02);
     UtRegisterTest("DecodeGREtest03", DecodeGREtest03);

@@ -732,7 +732,7 @@ void DetectBytejumpFree(void *ptr)
 
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 #include "util-unittest-helper.h"
 /**
  * \test DetectBytejumpTestParse01 is a test to make sure that we return
@@ -1381,7 +1381,7 @@ end:
  */
 void DetectBytejumpRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectBytejumpTestParse01", DetectBytejumpTestParse01);
     UtRegisterTest("DetectBytejumpTestParse02", DetectBytejumpTestParse02);
     UtRegisterTest("DetectBytejumpTestParse03", DetectBytejumpTestParse03);

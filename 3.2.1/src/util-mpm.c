@@ -754,12 +754,12 @@ error:
 
 /************************************Unittests*********************************/
 
-#ifdef UNITTESTS
+#if 0
 #endif /* UNITTESTS */
 
 void MpmRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     uint16_t i;
 
     for (i = 0; i < MPM_TABLE_SIZE; i++) {

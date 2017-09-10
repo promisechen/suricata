@@ -130,7 +130,7 @@ int DecodePPP(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p, uint8_t *pkt, ui
 }
 
 /* TESTS BELOW */
-#ifdef UNITTESTS
+#if 0
 
 /*  DecodePPPtest01
  *  Decode malformed ip layer PPP packet
@@ -299,7 +299,7 @@ static int DecodePPPtest04 (void)
 
 void DecodePPPRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DecodePPPtest01", DecodePPPtest01);
     UtRegisterTest("DecodePPPtest02", DecodePPPtest02);
     UtRegisterTest("DecodePPPtest03", DecodePPPtest03);

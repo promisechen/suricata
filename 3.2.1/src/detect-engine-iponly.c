@@ -447,7 +447,7 @@ static void IPOnlyCIDRListSetSigNum(IPOnlyCIDRItem *tmphead, SigIntId i)
     }
 }
 
-#ifdef UNITTESTS
+#if 0
 /**
  * \brief This function print a IPOnlyCIDRItem list
  * \param tmphead Pointer to the head of IPOnlyCIDRItems list
@@ -1553,7 +1553,7 @@ void IPOnlyAddSignature(DetectEngineCtx *de_ctx, DetectEngineIPOnlyCtx *io_ctx,
     s->CidrDst = NULL;
 }
 
-#ifdef UNITTESTS
+#if 0
 /**
  * \test check that we set a Signature as IPOnly because it has no rule
  *       option appending a SigMatch and no port is fixed
@@ -2249,7 +2249,7 @@ int IPOnlyTestSig17(void)
 
 void IPOnlyRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("IPOnlyTestSig01", IPOnlyTestSig01);
     UtRegisterTest("IPOnlyTestSig02", IPOnlyTestSig02);
     UtRegisterTest("IPOnlyTestSig03", IPOnlyTestSig03);

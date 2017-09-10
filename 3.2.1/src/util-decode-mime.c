@@ -2676,7 +2676,7 @@ int MimeParserDataFromFile(char *filename)
 }
 #endif /* AFLFUZZ_MIME */
 
-#ifdef UNITTESTS
+#if 0
 
 /* Helper body chunk callback function */
 static int TestDataChunkCallback(const uint8_t *chunk, uint32_t len,
@@ -3048,7 +3048,7 @@ static int MimeIsIpv6HostTest01(void)
 
 void MimeDecRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("MimeDecParseLineTest01", MimeDecParseLineTest01);
     UtRegisterTest("MimeDecParseLineTest02", MimeDecParseLineTest02);
     UtRegisterTest("MimeDecParseFullMsgTest01", MimeDecParseFullMsgTest01);

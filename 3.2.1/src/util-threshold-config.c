@@ -1193,7 +1193,7 @@ void SCThresholdConfParseFile(DetectEngineCtx *de_ctx, FILE *fd)
     return;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \brief Creates a dummy threshold file, with all valid options, for testing purposes.
@@ -2878,7 +2878,7 @@ end:
  */
 void SCThresholdConfRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SCThresholdConfTest01", SCThresholdConfTest01);
     UtRegisterTest("SCThresholdConfTest02", SCThresholdConfTest02);
     UtRegisterTest("SCThresholdConfTest03", SCThresholdConfTest03);

@@ -442,7 +442,7 @@ int DetectAddressJoinIPv4(DetectEngineCtx *de_ctx, DetectAddress *target,
 
 /********************************Unittests*************************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int DetectAddressIPv4TestAddressCmp01(void)
 {
@@ -1436,7 +1436,7 @@ static int DetectAddressIPv4Join10(void)
 
 void DetectAddressIPv4Tests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectAddressIPv4TestAddressCmp01",
                    DetectAddressIPv4TestAddressCmp01);
     UtRegisterTest("DetectAddressIPv4IsCompleteIPSpace02",

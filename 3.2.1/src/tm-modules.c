@@ -162,7 +162,7 @@ void TmModuleRunDeInit(void)
 /** \brief register all unittests for the tm modules */
 void TmModuleRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     TmModule *t;
     uint16_t i;
 

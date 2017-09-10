@@ -438,7 +438,7 @@ void DetectHostbitFree (void *ptr)
     SCFree(fd);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static void HostBitsTestSetup(void)
 {
@@ -1223,7 +1223,7 @@ static int HostBitsTestSig08(void)
  */
 void HostBitsRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("HostBitsTestParse01", HostBitsTestParse01);
     UtRegisterTest("HostBitsTestSig01", HostBitsTestSig01);
     UtRegisterTest("HostBitsTestSig02", HostBitsTestSig02);

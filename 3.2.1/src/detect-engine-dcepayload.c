@@ -126,7 +126,7 @@ int DetectEngineInspectDcePayload(DetectEngineCtx *de_ctx,
 
 /**************************************Unittests*******************************/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Test the working of detection engien with respect to dce keywords.
@@ -10144,7 +10144,7 @@ int DcePayloadParseTest46(void)
 void DcePayloadRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DcePayloadTest01", DcePayloadTest01);
     UtRegisterTest("DcePayloadTest02", DcePayloadTest02);
     UtRegisterTest("DcePayloadTest03", DcePayloadTest03);

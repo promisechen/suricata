@@ -924,7 +924,7 @@ void FlowUpdateState(Flow *f, enum FlowState s)
 
 /************************************Unittests*******************************/
 
-#ifdef UNITTESTS
+#if 0
 #include "threads.h"
 
 /**
@@ -1138,7 +1138,7 @@ static int FlowTest09 (void)
  */
 void FlowRegisterTests (void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("FlowTest01 -- Protocol Specific Timeouts", FlowTest01);
     UtRegisterTest("FlowTest02 -- Setting Protocol Specific Free Function",
                    FlowTest02);

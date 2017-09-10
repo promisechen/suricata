@@ -110,7 +110,7 @@ end:
     return TM_ECODE_OK;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static int DecodeMPLSTestHeaderTooSmall(void)
 {
@@ -310,7 +310,7 @@ static int DecodeMPLSTestUnknownPayloadType(void)
 
 void DecodeMPLSRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DecodeMPLSTestHeaderTooSmall",
                    DecodeMPLSTestHeaderTooSmall);
     UtRegisterTest("DecodeMPLSTestBadLabelRouterAlert",

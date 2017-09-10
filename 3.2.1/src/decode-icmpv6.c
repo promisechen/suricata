@@ -490,7 +490,7 @@ int DecodeICMPV6(ThreadVars *tv, DecodeThreadVars *dtv, Packet *p,
     return TM_ECODE_OK;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static int ICMPV6CalculateValidChecksumtest01(void)
 {
@@ -1546,7 +1546,7 @@ static int ICMPV6CalculateValidChecksumWithFCS(void)
  */
 void DecodeICMPV6RegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("ICMPV6CalculateValidChecksumtest01",
                    ICMPV6CalculateValidChecksumtest01);
     UtRegisterTest("ICMPV6CalculateInValidChecksumtest02",

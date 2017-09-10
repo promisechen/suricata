@@ -134,7 +134,7 @@ void DetectHttpHRHFree(void *ptr)
 
 /************************************Unittests*********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 #include "stream-tcp-reassemble.h"
 
@@ -2220,7 +2220,7 @@ end:
 
 void DetectHttpHRHRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectHttpHRHTest01", DetectHttpHRHTest01);
     UtRegisterTest("DetectHttpHRHTest02", DetectHttpHRHTest02);
     UtRegisterTest("DetectHttpHRHTest03", DetectHttpHRHTest03);

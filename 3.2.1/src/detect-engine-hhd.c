@@ -437,7 +437,7 @@ void DetectEngineCleanHHDBuffers(DetectEngineThreadCtx *det_ctx)
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  *\test Test that the http_header content matches against a http request
@@ -3863,7 +3863,7 @@ end:
 void DetectEngineHttpHeaderRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineHttpHeaderTest01",
                    DetectEngineHttpHeaderTest01);
     UtRegisterTest("DetectEngineHttpHeaderTest02",

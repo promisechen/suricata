@@ -213,7 +213,7 @@ int DetectEngineInspectHttpResponseLine(ThreadVars *tv,
 
 /************************************Unittests*********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 #include "stream-tcp-reassemble.h"
 
@@ -330,7 +330,7 @@ static int DetectHttpResponseLineTest02(void)
 
 void DetectHttpResponseLineRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectHttpResponseLineTest01", DetectHttpResponseLineTest01);
     UtRegisterTest("DetectHttpResponseLineTest02", DetectHttpResponseLineTest02);
 #endif /* UNITTESTS */

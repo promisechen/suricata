@@ -363,7 +363,7 @@ void DetectDceIfaceFree(void *ptr)
 
 /************************************Unittests*********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int DetectDceIfaceTestParse01(void)
 {
@@ -1801,7 +1801,7 @@ static int DetectDceIfaceTestParse15(void)
 void DetectDceIfaceRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectDceIfaceTestParse01", DetectDceIfaceTestParse01);
     UtRegisterTest("DetectDceIfaceTestParse02", DetectDceIfaceTestParse02);
     UtRegisterTest("DetectDceIfaceTestParse03", DetectDceIfaceTestParse03);

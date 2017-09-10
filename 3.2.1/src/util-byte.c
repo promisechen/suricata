@@ -376,7 +376,7 @@ int ByteExtractStringInt8(int8_t *res, int base, uint16_t len, const char *str)
 }
 
 /* UNITTESTS */
-#ifdef UNITTESTS
+#if 0
 
 static int ByteTest01 (void)
 {
@@ -606,7 +606,7 @@ static int ByteTest16 (void)
 
 void ByteRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("ByteTest01", ByteTest01);
     UtRegisterTest("ByteTest02", ByteTest02);
     UtRegisterTest("ByteTest03", ByteTest03);

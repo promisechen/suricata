@@ -87,7 +87,7 @@ static int DetectSidSetup (DetectEngineCtx *de_ctx, Signature *s, char *sidstr)
     return -1;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static int SidTestParse01(void)
 {
@@ -157,7 +157,7 @@ end:
  */
 static void DetectSidRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SidTestParse01", SidTestParse01);
     UtRegisterTest("SidTestParse02", SidTestParse02);
     UtRegisterTest("SidTestParse03", SidTestParse03);

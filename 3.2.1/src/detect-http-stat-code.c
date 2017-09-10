@@ -116,7 +116,7 @@ static int DetectHttpStatCodeSetup(DetectEngineCtx *de_ctx, Signature *s, char *
                                                   NULL);
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Checks if a http_stat_code is registered in a Signature, if content is not
@@ -687,7 +687,7 @@ end:
  */
 void DetectHttpStatCodeRegisterTests (void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
     UtRegisterTest("DetectHttpStatCodeTest01", DetectHttpStatCodeTest01);
     UtRegisterTest("DetectHttpStatCodeTest02", DetectHttpStatCodeTest02);

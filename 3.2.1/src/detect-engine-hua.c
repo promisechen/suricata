@@ -155,7 +155,7 @@ int DetectEngineInspectHttpUA(ThreadVars *tv,
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 /**
  * \test Test that the http_user_agent content matches against a http request
@@ -1853,7 +1853,7 @@ end:
 void DetectEngineHttpUARegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineHttpUATest01", DetectEngineHttpUATest01);
     UtRegisterTest("DetectEngineHttpUATest02", DetectEngineHttpUATest02);
     UtRegisterTest("DetectEngineHttpUATest03", DetectEngineHttpUATest03);

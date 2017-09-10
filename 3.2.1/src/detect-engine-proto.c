@@ -175,7 +175,7 @@ int DetectProtoContainsProto(const DetectProto *dp, int proto)
 
 /* TESTS */
 
-#ifdef UNITTESTS
+#if 0
 #include "detect-engine.h"
 #include "detect-parse.h"
 #include "detect-engine-mpm.h"
@@ -608,7 +608,7 @@ end:
  */
 void DetectProtoTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("ProtoTestParse01", ProtoTestParse01);
     UtRegisterTest("ProtoTestParse02", ProtoTestParse02);
     UtRegisterTest("ProtoTestParse03", ProtoTestParse03);

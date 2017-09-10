@@ -408,7 +408,7 @@ static void DetectFilemagicFree(void *ptr)
     }
 }
 
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
 
 /**
  * \test DetectFilemagicTestParse01
@@ -468,7 +468,7 @@ int DetectFilemagicTestParse03 (void)
  */
 void DetectFilemagicRegisterTests(void)
 {
-#ifdef UNITTESTS /* UNITTESTS */
+#if 0 /* UNITTESTS */
     UtRegisterTest("DetectFilemagicTestParse01", DetectFilemagicTestParse01);
     UtRegisterTest("DetectFilemagicTestParse02", DetectFilemagicTestParse02);
     UtRegisterTest("DetectFilemagicTestParse03", DetectFilemagicTestParse03);

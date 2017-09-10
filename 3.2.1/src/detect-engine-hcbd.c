@@ -310,7 +310,7 @@ void DetectEngineCleanHCBDBuffers(DetectEngineThreadCtx *det_ctx)
 
 /***********************************Unittests**********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 struct TestSteps {
     const uint8_t *input;
@@ -1057,7 +1057,7 @@ libhtp:\n\
 void DetectEngineHttpClientBodyRegisterTests(void)
 {
 
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectEngineHttpClientBodyTest01",
                    DetectEngineHttpClientBodyTest01);
     UtRegisterTest("DetectEngineHttpClientBodyTest02",

@@ -2810,14 +2810,14 @@ void RegisterHTPParsers(void)
         SCLogInfo("Parsed disabled for %s protocol. Protocol detection"
                   "still on.", proto_name);
     }
-#ifdef UNITTESTS
+#if 0
     AppLayerParserRegisterProtocolUnittests(IPPROTO_TCP, ALPROTO_HTTP, HTPParserRegisterTests);
 #endif
 
     SCReturn;
 }
 
-#ifdef UNITTESTS
+#if 0
 static HTPCfgRec cfglist_backup;
 
 void HtpConfigCreateBackup(void)
@@ -6528,7 +6528,7 @@ end:
  */
 void HTPParserRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("HTPParserTest01", HTPParserTest01);
     UtRegisterTest("HTPParserTest01a", HTPParserTest01a);
     UtRegisterTest("HTPParserTest02", HTPParserTest02);

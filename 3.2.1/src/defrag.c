@@ -58,7 +58,7 @@
 #include "tmqh-packetpool.h"
 #include "decode.h"
 
-#ifdef UNITTESTS
+#if 0
 #include "util-unittest.h"
 #endif
 
@@ -105,7 +105,7 @@ static DefragContext *defrag_context;
  * tracker.  Only enable when unit tests are enabled.
  */
 #if 0
-#ifdef UNITTESTS
+#if 0
 static void
 DumpFrags(DefragTracker *tracker)
 {
@@ -988,7 +988,7 @@ void DefragDestroy(void)
     DefragTreeDestroy();
 }
 
-#ifdef UNITTESTS
+#if 0
 #define IP_MF 0x2000
 
 /**
@@ -2580,7 +2580,7 @@ static int DefragTestBadProto(void)
 void
 DefragRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DefragInOrderSimpleTest", DefragInOrderSimpleTest);
     UtRegisterTest("DefragReverseSimpleTest", DefragReverseSimpleTest);
     UtRegisterTest("DefragSturgesNovakBsdTest", DefragSturgesNovakBsdTest);

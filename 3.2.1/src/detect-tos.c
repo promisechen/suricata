@@ -216,7 +216,7 @@ void DetectTosFree(void *tosd)
 
 /********************************Unittests***********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 int DetectTosTest01(void)
 {
@@ -389,7 +389,7 @@ end:
 
 void DetectTosRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectTosTest01", DetectTosTest01);
     UtRegisterTest("DetectTosTest02", DetectTosTest02);
     UtRegisterTest("DetectTosTest03", DetectTosTest03);

@@ -243,7 +243,7 @@ int AppLayerParserFromFile(uint8_t ipproto, AppProto alproto, char *filename);
 
 /***** Unittests *****/
 
-#ifdef UNITTESTS
+#if 0
 void AppLayerParserRegisterProtocolUnittests(uint8_t ipproto, AppProto alproto,
                                   void (*RegisterUnittests)(void));
 void AppLayerParserRegisterUnittests(void);

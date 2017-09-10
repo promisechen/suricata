@@ -1082,7 +1082,7 @@ void MpmHSGlobalCleanup(void)
 
 /*************************************Unittests********************************/
 
-#ifdef UNITTESTS
+#if 0
 
 static int SCHSTest01(void)
 {
@@ -2136,7 +2136,7 @@ end:
 
 void SCHSRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("SCHSTest01", SCHSTest01);
     UtRegisterTest("SCHSTest02", SCHSTest02);
     UtRegisterTest("SCHSTest03", SCHSTest03);

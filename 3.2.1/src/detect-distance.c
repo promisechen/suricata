@@ -176,7 +176,7 @@ static int DetectDistanceSetup (DetectEngineCtx *de_ctx, Signature *s,
     return ret;
 }
 
-#ifdef UNITTESTS
+#if 0
 
 static int DetectDistanceTest01(void)
 {
@@ -262,7 +262,7 @@ end:
 
 void DetectDistanceRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectDistanceTest01 -- distance / within mix",
                    DetectDistanceTest01);
     UtRegisterTest("DetectDistanceTestPacket01", DetectDistanceTestPacket01);

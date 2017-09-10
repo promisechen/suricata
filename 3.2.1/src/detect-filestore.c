@@ -421,7 +421,7 @@ static void DetectFilestoreFree(void *ptr)
     }
 }
 
-#ifdef UNITTESTS
+#if 0
 /*
  * The purpose of this test is to confirm that
  * filestore and bypass keywords can't
@@ -451,7 +451,7 @@ static int DetectFilestoreTest01(void)
 
 void DetectFilestoreRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DetectFilestoreTest01", DetectFilestoreTest01);
 #endif /* UNITTESTS */
 }

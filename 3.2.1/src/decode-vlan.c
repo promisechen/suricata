@@ -139,7 +139,7 @@ uint16_t DecodeVLANGetId(const Packet *p, uint8_t layer)
     return 0;
 }
 
-#ifdef UNITTESTS
+#if 0
 /** \todo Must GRE+VLAN and Multi-Vlan packets to
  * create more tests
  */
@@ -267,7 +267,7 @@ error:
 
 void DecodeVLANRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("DecodeVLANtest01", DecodeVLANtest01);
     UtRegisterTest("DecodeVLANtest02", DecodeVLANtest02);
     UtRegisterTest("DecodeVLANtest03", DecodeVLANtest03);

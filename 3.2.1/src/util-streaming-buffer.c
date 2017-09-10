@@ -467,7 +467,7 @@ void DumpSegment(StreamingBuffer *sb, StreamingBufferSegment *seg)
     }
 }
 
-#ifdef UNITTESTS
+#if 0
 static int StreamingBufferTest01(void)
 {
     StreamingBufferConfig cfg = { STREAMING_BUFFER_AUTOSLIDE, 8, 16, NULL, NULL, NULL, NULL };
@@ -735,7 +735,7 @@ static int StreamingBufferTest05(void)
 
 void StreamingBufferRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("StreamingBufferTest01", StreamingBufferTest01);
     UtRegisterTest("StreamingBufferTest02", StreamingBufferTest02);
     UtRegisterTest("StreamingBufferTest03", StreamingBufferTest03);

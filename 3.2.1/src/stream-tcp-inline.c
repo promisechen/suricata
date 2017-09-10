@@ -183,7 +183,7 @@ void StreamTcpInlineSegmentReplacePacket(Packet *p, TcpSegment *seg)
     }
 }
 
-#ifdef UNITTESTS
+#if 0
 
 /** \test full overlap */
 static int StreamTcpInlineTest01(void)
@@ -644,7 +644,7 @@ end:
 
 void StreamTcpInlineRegisterTests(void)
 {
-#ifdef UNITTESTS
+#if 0
     UtRegisterTest("StreamTcpInlineTest01", StreamTcpInlineTest01);
     UtRegisterTest("StreamTcpInlineTest02", StreamTcpInlineTest02);
     UtRegisterTest("StreamTcpInlineTest03", StreamTcpInlineTest03);

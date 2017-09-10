@@ -57,6 +57,7 @@ typedef struct TcpStreamCnf_ {
     uint32_t prealloc_sessions; /**< ssns to prealloc per stream thread */
     int midstream;
     int async_oneside;
+	//clx:对应stream.reassembly.depth
     uint32_t reassembly_depth;  /**< Depth until when we reassemble the stream */
 
     uint16_t reassembly_toserver_chunk_size;
@@ -70,6 +71,7 @@ typedef struct TcpStreamCnf_ {
      *  sliding window size for raw stream reassembly
      */
     uint32_t reassembly_inline_window;
+	//clx:stream.checksum-validation的配置，是否检查校验和
     uint8_t flags;
     uint8_t max_synack_queued;
 } TcpStreamCnf;
