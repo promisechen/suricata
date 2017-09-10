@@ -28,8 +28,8 @@ fast.log日志示例:
 
 ```
 
-09/09/2017-11:39:07.539902  [**] [1:2013505:3] ET POLICY GNU/Linux YUM User-Agent Outbound likely related to package management [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 172.16.44.168:55369 -> 202.204.80.77:80
-09/09/2017-11:44:07.835333  [**] [1:2013505:3] ET POLICY GNU/Linux YUM User-Agent Outbound likely related to package management [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 172.16.44.168:49807 -> 202.141.176.110:80
+09/2017-11:39:07.539902  [**] [1:2013505:3] ET POLICY GNU/Linux YUM User-Agent Outbound likely related to package management [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 172.16.44.168:55369 -> 202.204.80.77:80
+09/2017-11:44:07.835333  [**] [1:2013505:3] ET POLICY GNU/Linux YUM User-Agent Outbound likely related to package management [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 172.16.44.168:49807 -> 202.141.176.110:80
 
 ```
 
