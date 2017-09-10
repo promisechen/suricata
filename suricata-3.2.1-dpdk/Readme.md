@@ -19,7 +19,7 @@
 3. 启动测试，观察效果    
 
         suricata -c /usr/local/suricata/etc/suricata/suricata.yaml -r /root/pcap/http.pcap 
-        
+        发送流量        
         可以到/var/log/suricata中查看
 
         日志示例: 

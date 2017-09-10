@@ -266,34 +266,21 @@ TmEcode ReceivePcapFileLoop(ThreadVars *tv, void *data, void *slot)
         }
         StatsSyncCountersIfSignalled(tv);
     }
-    int pktCnt = 0;
     struct rte_mbuf *rbQueue[8][1024];
-    //todo  
-    //dpdk
+    //dpdk从队列中获取报文
     printf("dpdk recv\n");
     struct pcap_pkthdr h;
     while(1)
     {
-        // if (suricata_ctl_flags & SURICATA_STOP) {
-        //    SCReturnInt(TM_ECODE_OK);
-        //}
         packet_q_len = rte_ring_dequeue_burst(packetRing,(void *)&rbQueue[0],1);   
         if(packet_q_len==1)
         {
-            pktCnt ++;
             struct rte_mbuf *tmp = rbQueue[0][0];
             h.caplen =rte_pktmbuf_data_len(tmp); 
-            SCLogDebug(" User data %x ", tmp->udata64); 
-            PcapFileCallbackLoop((u_char *)ptv,&h,rte_pktmbuf_mtod(tmp, unsigned char *));
+            PcapFileCallbackLoop((char *)ptv,&h,rte_pktmbuf_mtod(tmp, unsigned char *));
             rte_pktmbuf_free(tmp);
         }
-        else{
-        }
         StatsSyncCountersIfSignalled(tv);
-#if 0
-        if(pktCnt>=30000)
-            break;
-#endif
     }
 
     SCReturnInt(TM_ECODE_OK);

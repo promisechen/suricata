@@ -1,3 +1,21 @@
+/**
+ *
+ * Copyright (C), 2014-2014, promise Technology Co., Ltd.
+ *
+ * @file source-dpdk.c
+ *
+ * @author chenlx10@163.com
+ * @date 2017/9/10
+ *
+ * @note
+ *    Function List :
+ *    History :
+ *	    1.Date : 2017/9/10
+ *	      Author : chenlx10@163.com
+ *	      Modification : Created file
+ *
+ */
+
 #include "stdio.h"
 #include <unistd.h>
 #include <sys/types.h>
@@ -32,22 +50,27 @@ static uint16_t nb_rxd = RTE_TEST_RX_DESC_DEFAULT;
 static uint16_t nb_txd = RTE_TEST_TX_DESC_DEFAULT;
 struct rte_mempool * l2fwd_pktmbuf_pool = NULL;
 static const struct rte_eth_conf port_conf = {
-	.rxmode = {
-		.split_hdr_size = 0,
-		.header_split   = 0, /**< Header Split disabled */
-		.hw_ip_checksum = 0, /**< IP checksum offload disabled */
-		.hw_vlan_filter = 0, /**< VLAN filtering disabled */
-		.jumbo_frame    = 0, /**< Jumbo Frame Support disabled */
-		.hw_strip_crc   = 0, /**< CRC stripped by hardware */
-	},
-	.txmode = {
-		.mq_mode = ETH_MQ_TX_NONE,
-	},
+    .rxmode = {
+        .split_hdr_size = 0,
+        .header_split   = 0, /**< Header Split disabled */
+        .hw_ip_checksum = 0, /**< IP checksum offload disabled */
+        .hw_vlan_filter = 0, /**< VLAN filtering disabled */
+        .jumbo_frame    = 0, /**< Jumbo Frame Support disabled */
+        .hw_strip_crc   = 0, /**< CRC stripped by hardware */
+    },
+    .txmode = {
+        .mq_mode = ETH_MQ_TX_NONE,
+    },
 };
-static int
+    /**
+     * @brief 从0号口收报文
+     *
+     * @param (unused
+     */
+    static int
 l2fwd_launch_one_lcore(__attribute__((unused)) void *dummy)
 {
-     struct rte_mbuf *pkts_burst[32];
+    struct rte_mbuf *pkts_burst[32];
     int ret = 0;
     int enq = 0;
     while(1)
@@ -59,7 +82,6 @@ l2fwd_launch_one_lcore(__attribute__((unused)) void *dummy)
             enq = rte_ring_enqueue_burst(packetRing, (void *)&m, 1);
             if(enq!=1)
             {
-                printf("ring error\n",enq);
                 rte_pktmbuf_free(m);
             }
         }
@@ -73,12 +95,9 @@ int init_dpdk()
     char arg[16][1024];
     char * dargv[16] = {arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], \
         arg[6], arg[7], arg[8], arg[9], arg[10], arg[11], arg[12],arg[13],arg[14],arg[15]};
-    int nRC = 0;
-    uint64_t lCoreMask = 0; 
-    int i = 0 ;
     sprintf(dargv[0], "ddtest");
     sprintf(dargv[1], "-c");
-    sprintf(dargv[2], "0x%lx", 3);
+    sprintf(dargv[2], "0x3");
     sprintf(dargv[3], "-n");
     sprintf(dargv[4], "4");
     printf("abcde\n");
@@ -126,21 +145,16 @@ int init_dpdk()
     //队列 
     packetRing = rte_ring_create("packetRing", 8192, 
             0, 0);
-//RING_F_SC_DEQ
+    //RING_F_SC_DEQ
     /* launch per-lcore init on every lcore */
     rte_eal_mp_remote_launch( l2fwd_launch_one_lcore, NULL, SKIP_MASTER);
 #if 0
+    skip master
     RTE_LCORE_FOREACH_SLAVE(lcore_id) {
         if (rte_eal_wait_lcore(lcore_id) < 0) {
             ret = -1;
             break;
         }
-    }
-
-    while(1)
-    {
-//printf("abc\n");
-            ;
     }
 #endif
     return 0;
