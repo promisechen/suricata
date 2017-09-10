@@ -1,6 +1,7 @@
 利用周末空余时间，将dpdk集成到suricata3.2.1中，没有考虑性能，也没有考虑配置（只能监听0号端口，核心也无法配置，默认使用一个核心）。只是为了演示一个思路、练习下实战经验。   
 
-本示例在pcap-file方式的基础上做了修改，使其可以兼容dpdk.注意：必须以pcap-file的方式启动，才能使用dpdk模式，并且将会先读取离线报文，在接受dpdk 0号端口的报文。     
+本示例在pcap-file方式的基础上做了修改，使其可以兼容dpdk.
+注意：必须以pcap-file的方式启动，并且将会先读取离线报文，在接收dpdk 0号端口的报文。     
 
 1. 安装dpdk16.07版本    
     根据官方手册，安装部署，绑定网卡等   
@@ -9,7 +10,8 @@
     a.直接下载该git   
 
     b.下载官方的3.2.1版本，然后从本目录下找到xxx.patch文件   
-    
+    [suricata-3.2.1-dpdk-20170910.patch](https://github.com/promisechen/suricata/blob/master/suricata-3.2.1-dpdk/suricata-3.2.1-dpdk-20170910.patch)
+
         将patch打入版本中  (一般为patch Np1 < xxx.patch,拷贝到解压目录下，执行该语句)   
         
         根据官方指导手册或参考https://github.com/promisechen/suricata/blob/master/doc/source/quick_start.rst
