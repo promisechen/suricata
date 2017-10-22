@@ -1,0 +1,17 @@
+[package]
+description = "Parser for the NTP protocol"
+license = "LGPL-2.1+"
+keywords = ["NTP","time","protocol","parser","nom"]
+homepage = "https://github.com/rusticata/ntp-parser"
+repository = "https://github.com/rusticata/ntp-parser.git"
+name = "ntp-parser"
+version = "0.1.5"
+authors = ["Pierre Chifflier <chifflier@wzdftpd.net>"]
+categories = ["parsing"]
+
+[dependencies]
+nom = "^3"
+enum_primitive = "0.1"
+
+[badges]
+travis-ci = { repository = "rusticata/ntp-parser" }
