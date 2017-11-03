@@ -2818,9 +2818,10 @@ void RegisterHTPParsers(void)
     const char *proto_name = "http";
 
     /** HTTP */
+    /*by clx 20171101 判断http协议是否启用*/
     if (AppLayerProtoDetectConfProtoDetectionEnabled("tcp", proto_name)) {
         AppLayerProtoDetectRegisterProtocol(ALPROTO_HTTP, proto_name);
-        if (HTPRegisterPatternsForProtocolDetection() < 0)
+        if (HTPRegisterPatternsForProtocolDetection() < 0) /*by clx 20171101 将该协议识别的特征串放入alpd_ctx相应的状态机中*/
             return;
     } else {
         SCLogInfo("Protocol detection and parser disabled for %s protocol",

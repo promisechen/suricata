@@ -75,6 +75,7 @@ AppLayerSetup -> AppLayerProtoDetectSetup:初始化单模多模算法等
                         他们最终都会调用AppLayerProtoDetectPMRegisterPatternCS 和
                         AppLayerProtoDetectPMRegisterPatternCI注册字符串,而这两个函数最终都会掉AppLayerProtoDetectPMAddSignature。
                         比如:RegisterHTPParsers->HTPRegisterPatternsForProtocolDetection ->AppLayerProtoDetectPMRegisterPatternCI                        
+                        
                 AppLayerProtoDetectPrepareState：添加特征到状态机并编译
                         ->AppLayerProtoDetectPMMapSignatures :添加到状态机
                         ->AppLayerProtoDetectPMPrepareMpm :编译

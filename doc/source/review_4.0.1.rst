@@ -28,7 +28,28 @@
                AppLayerProtoDetectSetup:主要是对alpd_ctxl4层协议(tcp,udp,icmp,sctp)层面的多模和单模的注册和初始化，主要是给alpd_ctx.spm_global_thread_ctx和MpmInitCtx调用进行赋值(todo:多模匹配算法插件接口)
                                          alpd_ctx是协议识别的全局变量，存放了各种协议识别使用的数据：如字符串，状态机等
              AppLayerParserSetup: 
-             AppLayerParserRegisterProtocolParsers:
-               
+             AppLayerParserRegisterProtocolParsers:注册协议识别字符串特征或端口特征；注册协议解析函数回调
+                        RegisterHTPParsers(1.4.1):http协议识别字符串注册，解析函数注册 
+             AppLayerProtoDetectPrepareState(todo:详细分析协议维度字符串添加过程、内存布局)：添加特征到状态机并编译
+                        ->AppLayerProtoDetectPMMapSignatures :添加到状态机
+                        ->AppLayerProtoDetectPMPrepareMpm :编译
+      SCHInfoLoadFromConfig:
+           将配置文件中的host-os-policy的配置加入到一棵radix树上，在匹配是使用。(todo:识别或重组时使用？？)
 
+      1.4.1
+          RegisterHTPParsers:AppLayerProtoDetectConfProtoDetectionEnabled(判断该协议是否启动)
+                             AppLayerProtoDetectRegisterProtocol(注册http协议识别)
+                                HTPRegisterPatternsForProtocolDetection:(将该协议识别的特征串放入alpd_ctx相应的状态机中)
+                                    这里将调用AppLayerProtoDetectPMRegisterPatternCI/CS注册字符串特征，
+                                    如果有端口特征则通过AppLayerProtoDetectPPRegister注册（如RegisterDNSUDPParsers）,该函数有2个参数ProbingParserFPtr，
+                                    当命中端口后，还会运行该函数做进一步判断。
 
+                             AppLayerParserRegisterXXXXX(该系列函数是注册协议解析的相关插件,todo:研究解析过程)
+                              
+
+2. 全局变量
+   host_mode 包括router和sniffer-only、auto三种模式，当使用auto模式时，在ips状态下设置为router,在ids下为sniffer-only
+3. 开源引擎借鉴
+   支持协议维度识别和解析
+   协议识别、解析插件化
+   特征区分服务端和客户端
