@@ -225,7 +225,7 @@ void TmqhOutputFlowHash(ThreadVars *tv, Packet *p)
     int16_t qid = 0;
 
     TmqhFlowCtx *ctx = (TmqhFlowCtx *)tv->outctx;
-
+    /*by clx 20171107 根据流进行分类*/
     if (p->flags & PKT_WANTS_FLOW) {
         uint32_t hash = p->flow_hash;
         qid = hash % ctx->size;

@@ -42,10 +42,11 @@ typedef struct StorageList_ {
     struct StorageList_ *next;
 } StorageList;
 
-static StorageList *storage_list = NULL;
-static int storage_max_id[STORAGE_MAX];
-static int storage_registraton_closed = 0;
-static StorageMapping **storage_map = NULL;
+static StorageList *storage_list = NULL; /**< by clx 20171109 储存链表*/
+static int storage_max_id[STORAGE_MAX];  /**< by clx 20171109 三种储存方式的id编号*/
+static int storage_registraton_closed = 0; /**< by clx 20171109 关闭标记，当设置为1时，不在注册*/
+static StorageMapping **storage_map = NULL;/**< by clx 20171109 将储存链表上所有storage实体做映射成二维数组，
+通过储存类型和在该类型的储存方式对应的id进行读取。如storage_map[STORAGE_HOST][host_tag_id]读取host_tag_id的存储注册函数*/
 
 static const char *StoragePrintType(StorageEnum type)
 {
@@ -147,13 +148,14 @@ int StorageFinalize(void)
     }
     if (count == 0)
         return 0;
-
+   /*by clx 20171109 分配三种类型内存*/
     storage_map = SCMalloc(sizeof(StorageMapping *) * STORAGE_MAX);
     if (unlikely(storage_map == NULL)) {
         return -1;
     }
     memset(storage_map, 0x00, sizeof(StorageMapping *) * STORAGE_MAX);
-
+    
+    /*by clx 20171109 为每种类型分配实际内存空间*/
     for (i = 0; i < STORAGE_MAX; i++) {
         if (storage_max_id[i] > 0) {
             storage_map[i] = SCMalloc(sizeof(StorageMapping) * storage_max_id[i]);

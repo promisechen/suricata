@@ -34,12 +34,12 @@ enum {
 };
 
 typedef struct Tmqh_ {
-    const char *name;
-    Packet *(*InHandler)(ThreadVars *);
-    void (*InShutdownHandler)(ThreadVars *);
-    void (*OutHandler)(ThreadVars *, Packet *);
-    void *(*OutHandlerCtxSetup)(const char *);
-    void (*OutHandlerCtxFree)(void *);
+    const char *name;                          
+    Packet *(*InHandler)(ThreadVars *);           /*< 是针对ThreadVars的输入，而非入队的意思，即从相应队列取出Packet。by clx 20171107 */
+    void (*InShutdownHandler)(ThreadVars *);      /*< 貌似是把队列中的报文都拿出来的意思??。by clx 20171107 */
+    void (*OutHandler)(ThreadVars *, Packet *);   /*< 将报文压入队列中。by clx 20171107*/
+    void *(*OutHandlerCtxSetup)(const char *);    /*< 初始化线程上下文。by clx 20171107*/
+    void (*OutHandlerCtxFree)(void *);            /*< 释放线程上下文。by clx 20171107*/
     void (*RegisterTests)(void);
 } Tmqh;
 
